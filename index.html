@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cărți fără frontiere</title>
+<style>
+:root{--bg:#0c0d11;--bg2:#14161d;--bg3:#1d212b;--ink:#ece6d8;--muted:#a59e8e;
+--brass:#d2ad3f;--brass-2:#caa233;--brass-dim:#8d7521;--brass-fade:#d2ad3f2e;
+--red:#cf5a44;--red-deep:#b03a2a;--felt:#16382c;--felt-2:#0f2a20;--line:#d2ad3f22;
+--card-face:#f3eede;--card-ink:#1a1c22;--card-edge:#cfc6ad;--shadow:0 18px 40px -18px #000c,0 2px 10px -4px #0009;
+--fd:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;--fb:'Iowan Old Style',Georgia,'Times New Roman',serif;
+--fu:'Avenir Next','Segoe UI',system-ui,sans-serif;--fm:'SF Mono','Cascadia Code',ui-monospace,Menlo,Consolas,monospace;--r:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.6;min-height:100vh;
+background-image:radial-gradient(1100px 650px at 80% -8%,#1c2a3a55,transparent 60%),radial-gradient(900px 600px at 8% 0%,#2a221255,transparent 55%)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--brass);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3{font-family:var(--fd);font-weight:600;line-height:1.12}::selection{background:var(--brass);color:#1a1505}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0 12px;border-bottom:1px solid var(--line);
+position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transparent);backdrop-filter:blur(3px)}
+.brandmark{font-family:var(--fd);font-size:.92rem;letter-spacing:.32em;text-transform:uppercase;color:var(--brass)}
+.trophy{font-family:var(--fm);font-size:.82rem;color:var(--brass);border:1px solid var(--line);border-radius:10px;padding:0 12px;height:38px;display:flex;align-items:center;gap:6px;background:var(--bg2)}
+.hero{padding:50px 0 22px;text-align:center}
+.hero .eyebrow{font-family:var(--fu);font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.hero h1{font-size:clamp(2.6rem,8vw,5rem);margin:.05em 0;letter-spacing:.02em;background:linear-gradient(180deg,#f6efdd,#d8c9a0 62%,#b89a52);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lede{font-family:var(--fu);color:var(--muted);max-width:640px;margin:14px auto 0;font-size:1rem;line-height:1.7}
+.suit-rule{display:flex;gap:18px;justify-content:center;align-items:center;margin:22px 0 6px;color:var(--brass-dim);font-size:1.3rem}
+.suit-rule::before,.suit-rule::after{content:"";height:1px;width:min(120px,22vw);background:linear-gradient(90deg,transparent,var(--brass-dim))}
+.suit-rule::after{background:linear-gradient(90deg,var(--brass-dim),transparent)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:28px 0 8px}
+.stat{background:var(--bg2);padding:16px 8px;text-align:center}.stat b{display:block;font-family:var(--fm);font-size:1.5rem;color:var(--brass)}
+.stat span{font-family:var(--fu);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.daily{background:radial-gradient(120% 140% at 100% 0%,#24160955,transparent 50%),linear-gradient(160deg,var(--bg3),var(--bg2));border:1px solid var(--brass-fade);border-radius:var(--r);padding:24px;display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:30px;cursor:pointer}
+.daily .badge-day{font-family:var(--fu);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+.daily h3{font-size:1.8rem;margin:6px 0}.daily p{font-family:var(--fu);color:var(--muted);margin:0;max-width:60ch;font-size:.92rem}
+.daily .big-suit{font-size:4rem;line-height:1;color:var(--brass);margin-left:auto}
+.controls{position:sticky;top:62px;z-index:30;background:linear-gradient(var(--bg) 78%,transparent);padding:18px 0 12px;margin-top:30px}
+.searchrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1 1 280px;display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;padding:0 14px;height:46px}
+.search input{flex:1;background:none;border:none;color:var(--ink);font-family:var(--fu);font-size:.95rem;outline:none}.search .mag{color:var(--brass)}
+.select{background:var(--bg2);border:1px solid var(--line);color:var(--ink);font-family:var(--fu);height:46px;border-radius:11px;padding:0 12px;font-size:.86rem;cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{font-family:var(--fu);font-size:.8rem;background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:7px 14px;cursor:pointer;transition:.16s;white-space:nowrap}
+.chip:hover{color:var(--ink);border-color:var(--brass-dim)}.chip.active{background:var(--brass);border-color:var(--brass);color:#100c02;font-weight:600}
+.countline{font-family:var(--fm);font-size:.78rem;color:var(--muted);margin-top:12px}
+.section{margin-top:34px}.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px}
+.section-head .mark{color:var(--brass);font-size:1.3rem}.section-head h2{font-size:1.5rem;margin:0}.section-head .sub{font-family:var(--fu);font-size:.84rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
+.card-entry{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;transition:.18s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px;min-height:150px}
+.card-entry:hover{transform:translateY(-3px);border-color:var(--brass-dim);box-shadow:var(--shadow)}
+.card-entry .ce-suit{position:absolute;right:12px;top:10px;font-size:1.15rem;opacity:.5}
+.card-entry h3{font-size:1.1rem;margin:0;padding-right:26px;line-height:1.2}.card-entry .ce-meta{font-family:var(--fm);font-size:.7rem;color:var(--muted)}
+.card-entry .ce-desc{font-family:var(--fu);font-size:.82rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-entry .ce-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:6px}
+.tags{display:flex;gap:5px;flex-wrap:wrap}.tag{font-family:var(--fu);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);border:1px solid var(--line);border-radius:5px;padding:2px 6px}
+.tag.play{background:var(--brass);color:#100c02;border-color:var(--brass);font-weight:700}
+.pips{display:flex;gap:3px}.pip{width:7px;height:7px;border-radius:2px;background:#ffffff18;transform:rotate(45deg)}.pip.on{background:var(--brass)}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-family:var(--fu)}
+.modal-bg{position:fixed;inset:0;background:#06070ad9;backdrop-filter:blur(6px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:auto}
+.modal-bg.open{display:flex}
+.modal{background:linear-gradient(180deg,var(--bg3),var(--bg2));border:1px solid var(--brass-fade);border-radius:18px;max-width:680px;width:100%;box-shadow:var(--shadow);overflow:hidden;animation:pop .26s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.m-head{padding:22px 24px 16px;border-bottom:1px solid var(--line);position:relative;background:radial-gradient(120% 130% at 100% 0%,#2417093f,transparent 55%)}
+.m-suit{font-size:2.6rem;position:absolute;right:22px;top:18px;opacity:.6}
+.m-fav{position:absolute;right:64px;top:22px;font-size:1.5rem;cursor:pointer;color:#ffffff30}.m-fav.on{color:var(--brass)}
+.modal h2{font-size:1.8rem;margin:0 96px 6px 0}.m-meta{font-family:var(--fm);font-size:.76rem;color:var(--muted)}
+.m-body{padding:20px 24px 24px}.m-desc{font-family:var(--fu);font-size:.95rem;line-height:1.7}
+.modal h4{font-family:var(--fu);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:22px 0 8px}
+.rules{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.rules li{font-family:var(--fu);font-size:.9rem;color:var(--muted);padding-left:22px;position:relative;line-height:1.55}
+.rules li::before{content:"♠";position:absolute;left:0;top:1px;color:var(--brass-dim);font-size:.8em}
+.fact{font-family:var(--fu);font-size:.88rem;color:var(--muted);background:var(--bg);border-left:2px solid var(--brass-dim);padding:12px 14px;border-radius:0 8px 8px 0;margin-top:8px;line-height:1.6}
+.approx{font-family:var(--fu);font-size:.78rem;color:#d99a4e;margin-top:12px;display:flex;gap:7px}
+.m-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn{font-family:var(--fu);font-size:.92rem;border-radius:11px;padding:12px 20px;cursor:pointer;border:1px solid var(--line);background:var(--bg3);color:var(--ink);transition:.16s;font-weight:600}
+.btn:hover{border-color:var(--brass)}.btn.primary{background:linear-gradient(180deg,var(--brass),var(--brass-2));color:#120d02;border-color:var(--brass)}.btn.ghost{background:transparent}.btn:disabled{opacity:.4;cursor:not-allowed}
+.play-bg{position:fixed;inset:0;z-index:120;display:none;flex-direction:column;background:radial-gradient(120% 90% at 50% 18%,var(--felt),var(--felt-2) 70%,#081512 100%)}
+.play-bg.open{display:flex}
+.play-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#0a1a14cc;border-bottom:1px solid #ffffff12}
+.pt-title{font-family:var(--fd);font-size:1.2rem;display:flex;gap:10px;align-items:center}.pt-title .s{color:var(--brass)}
+.icon-btn{background:var(--bg2);border:1px solid var(--line);color:var(--ink);width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1rem}
+.play-stage{flex:1;overflow:auto;padding:18px;display:flex}
+.table-inner{max-width:780px;margin:auto;width:100%;display:flex;flex-direction:column;gap:14px}
+.seat{display:flex;flex-direction:column;align-items:center;gap:8px}
+.seat-name{font-family:var(--fu);font-size:.82rem;color:#cfe3d6;display:flex;gap:8px;align-items:center}
+.seat-name .dot{width:8px;height:8px;border-radius:50%;background:#5e7d6c}.seat-name.turn .dot{background:var(--brass);box-shadow:0 0 10px var(--brass)}
+.chiptag{font-family:var(--fm);font-size:.8rem;color:var(--brass);background:#0a1a1488;border:1px solid #ffffff14;padding:2px 10px;border-radius:999px}
+.center-area{display:flex;flex-direction:column;align-items:center;gap:12px}
+.board{display:flex;gap:10px;justify-content:center;min-height:104px;align-items:center;flex-wrap:wrap}.board .vs{font-family:var(--fd);color:var(--brass-dim);font-size:1.2rem}
+.hand{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:104px}
+.msg{font-family:var(--fu);font-size:.95rem;color:#dcebe0;text-align:center;max-width:62ch;background:#0a1a1466;border:1px solid #ffffff10;padding:8px 16px;border-radius:999px;min-height:1.4em}
+.msg.win{color:#0f130c;background:var(--brass);border-color:var(--brass);font-weight:700}.msg.lose{color:#fff;background:#7a2a1f;border-color:#a23a2a}
+.pot-line{font-family:var(--fm);color:var(--brass);font-size:.95rem}.scorebar{display:flex;gap:18px;justify-content:center;font-family:var(--fm);font-size:.85rem;color:#cfe3d6}.scorebar b{color:var(--brass)}
+.note{font-family:var(--fu);font-size:.74rem;color:var(--muted);text-align:center;max-width:60ch;margin:0 auto}
+.card{--w:var(--cw,72px);width:var(--w);height:calc(var(--w)*1.42);border-radius:8px;background:var(--card-face);color:var(--card-ink);position:relative;box-shadow:0 5px 14px -6px #000a,inset 0 0 0 1px var(--card-edge);font-family:var(--fd);animation:deal .3s both}
+.card.sm{--w:54px}.card.solc{--w:var(--solw,74px)}.card.red{color:var(--red-deep)}
+.card .crnr{position:absolute;left:6px;top:4px;line-height:1;text-align:center;font-weight:700}
+.card .crnr .r{font-size:calc(var(--w)*.28);display:block}.card .crnr .s{font-size:calc(var(--w)*.22);display:block;margin-top:-2px}
+.card .crnr.br{left:auto;top:auto;right:6px;bottom:4px;transform:rotate(180deg)}
+.card .pip-c{position:absolute;inset:0;display:grid;place-items:center;font-size:calc(var(--w)*.5)}
+.card.back{background:repeating-linear-gradient(45deg,#7b2230 0 6px,#651a26 6px 12px);box-shadow:0 5px 14px -6px #000a,inset 0 0 0 1px #2a0c12,inset 0 0 0 4px #f3eede}
+.card.back::after{content:"♠";position:absolute;inset:0;display:grid;place-items:center;color:#f3eede;opacity:.22;font-size:calc(var(--w)*.5)}
+.card.selectable{cursor:pointer}.card.selectable:hover{transform:translateY(-10px);box-shadow:0 14px 24px -8px #000c,inset 0 0 0 1px var(--brass)}
+.card.sel{transform:translateY(-14px);box-shadow:0 16px 26px -8px #000d,inset 0 0 0 2px var(--brass)}
+@keyframes deal{from{opacity:0;transform:translateY(-26px) rotate(-7deg)}to{opacity:1;transform:none}}
+.actionbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:10px}
+.act{font-family:var(--fu);font-size:.9rem;border-radius:10px;padding:11px 18px;cursor:pointer;font-weight:600;border:1px solid #ffffff1f;background:#13261dcc;color:#e9f1ea;transition:.15s}
+.act:hover:not(:disabled){border-color:var(--brass);color:#fff}.act.primary{background:linear-gradient(180deg,var(--brass),var(--brass-2));color:#120d02;border-color:var(--brass)}.act:disabled{opacity:.35;cursor:not-allowed}
+.suitpick{display:flex;gap:10px;justify-content:center}.suitpick button{width:50px;height:50px;border-radius:12px;font-size:1.5rem;background:var(--card-face);border:2px solid transparent;cursor:pointer;color:#1a1c22}.suitpick button.r{color:var(--red-deep)}.suitpick button:hover{border-color:var(--brass)}
+:root{--solw:74px}
+.sol-top{display:flex;gap:8px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-bottom:4px}
+.sol-found{display:flex;gap:8px}
+.sol-cols{display:flex;gap:8px;justify-content:center;align-items:flex-start;overflow-x:auto;padding-bottom:6px}
+.sol-col{display:flex;flex-direction:column;align-items:center;min-width:var(--solw)}
+.sol-col .card{margin-top:calc(var(--solw)*-0.92)}.sol-col .card:first-child{margin-top:0}
+.slot{width:var(--solw);height:calc(var(--solw)*1.42);border-radius:8px;border:1px dashed #ffffff30;background:#ffffff08}
+.foot{margin-top:60px;padding-top:26px;border-top:1px solid var(--line);text-align:center;font-family:var(--fu);color:var(--muted);font-size:.82rem;line-height:1.8}
+.foot .big{font-family:var(--fd);color:var(--brass);font-size:1rem}.foot .suits{color:var(--brass-dim);letter-spacing:.4em;margin:8px 0}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.daily .big-suit{display:none}.card{--w:min(var(--cw,56px),16vw)}:root{--solw:min(74px,15vw)}.controls{top:60px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><div class="brandmark">♠ ♥ Cărți fără frontiere ♦ ♣</div><div class="trophy" id="trophy">▶ 0 partide</div></div>
+  <div class="hero">
+    <div class="eyebrow">Atlas de jocuri cu cărți · jucabil contra AI-urilor locale</div>
+    <h1>Cărți fără frontiere</h1><div class="suit-rule">♠ ♥ ♦ ♣</div>
+    <p class="lede">De la Solitaire și Popa Prostul la poker — o enciclopedie jucabilă, offline, fără reclame și fără urmărire. Companion al atlasului <a href="https://alexio.tf/sah-fara-frontiere/" target="_blank" rel="noopener">Șah fără frontiere</a>.</p>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="daily" id="daily"></div>
+  <div class="controls">
+    <div class="searchrow"><div class="search"><span class="mag">⌕</span><input id="q" type="text" placeholder="Caută un joc, o familie, o regulă…" autocomplete="off"></div>
+      <select class="select" id="sort"><option value="fam">Grupare: familie</option><option value="az">Alfabetic A→Z</option><option value="diff">Dificultate ↑</option><option value="play">Jucabile întâi</option></select></div>
+    <div class="chips" id="famchips"></div><div class="countline" id="count"></div>
+  </div>
+  <div id="catalog"></div>
+  <div class="foot"><div class="big">Cărți fără frontiere</div><div class="suits">♠ ♥ ♦ ♣</div>
+    <p>Fișier unic, 100% offline · 0 resurse externe · vanilla JS, fără telemetrie.<br>Jucabile: Solitaire (Klondike), Război, Popa Prostul, Macao, Septică, Blackjack și Texas Hold'em. Restul sunt documentate.<br>Realizat de Alexandru-Ionuț Chiuță (Alexio) · Centrul StrING · CC-BY-SA 4.0.</p></div>
+</div>
+<div class="modal-bg" id="modalbg"><div class="modal" id="modal"></div></div>
+<div class="play-bg" id="playbg"></div>
+<script>
+/* ============ CATALOG ============ */
+const FAMILIES=[
+{key:"copii",name:"Pentru copii & rapide",sub:"primele jocuri învățate la masă",mark:"♥"},
+{key:"romanesti",name:"Jocuri românești",sub:"din folclorul de carte autohton",mark:"♣"},
+{key:"aruncare",name:"De aruncare",sub:"scapă primul de cărți",mark:"♠"},
+{key:"levate",name:"Cu levate",sub:"se câștigă mâini, nu cărți",mark:"♦"},
+{key:"combinatii",name:"Combinații & remi",sub:"seturi și secvențe",mark:"♣"},
+{key:"poker",name:"Familia pokerului",sub:"de la 5 cărți la Hold'em",mark:"♠"},
+{key:"cazinou",name:"Cazinou & pariuri",sub:"contra casei",mark:"♦"},
+{key:"pacient",name:"Pacient (solitaire)",sub:"un jucător contra hazardului",mark:"♠"}];
+const GAMES=[
+{id:"razboi",t:"Război",suit:"♠",fam:"copii",play:"war",pl:"2",diff:1,era:"universal",reg:"Internațional",tags:["noroc pur","fără decizii"],
+ desc:"Cel mai simplu joc cu cărți din lume: fiecare întoarce o carte, cea mai mare ia ambele. La egalitate izbucnește „războiul”.",
+ rules:["Pachetul se împarte în două teancuri egale.","Întoarceți cartea de sus; valoarea mai mare ia ambele.","La egalitate: 3 cărți cu fața în jos + 1 întoarsă decid grămada.","Pierde cine rămâne fără cărți."],
+ fact:"Pentru că nu există nicio decizie, „Războiul” e exemplu de joc complet determinat de amestecare."},
+{id:"popa",t:"Popa Prostul",suit:"♣",fam:"copii",play:"popa",pl:"3",diff:1,era:"sec. XIX",reg:"Europa",tags:["pasează cărți","ghinion"],
+ desc:"Varianta românească a lui „Old Maid”: se scot perechile, rămâne o singură carte fără pereche (Popa), iar cine o ține la final pierde.",
+ rules:["Se joacă cu 51 de cărți (un popă/rege scos).","Arunci imediat perechile de aceeași valoare.","Tragi pe nevăzute o carte din mâna vecinului.","Cine rămâne cu „Popa” pierde."],
+ fact:"În alte țări cartea-ghinion e o damă, un valet sau un joker — esența rămâne aceeași."},
+{id:"pescuit",t:"Pescuitul (Go Fish)",suit:"♥",fam:"copii",pl:"2–6",diff:1,era:"sec. XIX",reg:"Anglia / SUA",tags:["memorie","cereri"],
+ desc:"Ceri de la adversari cărți de o valoare anume ca să strângi careuri. Dacă nu au, „pescuiești” din pachet.",
+ rules:["Aduni careuri (4 de aceeași valoare).","Întrebi un jucător dacă are o valoare.","Dacă nu, pescuiești din pachet.","Câștigă cine strânge cele mai multe careuri."],
+ fact:"Predă implicit probabilitatea condiționată: ce ai cerut deja dezvăluie ce ții în mână."},
+{id:"septica",t:"Septică",suit:"♣",fam:"romanesti",play:"septica",pl:"2",diff:2,era:"sec. XX",reg:"România",tags:["bătaie","șeptarul atú"],
+ desc:"Jocul de bătaie românesc: bați cartea de jos cu una de aceeași valoare sau cu orice 7 (mereu atú). Asul și 10-le aduc câte un punct.",
+ rules:["Pachet redus de 32 de cărți (7–As).","Bați cu aceeași valoare sau cu orice 7.","Cine pune ultima carte ia grămada.","Fiecare As și 10 din cărțile luate = 1 punct."],
+ fact:"„Șeptarul” care bate orice carte a dat numele jocului."},
+{id:"macao",t:"Macao",suit:"♠",fam:"aruncare",play:"macao",pl:"2–5",diff:2,era:"sec. XX",reg:"România",tags:["scapă de cărți","7 = +2"],
+ desc:"Cel mai iubit joc de cărți din România, vară cu „Crazy Eights”: potrivești culoarea sau valoarea; 7 obligă la tras, 8 sare rândul, Asul schimbă culoarea.",
+ rules:["Pui o carte de aceeași culoare sau valoare.","7 = adversarul trage 2 (se „leagă”).","8 = adversarul stă o tură.","Asul e jolly și cere culoarea dorită."],
+ fact:"Numele vine, ca și „macao”-ul de cazino, de la portul Macao — simbol interbelic de noroc."},
+{id:"crazy8",t:"Crazy Eights (Opt nebun)",suit:"♠",fam:"aruncare",pl:"2–7",diff:1,era:"începutul sec. XX",reg:"SUA",tags:["scapă de cărți","8 = jolly"],
+ desc:"Strămoșul lui Macao și al lui UNO: potrivești culoarea sau valoarea, iar orice 8 e „nebun” și schimbă culoarea cerută.",
+ rules:["Pui o carte de aceeași culoare sau valoare.","Orice 8 se joacă oricând și schimbă culoarea.","Dacă nu poți, tragi din pachet.","Primul rămas fără cărți câștigă."],
+ fact:"Mecanica „8 = wild” a inspirat direct cărțile speciale din UNO (1971)."},
+{id:"whist",t:"Whist",suit:"♠",fam:"levate",pl:"4",diff:3,era:"sec. XVIII",reg:"Anglia",tags:["parteneri","atú"],
+ desc:"Strămoșul nobil al bridge-ului: două perechi, 13 levate, atú dat de ultima carte împărțită.",
+ rules:["Patru jucători, doi câte doi parteneri.","Se urmează culoarea cerută; tai cu atú dacă n-o ai.","Atú = ultima carte împărțită.","Punctează levatele peste primele șase."],
+ fact:"Edmond Hoyle a scris despre whist primul mare tratat de strategie de joc."},
+{id:"bridge",t:"Bridge (contract)",suit:"♥",fam:"levate",pl:"4",diff:4,era:"începutul sec. XX",reg:"Internațional",tags:["licitație","parteneri"],
+ desc:"Cel mai profund joc de levate: o licitație stabilește contractul, apoi se joacă pe echipe, cu „mortul” întins pe masă.",
+ rules:["Licitația stabilește atú-ul și numărul de levate.","Declarantul joacă și mâna „mortului”.","Tăierea cu atú e permisă fără culoarea cerută.","Punctaj complex pentru contracte și bonusuri."],
+ fact:"Bridge-ul de competiție e recunoscut de CIO ca sport al minții, alături de șah."},
+{id:"remi",t:"Remi (Rummy)",suit:"♣",fam:"combinatii",pl:"2–4",diff:2,era:"sec. XX",reg:"Internațional",tags:["seturi","secvențe"],
+ desc:"Marea familie a jocurilor de aranjat: formezi seturi și secvențe, iei și arunci câte o carte pe tur.",
+ rules:["Tragi o carte și arunci una.","Aranjezi seturi de 3–4 sau secvențe de aceeași culoare.","„Ieși” când totul e în combinații valide.","Cărțile rămase = puncte negative."],
+ fact:"„Remi” e probabil cea mai răspândită familie de jocuri de carte din lume."},
+{id:"holdem",t:"Texas Hold'em",suit:"♠",fam:"poker",play:"holdem",pl:"2–10",diff:3,era:"sec. XX",reg:"SUA (Texas)",tags:["2 cărți + 5 comune","blufare"],
+ desc:"Regele pokerului modern: 2 cărți proprii, 5 comune (flop, turn, river), patru runde de pariere. Cea mai bună mână de 5 din 7 ia potul.",
+ rules:["Fiecare primește 2 cărți de buzunar.","Se întorc 5 cărți comune: flop, turn, river.","Patru runde de pariere.","La showdown câștigă cea mai bună mână de 5 cărți."],
+ fact:"Transmisiunile cu „hole-card cam” din anii 2000 au transformat Hold'em-ul în fenomen global."},
+{id:"draw5",t:"Five-Card Draw",suit:"♥",fam:"poker",pl:"2–6",diff:2,era:"sec. XIX",reg:"SUA",tags:["schimbi cărți","clasic western"],
+ desc:"Pokerul din filmele western: 5 cărți, pariezi, schimbi câte vrei o dată, pariezi din nou, apoi arătați mâinile.",
+ rules:["Fiecare primește 5 cărți ascunse.","Rundă de pariere, apoi schimbi cărțile o dată.","A doua rundă de pariere.","Câștigă cea mai bună mână de poker."],
+ fact:"A fost cândva sinonim cu „poker” și printre primele jocuri programate pe calculatoarele timpurii."},
+{id:"omaha",t:"Omaha (Pot-Limit)",suit:"♦",fam:"poker",pl:"2–10",diff:4,era:"sec. XX",reg:"SUA",tags:["4 cărți","exact 2+3"],
+ desc:"Fratele mai sălbatic al Hold'em-ului: 4 cărți de buzunar, dar folosești exact două plus trei comune.",
+ rules:["Fiecare primește 4 cărți proprii.","Folosești obligatoriu exact 2 + 3 comune.","Aceleași runde ca la Hold'em.","De obicei „pot-limit”."],
+ fact:"„Exact două din patru” derutează constant jucătorii veniți de la Hold'em."},
+{id:"blackjack",t:"Blackjack (21)",suit:"♠",fam:"cazinou",play:"blackjack",pl:"1 vs casă",diff:2,era:"sec. XVIII",reg:"Franța → SUA",tags:["apropie-te de 21","vs dealer"],
+ desc:"Cel mai jucat joc de masă din cazinouri: te apropii de 21 fără să-l depășești și baţi dealerul. „Blackjack” (As + figură) plătește 3:2.",
+ rules:["Figurile = 10; Asul 1 sau 11.","Ceri („hit”) sau te oprești („stand”); peste 21 ai „crăpat”.","Dealerul trage până la 17.","As + carte de 10 = blackjack, plătit 3:2."],
+ fact:"E singurul joc de cazinou unde memorarea cărților poate, teoretic, întoarce avantajul spre jucător."},
+{id:"baccarat",t:"Bacara (Punto Banco)",suit:"♥",fam:"cazinou",pl:"vs casă",diff:1,era:"sec. XIX",reg:"Franța / Italia",tags:["punto/banco","fără decizii"],
+ desc:"Jocul cazinourilor de lux: pariezi pe Jucător, Bancher sau egalitate; cărțile se trag după reguli fixe. Câștigă mâna mai aproape de 9.",
+ rules:["Pariezi pe Punto, Banco sau egalitate.","Figurile și 10-le = 0; contează ultima cifră.","Tragerea cărții e dictată de reguli fixe.","Mâna cea mai aproape de 9 câștigă."],
+ fact:"E jocul lui James Bond din romanele lui Ian Fleming („Casino Royale”)."},
+{id:"klondike",t:"Solitaire (Klondike)",suit:"♠",fam:"pacient",play:"solitaire",pl:"1",diff:2,era:"sec. XIX",reg:"America de Nord",tags:["7 coloane","4 fundații"],
+ desc:"Pasiența pe care o știe toată lumea de pe calculator: construiești patru fundații (As→Rege, pe culori) mutând cărți între șapte coloane care alternează culorile.",
+ rules:["Șapte coloane în „scară”, doar ultima carte întoarsă.","Pe coloane construiești descrescător, alternând roșu/negru.","Fundațiile cresc de la As la Rege, pe fiecare culoare.","Tragi câte o carte din pachet în depozit."],
+ fact:"A devenit cel mai jucat joc de pe calculator după ce Microsoft l-a inclus în Windows, în 1990."},
+{id:"spider",t:"Spider (Păianjen)",suit:"♥",fam:"pacient",pl:"1",diff:3,era:"sec. XX",reg:"Internațional",tags:["10 coloane","secvențe complete"],
+ desc:"Pasiență mai grea, jucată cu două pachete: construiești opt secvențe complete Rege→As pe aceeași culoare, care apoi se ridică de pe masă.",
+ rules:["Zece coloane; muți secvențe descrescătoare.","Secvențele complete (Rege→As, aceeași culoare) se elimină.","Când nu mai poți muta, împarți un rând nou.","Câștigi când toate cele opt secvențe sunt eliminate."],
+ fact:"Cu o singură culoare e ușor; cu patru culori devine unul dintre cele mai grele pacient-uri populare."},
+{id:"freecell",t:"FreeCell",suit:"♦",fam:"pacient",pl:"1",diff:3,era:"sec. XX",reg:"Internațional",tags:["4 celule libere","aproape mereu rezolvabil"],
+ desc:"Pasiență de strategie pură: toate cărțile sunt vizibile de la început, iar patru „celule libere” îți permit să muți temporar cărți.",
+ rules:["Toate cărțile sunt împărțite cu fața în sus, în opt coloane.","Ai patru celule libere pentru o carte fiecare.","Construiești fundațiile de la As la Rege, pe culori.","Pe coloane aranjezi descrescător, alternând culorile."],
+ fact:"Aproape toate cele 32.000 de partide clasice de FreeCell au soluție."}];
+/* ============ helpers ============ */
+const $=s=>document.querySelector(s), el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+const SUITS=['♠','♥','♦','♣'], RKS={11:'J',12:'Q',13:'K',14:'A'};
+const rlabel=r=>r<=10?(''+r):RKS[r], isRed=s=>s===1||s===2;
+function makeDeck(lo){lo=lo||2;const d=[];for(let s=0;s<4;s++)for(let r=lo;r<=14;r++)d.push({r,s});return d;}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function cardEl(card,opts){opts=opts||{};const d=el('div','card'+(opts.cls?' '+opts.cls:''));
+  if(opts.w)d.style.setProperty('--cw',opts.w+'px');
+  if(opts.back||!card){d.classList.add('back');return d;}
+  if(isRed(card.s))d.classList.add('red');const rl=rlabel(card.r),su=SUITS[card.s];
+  d.innerHTML='<span class="crnr"><span class="r">'+rl+'</span><span class="s">'+su+'</span></span><span class="pip-c">'+su+'</span><span class="crnr br"><span class="r">'+rl+'</span><span class="s">'+su+'</span></span>';
+  if(opts.onClick){d.classList.add('selectable');d.onclick=opts.onClick;}if(opts.sel)d.classList.add('sel');return d;}
+function bar(btns){const b=el('div','actionbar');btns.forEach(o=>{const x=el('button','act'+(o.p?' primary':''));x.textContent=o.l;if(o.d)x.disabled=true;else x.onclick=o.f;b.appendChild(x);});return b;}
+const TI=()=>$('#tableInner');
+/* ============ poker evaluator ============ */
+function eval5(cs){const r=cs.map(c=>c.r).sort((a,b)=>b-a),su=cs.map(c=>c.s);
+  const fl=su.every(x=>x===su[0]);const u=[...new Set(r)];let st=false,sh=0;
+  if(u.length===5){if(u[0]-u[4]===4){st=true;sh=u[0];}else if(u[0]===14&&u[1]===5&&u[2]===4&&u[3]===3&&u[4]===2){st=true;sh=5;}}
+  const cnt={};r.forEach(x=>cnt[x]=(cnt[x]||0)+1);
+  const g=Object.entries(cnt).map(([k,v])=>[+k,v]).sort((a,b)=>b[1]-a[1]||b[0]-a[0]);
+  const cc=g.map(x=>x[1]),ro=g.map(x=>x[0]);
+  if(st&&fl)return[8,sh];if(cc[0]===4)return[7,ro[0],ro[1]];if(cc[0]===3&&cc[1]===2)return[6,ro[0],ro[1]];
+  if(fl)return[5,...r];if(st)return[4,sh];if(cc[0]===3)return[3,ro[0],ro[1],ro[2]];
+  if(cc[0]===2&&cc[1]===2)return[2,ro[0],ro[1],ro[2]];if(cc[0]===2)return[1,ro[0],ro[1],ro[2],ro[3]];return[0,...r];}
+function cmp(a,b){for(let i=0;i<Math.max(a.length,b.length);i++){const x=a[i]||0,y=b[i]||0;if(x!==y)return x-y;}return 0;}
+function kCombos(arr,k){const res=[],n=arr.length,idx=[...Array(k).keys()];if(n<k)return[arr.slice()];
+  while(true){res.push(idx.map(i=>arr[i]));let i=k-1;while(i>=0&&idx[i]===n-k+i)i--;if(i<0)break;idx[i]++;for(let j=i+1;j<k;j++)idx[j]=idx[j-1]+1;}return res;}
+function evalBest(cs){let best=null;for(const c of kCombos(cs,5)){const s=eval5(c);if(!best||cmp(s,best)>0)best=s;}return best;}
+function handName(s){const n=['Carte mare','Pereche','Două perechi','Trei de un fel','Chintă','Culoare','Full house','Careu','Chintă de culoare'];
+  if(s[0]===8&&s[1]===14)return'Chintă roială';return n[s[0]];}
+/* ============ localStorage ============ */
+const LS={get:(k,d)=>{try{const v=localStorage.getItem('cff:'+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem('cff:'+k,JSON.stringify(v));}catch(e){}}};
+let FAV=new Set(LS.get('fav',[])),PLAYED=LS.get('played',0);
+function saveFav(){LS.set('fav',[...FAV]);}
+function bumpPlayed(){PLAYED++;LS.set('played',PLAYED);$('#trophy').textContent='▶ '+PLAYED+' partide';const sp=$('#statPlayed');if(sp)sp.textContent=PLAYED;}
+/* ============ catalog UI ============ */
+let activeFam='all',query='',sortMode='fam';
+function buildStats(){const pl=GAMES.filter(g=>g.play).length,f=new Set(GAMES.map(g=>g.fam)).size;
+  const d=[['Jocuri',GAMES.length],['Jucabile',pl],['Familii',f],['Partide',PLAYED]];
+  $('#stats').innerHTML=d.map((x,i)=>'<div class="stat"><b '+(i===3?'id="statPlayed"':'')+'>'+x[1]+'</b><span>'+x[0]+'</span></div>').join('');}
+function buildChips(){const c=$('#famchips');c.innerHTML='';
+  const a=el('div','chip'+(activeFam==='all'?' active':''));a.textContent='Toate';a.onclick=()=>{activeFam='all';render();};c.appendChild(a);
+  FAMILIES.forEach(f=>{const ch=el('div','chip'+(activeFam===f.key?' active':''));ch.textContent=f.mark+' '+f.name;ch.onclick=()=>{activeFam=f.key;render();};c.appendChild(ch);});
+  const p=el('div','chip'+(activeFam==='play'?' active':''));p.textContent='★ Doar jucabile';p.onclick=()=>{activeFam='play';render();};c.appendChild(p);}
+function matches(g){if(activeFam==='play'&&!g.play)return false;if(activeFam!=='all'&&activeFam!=='play'&&g.fam!==activeFam)return false;
+  if(query){const h=(g.t+' '+g.desc+' '+g.tags.join(' ')+' '+g.reg).toLowerCase();if(!h.includes(query))return false;}return true;}
+function entryEl(g){const e=el('div','card-entry');const pt=g.play?'<span class="tag play">Jucabil</span>':'';
+  const pips=[1,2,3,4].map(n=>'<span class="pip'+(n<=g.diff?' on':'')+'"></span>').join('');
+  e.innerHTML='<span class="ce-suit">'+g.suit+'</span><h3>'+g.t+'</h3><div class="ce-meta">'+g.pl+' jucători · '+g.era+' · '+g.reg+'</div><div class="ce-desc">'+g.desc+'</div><div class="ce-foot"><div class="tags">'+pt+g.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div><div class="pips" title="dificultate '+g.diff+'/4">'+pips+'</div></div>';
+  e.onclick=()=>openModal(g);return e;}
+function render(){buildChips();const cat=$('#catalog');cat.innerHTML='';let list=GAMES.filter(matches);
+  $('#count').textContent=list.length+' din '+GAMES.length+' jocuri'+(activeFam!=='all'?' · filtrat':'');
+  if(!list.length){cat.innerHTML='<div class="empty">Niciun joc nu se potrivește căutării.</div>';return;}
+  if(sortMode==='fam'&&activeFam==='all'){FAMILIES.forEach(f=>{const gs=list.filter(g=>g.fam===f.key);if(!gs.length)return;
+    const sec=el('div','section');sec.innerHTML='<div class="section-head"><span class="mark">'+f.mark+'</span><h2>'+f.name+'</h2><span class="sub">'+f.sub+'</span></div>';
+    const grid=el('div','grid');gs.forEach(g=>grid.appendChild(entryEl(g)));sec.appendChild(grid);cat.appendChild(sec);});}
+  else{if(sortMode==='az')list=[...list].sort((a,b)=>a.t.localeCompare(b.t,'ro'));if(sortMode==='diff')list=[...list].sort((a,b)=>a.diff-b.diff);if(sortMode==='play')list=[...list].sort((a,b)=>(b.play?1:0)-(a.play?1:0));
+    const grid=el('div','grid');list.forEach(g=>grid.appendChild(entryEl(g)));cat.appendChild(grid);}}
+/* ============ modal ============ */
+const APPROX={war:'Războiul nu cere decizii: „AI-ul” doar întoarce cărți alături de tine. Grămada câștigată e reamestecată ca să evite buclele infinite.',
+  popa:'AI-urile trag cărți la întâmplare (nu pot vedea ce ai în mână) — exact ca în jocul real.',
+  macao:'Regulă de casă: dacă nu ai carte validă tragi una și treci rândul. Se folosesc efectele 7=+2, 8=stă, As=jolly.',
+  septica:'La epuizarea pachetului, cărțile rămase în mâini nu se mai contorizează. AI-ul joacă prudent, la nivel de cafenea.',
+  blackjack:'Un singur joc, fără split și fără asigurare. Dealerul stă pe orice 17. Blackjack-ul plătește 3:2.',
+  holdem:'Heads-up (1 la 1), mize mici. AI-ul își estimează șansele prin simulare Monte Carlo și are nivel de cafenea, nu de profesionist.',
+  solitaire:'Pasiență Klondike clasică, tragere câte o carte. Click pe o carte, apoi pe coloana sau fundația țintă; „→ Trimite la fundații” mută automat ce se poate.'};
+function openModal(g){const fav=FAV.has(g.id),m=$('#modal');
+  m.innerHTML='<div class="m-head"><span class="m-suit">'+g.suit+'</span><span class="m-fav'+(fav?' on':'')+'" id="favbtn" title="Favorit">★</span><h2>'+g.t+'</h2><div class="m-meta">'+g.pl+' jucători · dificultate '+g.diff+'/4 · '+g.era+' · '+g.reg+'</div></div><div class="m-body"><div class="m-desc">'+g.desc+'</div><h4>Cum se joacă</h4><ul class="rules">'+g.rules.map(r=>'<li>'+r+'</li>').join('')+'</ul><h4>De știut</h4><div class="fact">'+g.fact+'</div>'+(g.play&&APPROX[g.play]?'<div class="approx">⚠ <span>'+APPROX[g.play]+'</span></div>':'')+'<div class="m-actions">'+(g.play?'<button class="btn primary" id="playbtn">▶ Joacă</button>':'<button class="btn" disabled>Documentat (motor în versiunea completă)</button>')+'<button class="btn ghost" id="closebtn">Închide</button></div></div>';
+  $('#favbtn').onclick=()=>{if(FAV.has(g.id))FAV.delete(g.id);else FAV.add(g.id);saveFav();$('#favbtn').classList.toggle('on');};
+  $('#closebtn').onclick=closeModal;if(g.play)$('#playbtn').onclick=()=>{closeModal();startGame(g);};
+  $('#modalbg').classList.add('open');}
+function closeModal(){$('#modalbg').classList.remove('open');}
+$('#modalbg').addEventListener('click',e=>{if(e.target===$('#modalbg'))closeModal();});
+/* ============ daily ============ */
+function dailyPick(){const p=GAMES.filter(g=>g.play),t=new Date(),seed=t.getFullYear()*1000+t.getMonth()*31+t.getDate();
+  const g=p[seed%p.length],d=$('#daily');d.innerHTML='<div><div class="badge-day">Jocul de azi</div><h3>'+g.t+'</h3><p>'+g.desc+'</p></div><div class="big-suit">'+g.suit+'</div>';d.onclick=()=>openModal(g);}
+/* ============ play overlay ============ */
+function openPlay(title,suit){const pb=$('#playbg');
+  pb.innerHTML='<div class="play-top"><div class="pt-title"><span class="s">'+suit+'</span> '+title+'</div><button class="icon-btn" id="closeplay" title="Închide">✕</button></div><div class="play-stage"><div class="table-inner" id="tableInner"></div></div>';
+  $('#closeplay').onclick=closePlay;pb.classList.add('open');bumpPlayed();}
+function closePlay(){$('#playbg').classList.remove('open');$('#playbg').innerHTML='';warSt=popa=macao=septica=bj=he=sol=null;}
+function startGame(g){const m={war:startWar,popa:startPopa,macao:startMacao,septica:startSeptica,blackjack:startBlackjack,holdem:startHoldem,solitaire:startSolitaire};if(m[g.play]){openPlay(g.t,g.suit);m[g.play]();}}
+function seat(name,count,turn,unit){return '<div class="seat-name'+(turn?' turn':'')+'"><span class="dot"></span>'+name+'</div>'+(count!=null?'<div class="chiptag">'+count+' '+(unit||'cărți')+'</div>':'');}
+/* ===== RĂZBOI ===== */
+let warSt=null;
+function startWar(){const d=shuffle(makeDeck());warSt={you:d.slice(0,26),ai:d.slice(26),pot:[],lY:null,lA:null,over:false,b:0,msg:'Apasă „Trage cartea”.'};renderWar();}
+function wAward(w){shuffle(warSt.pot);if(w==='you')warSt.you.push(...warSt.pot);else warSt.ai.push(...warSt.pot);warSt.lw=w;warSt.pot=[];}
+function wEnd(){if(!warSt.you.length||!warSt.ai.length||warSt.b>3000){warSt.over=true;warSt.win=warSt.you.length>warSt.ai.length?'you':(warSt.ai.length>warSt.you.length?'ai':'tie');}}
+function wWar(){let d=0;while(true){const yd=Math.min(3,Math.max(0,warSt.you.length-1)),ad=Math.min(3,Math.max(0,warSt.ai.length-1));
+  for(let i=0;i<yd;i++)warSt.pot.push(warSt.you.shift());for(let i=0;i<ad;i++)warSt.pot.push(warSt.ai.shift());
+  if(!warSt.you.length&&!warSt.ai.length){wAward(Math.random()<.5?'you':'ai');break;}if(!warSt.you.length){wAward('ai');break;}if(!warSt.ai.length){wAward('you');break;}
+  const y=warSt.you.shift(),a=warSt.ai.shift();warSt.pot.push(y,a);warSt.lY=y;warSt.lA=a;
+  if(y.r>a.r){wAward('you');break;}if(a.r>y.r){wAward('ai');break;}if(++d>40){wAward(Math.random()<.5?'you':'ai');break;}}
+  warSt.msg='RĂZBOI! '+(warSt.lw==='you'?'Ai câștigat schimbul.':'Calculatorul a câștigat schimbul.');}
+function wBattle(){if(warSt.over)return;if(!warSt.you.length||!warSt.ai.length){wEnd();return;}
+  const y=warSt.you.shift(),a=warSt.ai.shift();warSt.pot.push(y,a);warSt.lY=y;warSt.lA=a;warSt.b++;
+  if(y.r>a.r){wAward('you');warSt.msg='Iei cărțile — '+rlabel(y.r)+' bate '+rlabel(a.r)+'.';}
+  else if(a.r>y.r){wAward('ai');warSt.msg='Calculatorul ia cărțile — '+rlabel(a.r)+' bate '+rlabel(y.r)+'.';}else wWar();wEnd();}
+function renderWar(){const w=warSt,ti=TI();let cls='',v='';if(w.over){cls=w.win==='you'?'win':(w.win==='ai'?'lose':'');v=w.win==='you'?'Ai câștigat tot pachetul! 🏆':(w.win==='ai'?'Calculatorul a luat tot pachetul.':'Egalitate.');}
+  ti.innerHTML='<div class="seat">'+seat('Calculatorul',w.ai.length,!w.over)+'</div><div class="center-area"><div class="board" id="wb"></div><div class="msg '+cls+'">'+(w.over?v:w.msg)+'</div></div><div class="seat">'+seat('Tu',w.you.length,!w.over)+'</div>';
+  const b=$('#wb');if(w.lA&&w.lY){b.appendChild(cardEl(w.lA,{w:120}));const x=el('div','vs');x.textContent='⚔';b.appendChild(x);b.appendChild(cardEl(w.lY,{w:120}));}
+  else{b.appendChild(cardEl(null,{back:1,w:120}));const x=el('div','vs');x.textContent='⚔';b.appendChild(x);b.appendChild(cardEl(null,{back:1,w:120}));}
+  ti.appendChild(w.over?bar([{l:'↻ Joacă din nou',p:1,f:startWar},{l:'Înapoi la atlas',f:closePlay}]):bar([{l:'Trage cartea',p:1,f:()=>{wBattle();renderWar();}},{l:'⏩ Automat',f:()=>{const iv=setInterval(()=>{wBattle();renderWar();if(warSt.over)clearInterval(iv);},200);}}]));}
+/* ===== POPA PROSTUL (3 jucători) ===== */
+let popa=null;
+function pname(i){return['Tu','Stânga (AI)','Dreapta (AI)'][i];}
+function discardPairs(h){const by={};h.forEach(c=>{(by[c.r]=by[c.r]||[]).push(c);});const k=[];Object.values(by).forEach(a=>{if(a.length%2===1)k.push(a[0]);});h.length=0;k.forEach(c=>h.push(c));}
+function nextActive(i,h){for(let s=1;s<=3;s++){const j=(i+s)%3;if(h[j].length>0)return j;}return -1;}
+function activeCount(){return popa.hands.filter(h=>h.length>0).length;}
+function startPopa(){const d=shuffle(makeDeck().filter(c=>!(c.r===13&&c.s===0)));const hands=[[],[],[]];d.forEach((c,i)=>hands[i%3].push(c));hands.forEach(discardPairs);
+  popa={hands,turn:0,over:false,loser:null,msg:''};popa.from=nextActive(0,hands);popa.msg='Rândul tău: alege o carte de la '+pname(popa.from)+'.';renderPopa();}
+function popaDraw(idx){if(popa.over)return;const cur=popa.turn,tgt=popa.from;if(tgt<0){popaEnd();return;}
+  const i=idx==null?Math.floor(Math.random()*popa.hands[tgt].length):idx;const c=popa.hands[tgt].splice(i,1)[0];popa.hands[cur].push(c);discardPairs(popa.hands[cur]);
+  if(activeCount()<=1){popaEnd();return;}popa.turn=nextActive(cur,popa.hands);popa.from=nextActive(popa.turn,popa.hands);
+  popa.msg=popa.turn===0?('Rândul tău: alege o carte de la '+pname(popa.from)+'.'):(pname(popa.turn)+' trage o carte…');}
+function popaEnd(){popa.over=true;popa.loser=[0,1,2].find(i=>popa.hands[i].length>0);popa.msg=popa.loser===0?'Ai rămas cu Popa — ai pierdut! 🃏':(pname(popa.loser)+' a rămas cu Popa și pierde. Ai scăpat!');}
+function popaStep(){renderPopa();if(popa.over)return;if(popa.turn!==0)setTimeout(()=>{popaDraw(null);popaStep();},750);}
+function renderPopa(){const ti=TI(),p=popa;ti.innerHTML='';
+  const top=el('div');top.style.cssText='display:flex;gap:30px;justify-content:center;flex-wrap:wrap';
+  [1,2].forEach(i=>{const s=el('div','seat');s.innerHTML=seat(pname(i),p.hands[i].length,p.turn===i&&!p.over);
+    const hz=el('div','hand');const showClick=!p.over&&p.turn===0&&p.from===i;
+    p.hands[i].forEach((c,idx)=>hz.appendChild(cardEl(null,{back:1,w:64,onClick:showClick?()=>{popaDraw(idx);popaStep();}:null})));
+    if(!p.hands[i].length){const e=el('div','note');e.textContent='— ieșit (în siguranță) —';hz.appendChild(e);}s.appendChild(hz);top.appendChild(s);});
+  ti.appendChild(top);
+  const ca=el('div','center-area');ca.innerHTML='<div class="msg '+(p.over&&p.loser===0?'lose':(p.over?'win':''))+'">'+p.msg+'</div>';ti.appendChild(ca);
+  const me=el('div','seat');me.innerHTML=seat('Tu (mâna ta)',p.hands[0].length,p.turn===0&&!p.over);
+  const mh=el('div','hand');p.hands[0].forEach(c=>mh.appendChild(cardEl(c,{w:88})));if(!p.hands[0].length){const e=el('div','note');e.textContent='— ai scăpat de toate cărțile —';mh.appendChild(e);}me.appendChild(mh);ti.appendChild(me);
+  if(p.from>=0&&!p.over&&p.turn===0){const n=el('div','note');n.textContent='Cărțile lui '+pname(p.from)+' sunt cu fața în jos — alege una.';ti.appendChild(n);}
+  if(p.over)ti.appendChild(bar([{l:'↻ Joacă din nou',p:1,f:startPopa},{l:'Înapoi la atlas',f:closePlay}]));}
+/* ===== MACAO (heads-up) ===== */
+let macao=null;
+function startMacao(){const d=shuffle(makeDeck());const hand=d.splice(0,5),ai=d.splice(0,5);let top=d.shift();
+  macao={stock:d,discard:[top],hand,ai,activeSuit:top.s,turn:0,penalty:0,over:false,win:null,pickAce:null,msg:'Rândul tău.'};renderMacao();}
+function macaoDraw(seatN,n){for(let i=0;i<n;i++){if(!macao.stock.length){const t=macao.discard.pop();macao.stock=shuffle(macao.discard);macao.discard=[t];}if(macao.stock.length)(seatN===0?macao.hand:macao.ai).push(macao.stock.pop());}}
+function macaoLegal(h){const top=macao.discard[macao.discard.length-1];if(macao.penalty>0)return h.filter(c=>c.r===7);return h.filter(c=>c.r===14||c.s===macao.activeSuit||c.r===top.r);}
+function macaoResolve(seatN,card,suit){if(card.r===14)macao.activeSuit=suit;else macao.activeSuit=card.s;if(card.r===7)macao.penalty+=2;
+  const arr=seatN===0?macao.hand:macao.ai;if(arr.length===0){macao.over=true;macao.win=seatN;macao.msg=seatN===0?'Ai scăpat de toate cărțile — ai câștigat! 🎉':'Calculatorul a câștigat.';renderMacao();return;}
+  macao.turn=(card.r===8)?seatN:1-seatN;macao.msg=(macao.turn===0?'Rândul tău.':'Calculatorul joacă…')+(macao.penalty>0?(' Penalizare: +'+macao.penalty):'');
+  renderMacao();if(!macao.over&&macao.turn===1)setTimeout(macaoAI,800);}
+function macaoAI(){if(macao.over||macao.turn!==1)return;
+  if(macao.penalty>0){const sv=macao.ai.filter(c=>c.r===7);if(sv.length&&Math.random()<.8){const c=sv[0];macao.ai.splice(macao.ai.indexOf(c),1);macao.discard.push(c);macaoResolve(1,c);return;}
+    macaoDraw(1,macao.penalty);macao.penalty=0;macao.turn=0;macao.msg='Calculatorul a tras penalizarea. Rândul tău.';renderMacao();return;}
+  const lg=macaoLegal(macao.ai);if(lg.length){const opp=macao.hand.length;const e8=lg.filter(x=>x.r===8),s7=lg.filter(x=>x.r===7);let c;
+    if(opp<=2&&e8.length)c=e8[0];else if(opp<=2&&s7.length)c=s7[0];else{const non=lg.filter(x=>x.r!==14);c=non.length?non.sort((a,b)=>b.r-a.r)[0]:lg[0];}
+    macao.ai.splice(macao.ai.indexOf(c),1);macao.discard.push(c);let su;if(c.r===14){const ct=[0,0,0,0];macao.ai.forEach(x=>ct[x.s]++);su=ct.indexOf(Math.max(...ct));}macaoResolve(1,c,su);return;}
+  macaoDraw(1,1);macao.turn=0;macao.msg='Calculatorul a tras o carte. Rândul tău.';renderMacao();}
+function macaoPlayHuman(idx){const c=macao.hand[idx];if(c.r===14){macao.pickAce=idx;renderMacao();return;}macao.hand.splice(idx,1);macao.discard.push(c);macaoResolve(0,c);}
+function macaoAceSuit(s){const idx=macao.pickAce,c=macao.hand[idx];macao.hand.splice(idx,1);macao.discard.push(c);macao.pickAce=null;macaoResolve(0,c,s);}
+function renderMacao(){const ti=TI(),m=macao;ti.innerHTML='';const top=m.discard[m.discard.length-1];
+  const s1=el('div','seat');s1.innerHTML=seat('Calculatorul',m.ai.length,m.turn===1&&!m.over);const ah=el('div','hand');m.ai.forEach(()=>ah.appendChild(cardEl(null,{back:1,w:64})));s1.appendChild(ah);ti.appendChild(s1);
+  const ca=el('div','center-area');const bd=el('div','board');bd.appendChild(cardEl(top,{w:108}));
+  const si=el('div');si.style.cssText='font-family:var(--fm);color:var(--brass)';si.innerHTML='Culoarea cerută: <b style="font-size:1.3rem;color:'+(isRed(m.activeSuit)?'var(--red)':'#eee')+'">'+SUITS[m.activeSuit]+'</b>'+(m.penalty>0?' · penalizare +'+m.penalty:'');bd.appendChild(si);
+  ca.appendChild(bd);ca.innerHTML+='<div class="msg '+(m.over&&m.win===1?'lose':(m.over?'win':''))+'">'+m.msg+'</div>';ti.appendChild(ca);
+  const me=el('div','seat');me.innerHTML=seat('Tu',m.hand.length,m.turn===0&&!m.over);const mh=el('div','hand');
+  const legal=(!m.over&&m.turn===0)?macaoLegal(m.hand):[];
+  m.hand.forEach((c,idx)=>{const ok=legal.includes(c);mh.appendChild(cardEl(c,{w:88,onClick:ok?()=>macaoPlayHuman(idx):null,sel:m.pickAce===idx}));});me.appendChild(mh);ti.appendChild(me);
+  if(m.pickAce!=null){const n=el('div','note');n.textContent='As jucat — alege culoarea cerută:';ti.appendChild(n);const sp=el('div','suitpick');[0,1,2,3].forEach(s=>{const b=el('button',isRed(s)?'r':'');b.textContent=SUITS[s];b.onclick=()=>macaoAceSuit(s);sp.appendChild(b);});ti.appendChild(sp);}
+  else if(m.over)ti.appendChild(bar([{l:'↻ Joacă din nou',p:1,f:startMacao},{l:'Înapoi la atlas',f:closePlay}]));
+  else if(m.turn===0){const btns=[];if(m.penalty>0)btns.push({l:'Trage '+m.penalty+' cărți',f:()=>{macaoDraw(0,m.penalty);m.penalty=0;m.turn=1;m.msg='Ai tras penalizarea.';renderMacao();setTimeout(macaoAI,700);}});
+    else if(!legal.length)btns.push({l:'Trage o carte',f:()=>{macaoDraw(0,1);m.turn=1;m.msg='Ai tras o carte.';renderMacao();setTimeout(macaoAI,700);}});
+    if(btns.length)ti.appendChild(bar(btns));else if(legal.length){const n=el('div','note');n.textContent='Alege o carte validă (evidențiată) ca s-o joci.';ti.appendChild(n);}}}
+/* ===== SEPTICĂ (heads-up, 32 cărți) ===== */
+let septica=null;
+function startSeptica(){const d=shuffle(makeDeck(7));const hand=d.splice(0,4),ai=d.splice(0,4);
+  septica={stock:d,hand,ai,pile:[],leader:0,toAct:0,lead:true,placer:null,over:false,scores:[0,0],msg:'Rândul tău: alege o carte de lansat.'};renderSept();}
+function septPts(cards){let p=0;cards.forEach(c=>{if(c.r===14||c.r===10)p++;});return p;}
+function septCanBeat(h){const top=septica.pile[septica.pile.length-1];return h.filter(c=>c.r===top.r||c.r===7);}
+function septEndTrick(){const w=septica.placer;septica.scores[w]+=septPts(septica.pile);septica.pile=[];
+  const ord=w===0?[0,1]:[1,0];ord.forEach(s=>{const arr=s===0?septica.hand:septica.ai;while(arr.length<4&&septica.stock.length)arr.push(septica.stock.pop());});
+  if(!septica.stock.length&&(!septica.hand.length||!septica.ai.length)){septEnd();return;}
+  septica.leader=w;septica.toAct=w;septica.lead=true;septica.msg=(w===0?'Iei grămada. Rândul tău: lansează o carte.':'Calculatorul ia grămada și lansează.');
+  renderSept();if(septica.toAct===1)setTimeout(septAI,800);}
+function septEnd(){septica.over=true;const a=septica.scores[0],b=septica.scores[1];septica.msg=a>b?('Ai câștigat la puncte '+a+'–'+b+'! 🏆'):(b>a?('Calculatorul câștigă '+b+'–'+a+'.'):('Egalitate '+a+'–'+b+'.'));renderSept();}
+function septPlace(seatN,card){const arr=seatN===0?septica.hand:septica.ai;arr.splice(arr.indexOf(card),1);septica.pile.push(card);septica.placer=seatN;septica.lead=false;septica.toAct=1-seatN;
+  septica.msg=(septica.toAct===0?'Bate (aceeași valoare sau orice 7) ori renunță.':'Calculatorul răspunde…');renderSept();if(!septica.over&&septica.toAct===1)setTimeout(septAI,800);}
+function septAI(){if(septica.over||septica.toAct!==1)return;
+  if(septica.lead){const h=septica.ai.slice();const junk=h.filter(c=>c.r!==14&&c.r!==10&&c.r!==7).sort((a,b)=>a.r-b.r);const c=junk.length?junk[0]:h.sort((a,b)=>a.r-b.r)[0];septPlace(1,c);return;}
+  const beat=septCanBeat(septica.ai),pts=septPts(septica.pile),same=beat.filter(c=>c.r!==7),sevens=beat.filter(c=>c.r===7);
+  if(same.length){septPlace(1,same.sort((a,b)=>a.r-b.r)[0]);return;}
+  if(sevens.length&&(pts>0||septica.pile.length>=2)){septPlace(1,sevens[0]);return;}
+  septEndTrick();}
+function renderSept(){const ti=TI(),s=septica;ti.innerHTML='';
+  const s1=el('div','seat');s1.innerHTML=seat('Calculatorul',s.ai.length,s.toAct===1&&!s.over);const ah=el('div','hand');s.ai.forEach(()=>ah.appendChild(cardEl(null,{back:1,w:64})));s1.appendChild(ah);ti.appendChild(s1);
+  ti.innerHTML+='<div class="scorebar">Puncte — Tu: <b>'+s.scores[0]+'</b> · Calculatorul: <b>'+s.scores[1]+'</b> · în pachet: '+s.stock.length+'</div>';
+  const ca=el('div','center-area');const bd=el('div','board');if(s.pile.length)s.pile.forEach(c=>bd.appendChild(cardEl(c,{w:96})));else{const e=el('div','note');e.textContent='(grămada e goală)';bd.appendChild(e);}ca.appendChild(bd);
+  ca.innerHTML+='<div class="msg '+(s.over?(s.scores[0]>s.scores[1]?'win':(s.scores[1]>s.scores[0]?'lose':'')):'')+'">'+s.msg+'</div>';ti.appendChild(ca);
+  const me=el('div','seat');me.innerHTML=seat('Tu',s.hand.length,s.toAct===0&&!s.over);const mh=el('div','hand');
+  let legal=[];if(!s.over&&s.toAct===0)legal=s.lead?s.hand.slice():septCanBeat(s.hand);
+  s.hand.forEach(c=>{const ok=legal.includes(c);mh.appendChild(cardEl(c,{w:88,onClick:ok?()=>septPlace(0,c):null}));});me.appendChild(mh);ti.appendChild(me);
+  if(s.over)ti.appendChild(bar([{l:'↻ Joacă din nou',p:1,f:startSeptica},{l:'Înapoi la atlas',f:closePlay}]));
+  else if(s.toAct===0&&!s.lead)ti.appendChild(bar([{l:'Renunț (ia cine a pus ultima carte)',f:septEndTrick}]));
+  else if(s.toAct===0&&s.lead){const n=el('div','note');n.textContent='Lansează orice carte. Adversarul o bate cu aceeași valoare sau cu un 7.';ti.appendChild(n);}}
+/* ===== BLACKJACK (vs dealer) ===== */
+let bj=null;
+function startBlackjack(){bj={shoe:[],player:[],dealer:[],bet:0,bank:1000,phase:'bet',msg:'Alege miza ca să începi.'};renderBJ();}
+function bjShoe(){if(bj.shoe.length<20){bj.shoe=[];for(let i=0;i<4;i++)bj.shoe.push(...makeDeck());shuffle(bj.shoe);}}
+function bjVal(cs){let s=0,a=0;cs.forEach(c=>{if(c.r===14){a++;s+=11;}else if(c.r>10)s+=10;else s+=c.r;});while(s>21&&a>0){s-=10;a--;}return s;}
+function bjIsBJ(cs){return cs.length===2&&bjVal(cs)===21;}
+function bjDeal(bet){if(bet>bj.bank)return;bjShoe();bj.bet=bet;bj.bank-=bet;bj.player=[bj.shoe.pop(),bj.shoe.pop()];bj.dealer=[bj.shoe.pop(),bj.shoe.pop()];bj.phase='player';bj.msg='Tragi sau te oprești?';bj.doubled=false;
+  if(bjIsBJ(bj.player)||bjIsBJ(bj.dealer))bjStand();else renderBJ();}
+function bjHit(){bj.player.push(bj.shoe.pop());if(bjVal(bj.player)>21){bj.phase='done';bjSettle();}else renderBJ();}
+function bjDouble(){if(bj.bet>bj.bank)return;bj.bank-=bj.bet;bj.bet*=2;bj.doubled=true;bj.player.push(bj.shoe.pop());if(bjVal(bj.player)>21){bj.phase='done';bjSettle();}else bjStand();}
+function bjStand(){bj.phase='dealer';while(bjVal(bj.dealer)<17)bj.dealer.push(bj.shoe.pop());bj.phase='done';bjSettle();}
+function bjSettle(){const pv=bjVal(bj.player),dv=bjVal(bj.dealer),pBJ=bjIsBJ(bj.player),dBJ=bjIsBJ(bj.dealer);let pay=0;
+  if(pBJ&&!dBJ){pay=bj.bet+Math.floor(bj.bet*1.5);bj.res='win';bj.msg='Blackjack! Plată 3:2. 🃏';}
+  else if(pBJ&&dBJ){pay=bj.bet;bj.res='push';bj.msg='Ambii blackjack — egalitate.';}
+  else if(dBJ){bj.res='lose';bj.msg='Dealerul are blackjack. Pierzi.';}
+  else if(pv>21){bj.res='lose';bj.msg='Ai crăpat ('+pv+'). Pierzi.';}
+  else if(dv>21){pay=bj.bet*2;bj.res='win';bj.msg='Dealerul a crăpat ('+dv+'). Câștigi!';}
+  else if(pv>dv){pay=bj.bet*2;bj.res='win';bj.msg='Câștigi: '+pv+' vs '+dv+'.';}
+  else if(pv<dv){bj.res='lose';bj.msg='Pierzi: '+pv+' vs '+dv+'.';}
+  else{pay=bj.bet;bj.res='push';bj.msg='Egalitate la '+pv+'.';}
+  bj.bank+=pay;renderBJ();}
+function renderBJ(){const ti=TI(),b=bj;ti.innerHTML='';const hideHole=b.phase==='player';
+  const s1=el('div','seat');s1.innerHTML=seat('Dealer',null,b.phase==='dealer');const dh=el('div','hand');
+  b.dealer.forEach((c,i)=>dh.appendChild((hideHole&&i===1)?cardEl(null,{back:1,w:96}):cardEl(c,{w:96})));
+  if(b.dealer.length){const v=el('div','chiptag');v.textContent=hideHole?(''+bjVal([b.dealer[0]])+' + ?'):('total '+bjVal(b.dealer));dh.appendChild(v);}s1.appendChild(dh);ti.appendChild(s1);
+  ti.innerHTML+='<div class="scorebar">Bancă: <b>'+b.bank+'</b> jetoane'+(b.bet?(' · miză curentă: <b>'+b.bet+'</b>'):'')+'</div>';
+  const ca=el('div','center-area');ca.innerHTML='<div class="msg '+(b.phase==='done'?(b.res==='win'?'win':(b.res==='lose'?'lose':'')):'')+'">'+b.msg+'</div>';ti.appendChild(ca);
+  const me=el('div','seat');me.innerHTML=seat('Tu',null,b.phase==='player');const mh=el('div','hand');b.player.forEach(c=>mh.appendChild(cardEl(c,{w:96})));
+  if(b.player.length){const v=el('div','chiptag');v.textContent='total '+bjVal(b.player);mh.appendChild(v);}me.appendChild(mh);ti.appendChild(me);
+  if(b.phase==='bet'){if(b.bank<25){ti.appendChild(bar([{l:'Reîncarcă banca (1000)',p:1,f:()=>{b.bank=1000;b.msg='Bancă reîncărcată.';renderBJ();}}]));}
+    else ti.appendChild(bar([25,50,100].filter(x=>x<=b.bank).map(x=>({l:'Miză '+x,p:x===100,f:()=>bjDeal(x)}))));}
+  else if(b.phase==='player'){const btns=[{l:'Trage (Hit)',p:1,f:bjHit},{l:'Stai (Stand)',f:bjStand}];if(b.player.length===2&&b.bet<=b.bank)btns.push({l:'Dublează',f:bjDouble});ti.appendChild(bar(btns));}
+  else if(b.phase==='done')ti.appendChild(bar([{l:'↻ Mână nouă',p:1,f:()=>{b.phase='bet';b.player=[];b.dealer=[];b.bet=0;b.msg='Alege miza.';renderBJ();}},{l:'Înapoi la atlas',f:closePlay}]));}
+/* ===== TEXAS HOLD'EM (heads-up) ===== */
+const SB=10,BB=20,STK=1000;let he=null,heMatch=null;
+function equityHU(hole,board,N){const known=[...hole,...board];let win=0,tie=0;
+  for(let i=0;i<N;i++){const dk=shuffle(makeDeck().filter(c=>!known.some(k=>k.r===c.r&&k.s===c.s)));const opp=[dk.pop(),dk.pop()];const fb=board.slice();while(fb.length<5)fb.push(dk.pop());
+    const c=cmp(evalBest([...hole,...fb]),evalBest([...opp,...fb]));if(c>0)win++;else if(c===0)tie++;}return(win+tie/2)/N;}
+function startHoldem(){if(!heMatch||heMatch.over)heMatch={stacks:[STK,STK],button:0,over:false};he=null;heNewHand();}
+function heNewHand(){const dk=shuffle(makeDeck());
+  he={dk,hole:[[dk.pop(),dk.pop()],[dk.pop(),dk.pop()]],board:[],stacks:heMatch.stacks.slice(),committed:[0,0],streetC:[0,0],
+    street:'preflop',pot:0,folded:[false,false],allIn:[false,false],acted:[false,false],button:heMatch.button,curBet:0,minR:BB,done:false,winner:null,reveal:false,msg:''};
+  const sb=he.button,bb=1-he.button;hePost(sb,SB);hePost(bb,BB);he.curBet=BB;he.minR=BB;he.toAct=sb;
+  he.msg='Mână nouă. '+(he.toAct===0?'Tu acționezi (buton/SB).':'Calculatorul acționează (buton/SB).');renderHE();if(he.toAct===1)setTimeout(heAIGo,800);}
+function hePost(s,a){const x=Math.min(a,he.stacks[s]);he.stacks[s]-=x;he.committed[s]+=x;he.streetC[s]+=x;he.pot+=x;if(he.stacks[s]===0)he.allIn[s]=true;}
+function hePut(s,a){const x=Math.min(a,he.stacks[s]);he.stacks[s]-=x;he.committed[s]+=x;he.streetC[s]+=x;he.pot+=x;if(he.stacks[s]===0)he.allIn[s]=true;return x;}
+function heClosed(){if(he.folded[0]||he.folded[1])return true;const ca=[0,1].filter(i=>!he.allIn[i]);if(!ca.length)return true;return ca.every(i=>he.acted[i]&&he.streetC[i]===he.curBet);}
+function heLabel(){return{preflop:'Preflop',flop:'Flop',turn:'Turn',river:'River'}[he.street];}
+function heApply(a){const s=he.toAct;
+  if(a.type==='fold'){he.folded[s]=true;he.stacks[1-s]+=he.pot;he.winner=1-s;he.pot=0;he.done=true;he.msg=(1-s===0)?'Calculatorul s-a retras — iei potul!':'Te-ai retras. Calculatorul ia potul.';heFinish();renderHE();return;}
+  if(a.type==='check'){he.acted[s]=true;}
+  if(a.type==='call'){hePut(s,he.curBet-he.streetC[s]);he.acted[s]=true;}
+  if(a.type==='betraise'){const tgt=Math.min(a.amt,he.streetC[s]+he.stacks[s]);hePut(s,tgt-he.streetC[s]);if(he.streetC[s]>he.curBet){he.minR=he.streetC[s]-he.curBet;he.curBet=he.streetC[s];}he.acted[s]=true;he.acted[1-s]=false;}
+  if(he.folded[0]||he.folded[1])return;
+  if(heClosed())heAdvance();else{he.toAct=1-s;}
+  renderHE();if(!he.done&&he.toAct===1)setTimeout(heAIGo,800);}
+function heAdvance(){he.streetC=[0,0];he.curBet=0;he.acted=[false,false];he.minR=BB;
+  if(he.street==='preflop'){he.board.push(he.dk.pop(),he.dk.pop(),he.dk.pop());he.street='flop';}
+  else if(he.street==='flop'){he.board.push(he.dk.pop());he.street='turn';}
+  else if(he.street==='turn'){he.board.push(he.dk.pop());he.street='river';}
+  else if(he.street==='river'){heShowdown();return;}
+  const ca=[0,1].filter(i=>!he.folded[i]&&!he.allIn[i]);
+  if(ca.length<2){while(he.board.length<5)he.board.push(he.dk.pop());heShowdown();return;}
+  he.toAct=1-he.button;he.msg=heLabel()+' — '+(he.toAct===0?'tu acționezi':'calculatorul acționează');}
+function heRefund(){const a=he.committed[0],b=he.committed[1];if(a!==b){const hi=a>b?0:1,d=Math.abs(a-b);he.stacks[hi]+=d;he.committed[hi]-=d;he.pot-=d;}}
+function heShowdown(){heRefund();he.reveal=true;he.street='showdown';const s0=evalBest([...he.hole[0],...he.board]),s1=evalBest([...he.hole[1],...he.board]),c=cmp(s0,s1);
+  if(c>0){he.stacks[0]+=he.pot;he.winner=0;he.msg='Câștigi cu '+handName(s0)+'!';}
+  else if(c<0){he.stacks[1]+=he.pot;he.winner=1;he.msg='Calculatorul câștigă cu '+handName(s1)+'.';}
+  else{he.stacks[0]+=Math.floor(he.pot/2);he.stacks[1]+=Math.ceil(he.pot/2);he.winner=-1;he.msg='Egalitate ('+handName(s0)+').';}
+  he.pot=0;heFinish();renderHE();}
+function heFinish(){he.done=true;heMatch.stacks=he.stacks.slice();heMatch.button=1-heMatch.button;if(heMatch.stacks[0]<=0||heMatch.stacks[1]<=0)heMatch.over=true;}
+function heAIGo(){if(he.done||he.toAct!==1)return;const s=1,toCall=he.curBet-he.streetC[s],eq=equityHU(he.hole[s],he.board,he.street==='preflop'?100:130),r=Math.random();
+  const pot=he.pot,potOdds=toCall>0?toCall/(pot+toCall):0;
+  if(toCall===0){if(eq>0.62||(eq>0.45&&r<0.4)){const sz=Math.max(BB,Math.round((0.5+0.3*r)*pot/BB)*BB);heApply({type:'betraise',amt:Math.min(he.streetC[s]+sz,he.streetC[s]+he.stacks[s])});}else heApply({type:'check'});return;}
+  if(eq<potOdds-0.04&&r<0.85){heApply({type:'fold'});return;}
+  if(eq>0.72&&r<0.55&&he.stacks[s]>toCall){const raise=Math.max(he.minR,Math.round(0.7*(pot+toCall)/BB)*BB);heApply({type:'betraise',amt:Math.min(he.streetC[s]+toCall+raise,he.streetC[s]+he.stacks[s])});return;}
+  heApply({type:'call'});}
+function heBtns(){const s=0,toCall=he.curBet-he.streetC[s],stack=he.stacks[s];const out=[];
+  if(toCall>0)out.push({l:'Fold',f:()=>heApply({type:'fold'})});
+  out.push(toCall===0?{l:'Check',f:()=>heApply({type:'check'})}:{l:'Call '+Math.min(toCall,stack),p:1,f:()=>heApply({type:'call'})});
+  const mk=frac=>{const callPart=Math.max(0,toCall),potAfter=he.pot+callPart;let chips=Math.max(he.minR,Math.round(frac*potAfter/BB)*BB);let tgt=he.streetC[s]+callPart+chips;const mx=he.streetC[s]+stack;if(tgt>mx)tgt=mx;return tgt;};
+  if(stack>toCall){out.push({l:(toCall>0?'Raise':'Bet')+' ½',f:()=>heApply({type:'betraise',amt:mk(0.5)})});
+    out.push({l:(toCall>0?'Raise':'Bet')+' pot',f:()=>heApply({type:'betraise',amt:mk(1)})});
+    out.push({l:'All-in '+(he.streetC[s]+stack),f:()=>heApply({type:'betraise',amt:he.streetC[s]+stack})});}
+  return out;}
+function renderHE(){const ti=TI();ti.innerHTML='';if(!he){return;}
+  const aiTurn=!he.done&&he.toAct===1;
+  const s1=el('div','seat');s1.innerHTML=seat('Calculatorul'+(he.button===1?' • buton':''),he.stacks[1],aiTurn,'jetoane');
+  const ah=el('div','hand');he.hole[1].forEach(c=>ah.appendChild(he.reveal?cardEl(c,{w:80}):cardEl(null,{back:1,w:80})));s1.appendChild(ah);ti.appendChild(s1);
+  const ca=el('div','center-area');ca.innerHTML='<div class="pot-line">POT: '+he.pot+' · '+(he.done?'mână încheiată':heLabel())+'</div>';
+  const bd=el('div','board');if(he.board.length)he.board.forEach(c=>bd.appendChild(cardEl(c,{w:88})));else{const e=el('div','note');e.textContent='(cărțile comune apar la flop)';bd.appendChild(e);}ca.appendChild(bd);
+  ca.innerHTML+='<div class="msg '+(he.done?(he.winner===0?'win':(he.winner===1?'lose':'')):'')+'">'+he.msg+'</div>';ti.appendChild(ca);
+  const me=el('div','seat');me.innerHTML=seat('Tu'+(he.button===0?' • buton':''),he.stacks[0],!he.done&&he.toAct===0,'jetoane');
+  const mh=el('div','hand');he.hole[0].forEach(c=>mh.appendChild(cardEl(c,{w:104})));me.appendChild(mh);ti.appendChild(me);
+  if(heMatch.over){ti.appendChild(bar([{l:(heMatch.stacks[0]>0?'🏆 Ai câștigat meciul! Reîncepe':'Calculatorul a câștigat meciul. Reîncepe'),p:1,f:startHoldem},{l:'Înapoi la atlas',f:closePlay}]));}
+  else if(he.done)ti.appendChild(bar([{l:'↻ Mână nouă',p:1,f:heNewHand},{l:'Înapoi la atlas',f:closePlay}]));
+  else if(he.toAct===0)ti.appendChild(bar(heBtns()));}
+/* ===== SOLITAIRE (Klondike) ===== */
+let sol=null;
+const solColor=s=>(s===1||s===2)?'r':'b';
+const tRank=r=>r===14?1:r;
+function canTab(card,onto){return tRank(card.r)===tRank(onto.r)-1 && solColor(card.s)!==solColor(onto.s);}
+function canEmptyTab(card){return tRank(card.r)===13;}
+function foundNext(f){if(!f.length)return 14;const t=f[f.length-1].r;if(t===14)return 2;if(t===13)return null;return t+1;}
+function startSolitaire(){const d=shuffle(makeDeck());const tab=[[],[],[],[],[],[],[]];
+  for(let col=0;col<7;col++)for(let k=0;k<=col;k++){const c=d.pop();tab[col].push({r:c.r,s:c.s,up:k===col});}
+  sol={stock:d,waste:[],found:[[],[],[],[]],tab,sel:null,moves:0,won:false,msg:'Click pe o carte, apoi pe coloana sau fundația țintă.'};renderSol();}
+function solSelStack(){if(!sol.sel)return null;if(sol.sel.src==='waste')return[sol.waste[sol.waste.length-1]];return sol.tab[sol.sel.col].slice(sol.sel.idx);}
+function solToCol(col){const st=solSelStack();if(!st)return;const bottom=st[0],dc=sol.tab[col];
+  const ok=dc.length?canTab(bottom,dc[dc.length-1]):canEmptyTab(bottom);
+  if(!ok){sol.sel=null;sol.msg='Mutare invalidă.';renderSol();return;}
+  if(sol.sel.src==='waste'){const c=sol.waste.pop();dc.push({r:c.r,s:c.s,up:true});}
+  else{const src=sol.tab[sol.sel.col];const mv=src.splice(sol.sel.idx);mv.forEach(m=>dc.push(m));if(src.length&&!src[src.length-1].up)src[src.length-1].up=true;}
+  sol.sel=null;sol.moves++;sol.msg='';solCheckWin();renderSol();}
+function solToFound(suit){const st=solSelStack();if(!st||st.length!==1)return;const card=st[0];
+  if(card.s!==suit||card.r!==foundNext(sol.found[suit])){sol.sel=null;renderSol();return;}
+  if(sol.sel.src==='waste')sol.waste.pop();else{const src=sol.tab[sol.sel.col];src.splice(sol.sel.idx);if(src.length&&!src[src.length-1].up)src[src.length-1].up=true;}
+  sol.found[suit].push({r:card.r,s:card.s});sol.sel=null;sol.moves++;sol.msg='';solCheckWin();renderSol();}
+function solAuto(){let moved=true;while(moved){moved=false;
+  const wt=sol.waste[sol.waste.length-1];if(wt&&wt.r===foundNext(sol.found[wt.s])){sol.found[wt.s].push(sol.waste.pop());sol.moves++;moved=true;continue;}
+  for(let col=0;col<7;col++){const c=sol.tab[col];if(!c.length)continue;const t=c[c.length-1];if(t.up&&t.r===foundNext(sol.found[t.s])){c.pop();sol.found[t.s].push({r:t.r,s:t.s});if(c.length&&!c[c.length-1].up)c[c.length-1].up=true;sol.moves++;moved=true;break;}}}
+  solCheckWin();renderSol();}
+function solStock(){if(sol.stock.length)sol.waste.push(sol.stock.pop());else{sol.stock=sol.waste.reverse();sol.waste=[];}sol.sel=null;renderSol();}
+function solCheckWin(){if(sol.found.reduce((a,f)=>a+f.length,0)===52)sol.won=true;}
+function solTabClick(col,idx){const cell=sol.tab[col][idx];if(!cell.up)return;
+  if(sol.sel&&sol.sel.src==='tab'&&sol.sel.col===col&&sol.sel.idx===idx){sol.sel=null;renderSol();return;}
+  if(sol.sel){solToCol(col);return;}
+  sol.sel={src:'tab',col,idx};renderSol();}
+function solWasteClick(){if(!sol.waste.length)return;
+  if(sol.sel&&sol.sel.src==='waste'){sol.sel=null;renderSol();return;}
+  if(sol.sel){sol.sel=null;renderSol();return;}
+  sol.sel={src:'waste'};renderSol();}
+function solColClick(col){if(!sol.sel)return;solToCol(col);}
+function renderSol(){const ti=TI(),s=sol;ti.innerHTML='';
+  if(s.won){const ca=el('div','center-area');ca.innerHTML='<div class="msg win">Felicitări! Ai rezolvat pasiența în '+s.moves+' mutări. 🎉</div>';ti.appendChild(ca);ti.appendChild(bar([{l:'↻ Joc nou',p:1,f:startSolitaire},{l:'Înapoi la atlas',f:closePlay}]));return;}
+  const top=el('div','sol-top');
+  const stk=el('div');stk.style.cursor='pointer';stk.onclick=solStock;
+  if(s.stock.length)stk.appendChild(cardEl(null,{back:1,cls:'solc'}));else{const e=el('div','slot');e.style.display='grid';e.style.placeItems='center';e.innerHTML='<span style="opacity:.5;font-size:1.4rem">↻</span>';stk.appendChild(e);}top.appendChild(stk);
+  const wst=el('div');if(s.waste.length){const c=s.waste[s.waste.length-1];wst.appendChild(cardEl(c,{cls:'solc',onClick:solWasteClick,sel:s.sel&&s.sel.src==='waste'}));}else wst.appendChild(el('div','slot'));top.appendChild(wst);
+  const sp=el('div');sp.style.flex='1';sp.style.minWidth='8px';top.appendChild(sp);
+  const fw=el('div','sol-found');for(let su=0;su<4;su++){const f=s.found[su],cell=el('div');
+    if(f.length)cell.appendChild(cardEl(f[f.length-1],{cls:'solc',onClick:()=>solToFound(su)}));
+    else{const e=el('div','slot');e.style.display='grid';e.style.placeItems='center';e.style.cursor='pointer';e.style.color=isRed(su)?'var(--red)':'#ffffff40';e.style.fontSize='1.4rem';e.textContent=SUITS[su];e.onclick=()=>solToFound(su);cell.appendChild(e);}fw.appendChild(cell);}
+  top.appendChild(fw);ti.appendChild(top);
+  ti.innerHTML+='<div class="scorebar">Mutări: <b>'+s.moves+'</b> · Pachet: '+s.stock.length+'</div>';
+  const cols=el('div','sol-cols');for(let col=0;col<7;col++){const cc=el('div','sol-col');
+    if(!s.tab[col].length){const e=el('div','slot');e.style.cursor='pointer';e.onclick=()=>solColClick(col);cc.appendChild(e);}
+    s.tab[col].forEach((cell,idx)=>{if(!cell.up)cc.appendChild(cardEl(null,{back:1,cls:'solc'}));
+      else{const sd=s.sel&&s.sel.src==='tab'&&s.sel.col===col&&idx>=s.sel.idx;cc.appendChild(cardEl(cell,{cls:'solc',onClick:()=>solTabClick(col,idx),sel:sd}));}});
+    cols.appendChild(cc);}
+  ti.appendChild(cols);
+  if(s.msg){const ca=el('div','center-area');const m=el('div','msg');m.style.maxWidth='none';m.textContent=s.msg;ca.appendChild(m);ti.appendChild(ca);}
+  ti.appendChild(bar([{l:'→ Trimite la fundații',p:1,f:solAuto},{l:'↻ Joc nou',f:startSolitaire},{l:'Înapoi la atlas',f:closePlay}]));}
+/* ============ init ============ */
+$('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();render();});
+$('#sort').addEventListener('change',e=>{sortMode=e.target.value;render();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#playbg').classList.contains('open'))closePlay();else closeModal();}});
+$('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();render();
+</script>
+</body>
+</html>
