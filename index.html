@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="utf-8">
 <!--
   ============================================================================
   Carti-de-joc-fara-frontiere
@@ -27,7 +28,6 @@
 /* Accesibilitate: inel de focus vizibil pentru navigare la tastatură. */
 :focus-visible{outline:2px solid #4a90d9;outline-offset:2px;border-radius:2px}
 </style>
-<meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' 'unsafe-inline' blob:; connect-src 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cărți de joc fără frontiere</title>
@@ -159,8 +159,8 @@ position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transp
   <div class="stats" id="stats"></div>
   <div class="daily" id="daily"></div>
   <div class="controls">
-    <div class="searchrow"><div class="search"><span class="mag">⌕</span><input id="q" type="text" placeholder="Caută un joc, o familie, o regulă…" autocomplete="off"></div>
-      <select class="select" id="sort"><option value="fam">Grupare: familie</option><option value="az">Alfabetic A→Z</option><option value="diff">Dificultate ↑</option><option value="play">Jucabile întâi</option></select></div>
+    <div class="searchrow"><div class="search"><span class="mag">⌕</span><input id="q" type="text" aria-label="Caută un joc" placeholder="Caută un joc, o familie, o regulă…" autocomplete="off"></div>
+      <select class="select" id="sort" aria-label="Sortare"><option value="fam">Grupare: familie</option><option value="az">Alfabetic A→Z</option><option value="diff">Dificultate ↑</option><option value="play">Jucabile întâi</option></select></div>
     <div class="chips" id="famchips"></div><div class="countline" id="count"></div>
   </div>
   <div id="catalog"></div>
@@ -198,7 +198,7 @@ const GAMES=[
  rules:["Pachet redus de 32 de cărți (7–As).","Bați cu aceeași valoare sau cu orice 7.","Cine pune ultima carte ia grămada.","Fiecare As și 10 din cărțile luate = 1 punct."],
  fact:"„Șeptarul” care bate orice carte a dat numele jocului."},
 {id:"macao",t:"Macao",suit:"♠",fam:"aruncare",play:"macao",pl:"2–5",diff:2,era:"sec. XX",reg:"România",tags:["scapă de cărți","7 = +2"],
- desc:"Cel mai iubit joc de cărți din România, vară cu „Crazy Eights”: potrivești culoarea sau valoarea; 7 obligă la tras, 8 sare rândul, Asul schimbă culoarea.",
+ desc:"Cel mai iubit joc de cărți din România, văr cu „Crazy Eights”: potrivești culoarea sau valoarea; 7 obligă la tras, 8 sare rândul, Asul schimbă culoarea.",
  rules:["Pui o carte de aceeași culoare sau valoare.","7 = adversarul trage 2 (se „leagă”).","8 = adversarul stă o tură.","Asul e jolly și cere culoarea dorită."],
  fact:"Numele vine, ca și „macao”-ul de cazino, de la portul Macao — simbol interbelic de noroc."},
 {id:"crazy8",t:"Crazy Eights (Opt nebun)",suit:"♠",fam:"aruncare",pl:"2–7",diff:1,era:"începutul sec. XX",reg:"SUA",tags:["scapă de cărți","8 = jolly"],
@@ -281,7 +281,7 @@ function handName(s){const n=['Carte mare','Pereche','Două perechi','Trei de un
   if(s[0]===8&&s[1]===14)return'Chintă roială';return n[s[0]];}
 /* ============ localStorage ============ */
 const LS={get:(k,d)=>{try{const v=localStorage.getItem('cff:'+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem('cff:'+k,JSON.stringify(v));}catch(e){}}};
-let FAV=new Set(LS.get('fav',[])),PLAYED=LS.get('played',0);
+let FAV=new Set((a=>Array.isArray(a)?a.filter(x=>typeof x==='string'):[])(LS.get('fav',[]))),PLAYED=(n=>Number.isFinite(n)&&n>=0?Math.floor(n):0)(LS.get('played',0));
 function saveFav(){LS.set('fav',[...FAV]);}
 function bumpPlayed(){PLAYED++;LS.set('played',PLAYED);$('#trophy').textContent='▶ '+PLAYED+' partide';const sp=$('#statPlayed');if(sp)sp.textContent=PLAYED;}
 /* ============ catalog UI ============ */
@@ -329,12 +329,12 @@ function dailyPick(){const p=GAMES.filter(g=>g.play),t=new Date(),seed=t.getFull
 function openPlay(title,suit){const pb=$('#playbg');
   pb.innerHTML='<div class="play-top"><div class="pt-title"><span class="s">'+suit+'</span> '+title+'</div><button class="icon-btn" id="closeplay" title="Închide">✕</button></div><div class="play-stage"><div class="table-inner" id="tableInner"></div></div>';
   $('#closeplay').onclick=closePlay;pb.classList.add('open');bumpPlayed();}
-function closePlay(){$('#playbg').classList.remove('open');$('#playbg').innerHTML='';warSt=popa=macao=septica=bj=he=sol=null;}
+function closePlay(){clearInterval(warIv);$('#playbg').classList.remove('open');$('#playbg').innerHTML='';warSt=popa=macao=septica=bj=he=sol=null;}
 function startGame(g){const m={war:startWar,popa:startPopa,macao:startMacao,septica:startSeptica,blackjack:startBlackjack,holdem:startHoldem,solitaire:startSolitaire};if(m[g.play]){openPlay(g.t,g.suit);m[g.play]();}}
 function seat(name,count,turn,unit){return '<div class="seat-name'+(turn?' turn':'')+'"><span class="dot"></span>'+name+'</div>'+(count!=null?'<div class="chiptag">'+count+' '+(unit||'cărți')+'</div>':'');}
 /* ===== RĂZBOI ===== */
-let warSt=null;
-function startWar(){const d=shuffle(makeDeck());warSt={you:d.slice(0,26),ai:d.slice(26),pot:[],lY:null,lA:null,over:false,b:0,msg:'Apasă „Trage cartea”.'};renderWar();}
+let warSt=null,warIv=null;
+function startWar(){clearInterval(warIv);const d=shuffle(makeDeck());warSt={you:d.slice(0,26),ai:d.slice(26),pot:[],lY:null,lA:null,over:false,b:0,msg:'Apasă „Trage cartea”.'};renderWar();}
 function wAward(w){shuffle(warSt.pot);if(w==='you')warSt.you.push(...warSt.pot);else warSt.ai.push(...warSt.pot);warSt.lw=w;warSt.pot=[];}
 function wEnd(){if(!warSt.you.length||!warSt.ai.length||warSt.b>3000){warSt.over=true;warSt.win=warSt.you.length>warSt.ai.length?'you':(warSt.ai.length>warSt.you.length?'ai':'tie');}}
 function wWar(){let d=0;while(true){const yd=Math.min(3,Math.max(0,warSt.you.length-1)),ad=Math.min(3,Math.max(0,warSt.ai.length-1));
@@ -351,7 +351,7 @@ function renderWar(){const w=warSt,ti=TI();let cls='',v='';if(w.over){cls=w.win=
   ti.innerHTML='<div class="seat">'+seat('Calculatorul',w.ai.length,!w.over)+'</div><div class="center-area"><div class="board" id="wb"></div><div class="msg '+cls+'">'+(w.over?v:w.msg)+'</div></div><div class="seat">'+seat('Tu',w.you.length,!w.over)+'</div>';
   const b=$('#wb');if(w.lA&&w.lY){b.appendChild(cardEl(w.lA,{w:120}));const x=el('div','vs');x.textContent='⚔';b.appendChild(x);b.appendChild(cardEl(w.lY,{w:120}));}
   else{b.appendChild(cardEl(null,{back:1,w:120}));const x=el('div','vs');x.textContent='⚔';b.appendChild(x);b.appendChild(cardEl(null,{back:1,w:120}));}
-  ti.appendChild(w.over?bar([{l:'↻ Joacă din nou',p:1,f:startWar},{l:'Înapoi la atlas',f:closePlay}]):bar([{l:'Trage cartea',p:1,f:()=>{wBattle();renderWar();}},{l:'⏩ Automat',f:()=>{const iv=setInterval(()=>{wBattle();renderWar();if(warSt.over)clearInterval(iv);},200);}}]));}
+  ti.appendChild(w.over?bar([{l:'↻ Joacă din nou',p:1,f:startWar},{l:'Înapoi la atlas',f:closePlay}]):bar([{l:'Trage cartea',p:1,f:()=>{wBattle();renderWar();}},{l:'⏩ Automat',f:()=>{clearInterval(warIv);warIv=setInterval(()=>{if(!warSt||warSt.over){clearInterval(warIv);return;}wBattle();renderWar();if(warSt.over)clearInterval(warIv);},200);}}]));}
 /* ===== POPA PROSTUL (3 jucători) ===== */
 let popa=null;
 function pname(i){return['Tu','Stânga (AI)','Dreapta (AI)'][i];}
@@ -360,12 +360,12 @@ function nextActive(i,h){for(let s=1;s<=3;s++){const j=(i+s)%3;if(h[j].length>0)
 function activeCount(){return popa.hands.filter(h=>h.length>0).length;}
 function startPopa(){const d=shuffle(makeDeck().filter(c=>!(c.r===13&&c.s===0)));const hands=[[],[],[]];d.forEach((c,i)=>hands[i%3].push(c));hands.forEach(discardPairs);
   popa={hands,turn:0,over:false,loser:null,msg:''};popa.from=nextActive(0,hands);popa.msg='Rândul tău: alege o carte de la '+pname(popa.from)+'.';renderPopa();}
-function popaDraw(idx){if(popa.over)return;const cur=popa.turn,tgt=popa.from;if(tgt<0){popaEnd();return;}
+function popaDraw(idx){if(!popa||popa.over)return;const cur=popa.turn,tgt=popa.from;if(tgt<0){popaEnd();return;}
   const i=idx==null?Math.floor(Math.random()*popa.hands[tgt].length):idx;const c=popa.hands[tgt].splice(i,1)[0];popa.hands[cur].push(c);discardPairs(popa.hands[cur]);
   if(activeCount()<=1){popaEnd();return;}popa.turn=nextActive(cur,popa.hands);popa.from=nextActive(popa.turn,popa.hands);
   popa.msg=popa.turn===0?('Rândul tău: alege o carte de la '+pname(popa.from)+'.'):(pname(popa.turn)+' trage o carte…');}
 function popaEnd(){popa.over=true;popa.loser=[0,1,2].find(i=>popa.hands[i].length>0);popa.msg=popa.loser===0?'Ai rămas cu Popa — ai pierdut! 🃏':(pname(popa.loser)+' a rămas cu Popa și pierde. Ai scăpat!');}
-function popaStep(){renderPopa();if(popa.over)return;if(popa.turn!==0)setTimeout(()=>{popaDraw(null);popaStep();},750);}
+function popaStep(){if(!popa)return;renderPopa();if(popa.over)return;if(popa.turn!==0)setTimeout(()=>{if(!popa||popa.over||popa.turn===0)return;popaDraw(null);popaStep();},750);}
 function renderPopa(){const ti=TI(),p=popa;ti.innerHTML='';
   const top=el('div');top.style.cssText='display:flex;gap:30px;justify-content:center;flex-wrap:wrap';
   [1,2].forEach(i=>{const s=el('div','seat');s.innerHTML=seat(pname(i),p.hands[i].length,p.turn===i&&!p.over);
@@ -388,7 +388,7 @@ function macaoResolve(seatN,card,suit){if(card.r===14)macao.activeSuit=suit;else
   const arr=seatN===0?macao.hand:macao.ai;if(arr.length===0){macao.over=true;macao.win=seatN;macao.msg=seatN===0?'Ai scăpat de toate cărțile — ai câștigat! 🎉':'Calculatorul a câștigat.';renderMacao();return;}
   macao.turn=(card.r===8)?seatN:1-seatN;macao.msg=(macao.turn===0?'Rândul tău.':'Calculatorul joacă…')+(macao.penalty>0?(' Penalizare: +'+macao.penalty):'');
   renderMacao();if(!macao.over&&macao.turn===1)setTimeout(macaoAI,800);}
-function macaoAI(){if(macao.over||macao.turn!==1)return;
+function macaoAI(){if(!macao||macao.over||macao.turn!==1)return;
   if(macao.penalty>0){const sv=macao.ai.filter(c=>c.r===7);if(sv.length&&Math.random()<.8){const c=sv[0];macao.ai.splice(macao.ai.indexOf(c),1);macao.discard.push(c);macaoResolve(1,c);return;}
     macaoDraw(1,macao.penalty);macao.penalty=0;macao.turn=0;macao.msg='Calculatorul a tras penalizarea. Rândul tău.';renderMacao();return;}
   const lg=macaoLegal(macao.ai);if(lg.length){const opp=macao.hand.length;const e8=lg.filter(x=>x.r===8),s7=lg.filter(x=>x.r===7);let c;
@@ -424,7 +424,7 @@ function septEndTrick(){const w=septica.placer;septica.scores[w]+=septPts(septic
 function septEnd(){septica.over=true;const a=septica.scores[0],b=septica.scores[1];septica.msg=a>b?('Ai câștigat la puncte '+a+'–'+b+'! 🏆'):(b>a?('Calculatorul câștigă '+b+'–'+a+'.'):('Egalitate '+a+'–'+b+'.'));renderSept();}
 function septPlace(seatN,card){const arr=seatN===0?septica.hand:septica.ai;arr.splice(arr.indexOf(card),1);septica.pile.push(card);septica.placer=seatN;septica.lead=false;septica.toAct=1-seatN;
   septica.msg=(septica.toAct===0?'Bate (aceeași valoare sau orice 7) ori renunță.':'Calculatorul răspunde…');renderSept();if(!septica.over&&septica.toAct===1)setTimeout(septAI,800);}
-function septAI(){if(septica.over||septica.toAct!==1)return;
+function septAI(){if(!septica||septica.over||septica.toAct!==1)return;
   if(septica.lead){const h=septica.ai.slice();const junk=h.filter(c=>c.r!==14&&c.r!==10&&c.r!==7).sort((a,b)=>a.r-b.r);const c=junk.length?junk[0]:h.sort((a,b)=>a.r-b.r)[0];septPlace(1,c);return;}
   const beat=septCanBeat(septica.ai),pts=septPts(septica.pile),same=beat.filter(c=>c.r!==7),sevens=beat.filter(c=>c.r===7);
   if(same.length){septPlace(1,same.sort((a,b)=>a.r-b.r)[0]);return;}
@@ -512,7 +512,7 @@ function heShowdown(){heRefund();he.reveal=true;he.street='showdown';const s0=ev
   else{he.stacks[0]+=Math.floor(he.pot/2);he.stacks[1]+=Math.ceil(he.pot/2);he.winner=-1;he.msg='Egalitate ('+handName(s0)+').';}
   he.pot=0;heFinish();renderHE();}
 function heFinish(){he.done=true;heMatch.stacks=he.stacks.slice();heMatch.button=1-heMatch.button;if(heMatch.stacks[0]<=0||heMatch.stacks[1]<=0)heMatch.over=true;}
-function heAIGo(){if(he.done||he.toAct!==1)return;const s=1,toCall=he.curBet-he.streetC[s],eq=equityHU(he.hole[s],he.board,he.street==='preflop'?100:130),r=Math.random();
+function heAIGo(){if(!he||he.done||he.toAct!==1)return;const s=1,toCall=he.curBet-he.streetC[s],eq=equityHU(he.hole[s],he.board,he.street==='preflop'?100:130),r=Math.random();
   const pot=he.pot,potOdds=toCall>0?toCall/(pot+toCall):0;
   if(toCall===0){if(eq>0.62||(eq>0.45&&r<0.4)){const sz=Math.max(BB,Math.round((0.5+0.3*r)*pot/BB)*BB);heApply({type:'betraise',amt:Math.min(he.streetC[s]+sz,he.streetC[s]+he.stacks[s])});}else heApply({type:'check'});return;}
   if(eq<potOdds-0.04&&r<0.85){heApply({type:'fold'});return;}
@@ -577,7 +577,7 @@ function solColClick(col){if(!sol.sel)return;solToCol(col);}
 function renderSol(){const ti=TI(),s=sol;ti.innerHTML='';
   if(s.won){const ca=el('div','center-area');ca.innerHTML='<div class="msg win">Felicitări! Ai rezolvat pasiența în '+s.moves+' mutări. 🎉</div>';ti.appendChild(ca);ti.appendChild(bar([{l:'↻ Joc nou',p:1,f:startSolitaire},{l:'Înapoi la atlas',f:closePlay}]));return;}
   const top=el('div','sol-top');
-  const stk=el('div');stk.style.cursor='pointer';stk.onclick=solStock;
+  const stk=el('div','stk');stk.style.cursor='pointer';stk.onclick=solStock;
   if(s.stock.length)stk.appendChild(cardEl(null,{back:1,cls:'solc'}));else{const e=el('div','slot');e.style.display='grid';e.style.placeItems='center';e.innerHTML='<span style="opacity:.5;font-size:1.4rem">↻</span>';stk.appendChild(e);}top.appendChild(stk);
   const wst=el('div');if(s.waste.length){const c=s.waste[s.waste.length-1];wst.appendChild(cardEl(c,{cls:'solc',onClick:solWasteClick,sel:s.sel&&s.sel.src==='waste'}));}else wst.appendChild(el('div','slot'));top.appendChild(wst);
   const sp=el('div');sp.style.flex='1';sp.style.minWidth='8px';top.appendChild(sp);
@@ -598,7 +598,14 @@ function renderSol(){const ti=TI(),s=sol;ti.innerHTML='';
 $('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();render();});
 $('#sort').addEventListener('change',e=>{sortMode=e.target.value;render();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#playbg').classList.contains('open'))closePlay();else closeModal();}});
-$('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();render();
+/* keyboard access for click-only <div>s (chips, catalog entries, cards, slots, stock) */
+(function(){const SEL='.chip,.card-entry,.selectable,.m-fav,#daily,.slot,.stk';
+  const mark=r=>{if(!r.querySelectorAll)return;const l=r.matches&&r.matches(SEL)?[r]:[];l.push(...r.querySelectorAll(SEL));
+    l.forEach(n=>{if(n.hasAttribute('tabindex'))return;if(!n.onclick)return;n.tabIndex=0;n.setAttribute('role','button');if(n.classList.contains('m-fav'))n.setAttribute('aria-label','Favorit');});};
+  new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>n.nodeType===1&&mark(n)))).observe(document.body,{childList:true,subtree:true});
+  document.addEventListener('keydown',e=>{const t=e.target;if((e.key==='Enter'||e.key===' ')&&t&&t.getAttribute&&t.getAttribute('role')==='button'&&t.tagName!=='BUTTON'){e.preventDefault();t.click();}});
+  window.__kbMark=mark;})();
+$('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();render();window.__kbMark(document.body);
 </script>
 <!-- tf-donate: sprijin voluntar (Patreon + Buy Me a Coffee) — self-contained, fără resurse externe, fără JS -->
 <div id="tf-donate" aria-label="Sprijină autorul">
