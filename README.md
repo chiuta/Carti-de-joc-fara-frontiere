@@ -30,6 +30,10 @@ Un atlas interactiv de jocuri cu cărți, de la Solitaire și Popa Prostul pân�
 5. Închide fișa sau masa de joc cu **Închide**, ✕ sau **Esc**.
 6. Contorul „▶ N partide” din colțul de sus arată câte partide ai început.
 
+## Avertisment
+
+Jocurile (inclusiv Blackjack și Texas Hold'em, din familia „Cazinou & pariuri") sunt simulări educaționale cu jetoane virtuale; nu se mizează bani reali. Jocurile de noroc pe bani pot crea dependență și sunt destinate adulților. Adversarii din jocurile jucabile sunt programe locale (aplicația le numește „AI-uri locale"); aplicația afișează o notă în subsol.
+
 ## Confidențialitate și rețea
 
 - **Stocare locală (localStorage):** două chei cu prefix `cff:`, `cff:fav` (jocurile favorite) și `cff:played` (numărul de partide). Nu sunt trimise nicăieri.
@@ -44,6 +48,10 @@ Descarcă `index.html` și deschide-l în browser; nu are nevoie de internet (li
 Licența nu este încă declarată explicit în acest repository; vezi nota din aplicație.
 
 Subsolul aplicației spune: „Realizat de Alexandru-Ionuț Chiuță (Alexio) · Centrul StrING · CC-BY-SA 4.0.” Antetul fișierului conține în schimb o mențiune CC0; cele două indicații urmează să fie clarificate.
+
+## Audit
+
+Audit: 2026-10-10 — verificat cu Playwright și axe-core (catalog, fișe și mesele celor șapte jocuri); verificat în cod: fără `fetch`, CSP `default-src 'self'`. Corectat: un checkbox decorativ focalizabil (axe serious); adăugat avertisment despre jocurile de noroc.
 
 ## Autor
 
