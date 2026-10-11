@@ -1,5 +1,7 @@
 # Cărți de joc fără frontiere
 
+**Ultima actualizare:** 11 octombrie 2026
+
 Atlas de jocuri cu cărți, cu șapte jocuri jucabile, într-un singur fișier HTML.
 
 **Live:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
@@ -62,3 +64,10 @@ Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat 
 ## English summary
 
 Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and seven playable games (Klondike Solitaire, War, Popa Prostul, Macao, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed CC0 1.0 (see LICENSE).
+
+## Istoric / Changelog
+
+### 11 octombrie 2026
+- Blackjack: adăugate **split** (o singură dată, cărți de aceeași valoare; asul divizat primește o singură carte), **asigurare** 2:1 când dealerul arată As și dublare pe orice mână; verificat cu mâini fixe (plăți, bancă, egalități).
+- Pe mobil pastila de donații este implicit un buton ♥ mic (se extinde la atingere) și pagina are margine jos, ca să nu acopere conținutul; controalele ei sunt acum accesibile de la tastatură.
+- Conținutul este încadrat în `<main>`/`<header>`; ferestrele (fișă, masă) au rol de dialog; ordinea titlurilor corectată (axe: 0 încălcări).

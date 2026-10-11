@@ -60,7 +60,7 @@ position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transp
 .stat span{font-family:var(--fu);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .daily{background:radial-gradient(120% 140% at 100% 0%,#24160955,transparent 50%),linear-gradient(160deg,var(--bg3),var(--bg2));border:1px solid var(--brass-fade);border-radius:var(--r);padding:24px;display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:30px;cursor:pointer}
 .daily .badge-day{font-family:var(--fu);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
-.daily h3{font-size:1.8rem;margin:6px 0}.daily p{font-family:var(--fu);color:var(--muted);margin:0;max-width:60ch;font-size:.92rem}
+.daily h2{font-size:1.8rem;margin:6px 0}.daily p{font-family:var(--fu);color:var(--muted);margin:0;max-width:60ch;font-size:.92rem}
 .daily .big-suit{font-size:4rem;line-height:1;color:var(--brass);margin-left:auto}
 .controls{position:sticky;top:62px;z-index:30;background:linear-gradient(var(--bg) 78%,transparent);padding:18px 0 12px;margin-top:30px}
 .searchrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -93,7 +93,7 @@ position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transp
 .m-fav{position:absolute;right:64px;top:22px;font-size:1.5rem;cursor:pointer;color:#ffffff30}.m-fav.on{color:var(--brass)}
 .modal h2{font-size:1.8rem;margin:0 96px 6px 0}.m-meta{font-family:var(--fm);font-size:.76rem;color:var(--muted)}
 .m-body{padding:20px 24px 24px}.m-desc{font-family:var(--fu);font-size:.95rem;line-height:1.7}
-.modal h4{font-family:var(--fu);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:22px 0 8px}
+.modal h3{font-family:var(--fu);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:22px 0 8px}
 .rules{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
 .rules li{font-family:var(--fu);font-size:.9rem;color:var(--muted);padding-left:22px;position:relative;line-height:1.55}
 .rules li::before{content:"♠";position:absolute;left:0;top:1px;color:var(--brass-dim);font-size:.8em}
@@ -149,8 +149,8 @@ position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transp
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar"><div class="brandmark">♠ ♥ Cărți de joc fără frontiere ♦ ♣</div><div class="trophy" id="trophy">▶ 0 partide</div></div>
+<main class="wrap">
+  <header class="topbar"><div class="brandmark">♠ ♥ Cărți de joc fără frontiere ♦ ♣</div><div class="trophy" id="trophy">▶ 0 partide</div></header>
   <div class="hero">
     <div class="eyebrow">Atlas de jocuri cu cărți · jucabil contra AI-urilor locale</div>
     <h1>Cărți de joc fără frontiere</h1><div class="suit-rule">♠ ♥ ♦ ♣</div>
@@ -166,9 +166,9 @@ position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transp
   <div id="catalog"></div>
   <div class="foot"><div class="big">Cărți de joc fără frontiere</div><div class="suits">♠ ♥ ♦ ♣</div>
     <p>Fișier unic, 100% offline · 0 resurse externe · vanilla JS, fără telemetrie.<br>Jucabile: Solitaire (Klondike), Război, Popa Prostul, Macao, Septică, Blackjack și Texas Hold'em. Restul sunt documentate.<br>Jocuri de cărți simulate, fără bani reali și fără pariuri; Blackjack, Texas Hold'em și jocurile din familia „Cazinou &amp; pariuri" sunt prezentate doar educațional — jocurile de noroc pe bani pot crea dependență și sunt destinate adulților.<br>Realizat de Alexandru-Ionuț Chiuță (Alexio) · Centrul StrING · CC0 1.0.</p></div>
-</div>
-<div class="modal-bg" id="modalbg"><div class="modal" id="modal"></div></div>
-<div class="play-bg" id="playbg"></div>
+</main>
+<div class="modal-bg" id="modalbg" role="dialog" aria-modal="true" aria-label="Fișa jocului"><div class="modal" id="modal"></div></div>
+<div class="play-bg" id="playbg" role="dialog" aria-modal="true" aria-label="Masa de joc"></div>
 <script>
 /* ============ CATALOG ============ */
 const FAMILIES=[
@@ -312,11 +312,11 @@ const APPROX={war:'Războiul nu cere decizii: „AI-ul” doar întoarce cărți
   popa:'AI-urile trag cărți la întâmplare (nu pot vedea ce ai în mână) — exact ca în jocul real.',
   macao:'Regulă de casă: dacă nu ai carte validă tragi una și treci rândul. Se folosesc efectele 7=+2, 8=stă, As=jolly.',
   septica:'La epuizarea pachetului, cărțile rămase în mâini nu se mai contorizează. AI-ul joacă prudent, la nivel de cafenea.',
-  blackjack:'Un singur joc, fără split și fără asigurare. Dealerul stă pe orice 17. Blackjack-ul plătește 3:2.',
+  blackjack:'Dublare pe primele două cărți, split o singură dată (cărți de aceeași valoare; asul divizat primește o singură carte) și asigurare 2:1 când dealerul arată As. Dealerul stă pe orice 17. Blackjack-ul plătește 3:2.',
   holdem:'Heads-up (1 la 1), mize mici. AI-ul își estimează șansele prin simulare Monte Carlo și are nivel de cafenea, nu de profesionist.',
   solitaire:'Pasiență Klondike clasică, tragere câte o carte. Click pe o carte, apoi pe coloana sau fundația țintă; „→ Trimite la fundații” mută automat ce se poate.'};
 function openModal(g){const fav=FAV.has(g.id),m=$('#modal');
-  m.innerHTML='<div class="m-head"><span class="m-suit">'+g.suit+'</span><span class="m-fav'+(fav?' on':'')+'" id="favbtn" title="Favorit">★</span><h2>'+g.t+'</h2><div class="m-meta">'+g.pl+' jucători · dificultate '+g.diff+'/4 · '+g.era+' · '+g.reg+'</div></div><div class="m-body"><div class="m-desc">'+g.desc+'</div><h4>Cum se joacă</h4><ul class="rules">'+g.rules.map(r=>'<li>'+r+'</li>').join('')+'</ul><h4>De știut</h4><div class="fact">'+g.fact+'</div>'+(g.play&&APPROX[g.play]?'<div class="approx">⚠ <span>'+APPROX[g.play]+'</span></div>':'')+'<div class="m-actions">'+(g.play?'<button class="btn primary" id="playbtn">▶ Joacă</button>':'<button class="btn" disabled>Documentat (motor în versiunea completă)</button>')+'<button class="btn ghost" id="closebtn">Închide</button></div></div>';
+  m.innerHTML='<div class="m-head"><span class="m-suit">'+g.suit+'</span><span class="m-fav'+(fav?' on':'')+'" id="favbtn" title="Favorit">★</span><h2>'+g.t+'</h2><div class="m-meta">'+g.pl+' jucători · dificultate '+g.diff+'/4 · '+g.era+' · '+g.reg+'</div></div><div class="m-body"><div class="m-desc">'+g.desc+'</div><h3>Cum se joacă</h3><ul class="rules">'+g.rules.map(r=>'<li>'+r+'</li>').join('')+'</ul><h3>De știut</h3><div class="fact">'+g.fact+'</div>'+(g.play&&APPROX[g.play]?'<div class="approx">⚠ <span>'+APPROX[g.play]+'</span></div>':'')+'<div class="m-actions">'+(g.play?'<button class="btn primary" id="playbtn">▶ Joacă</button>':'<button class="btn" disabled>Documentat (motor în versiunea completă)</button>')+'<button class="btn ghost" id="closebtn">Închide</button></div></div>';
   $('#favbtn').onclick=()=>{if(FAV.has(g.id))FAV.delete(g.id);else FAV.add(g.id);saveFav();$('#favbtn').classList.toggle('on');};
   $('#closebtn').onclick=closeModal;if(g.play)$('#playbtn').onclick=()=>{closeModal();startGame(g);};
   $('#modalbg').classList.add('open');}
@@ -324,7 +324,7 @@ function closeModal(){$('#modalbg').classList.remove('open');}
 $('#modalbg').addEventListener('click',e=>{if(e.target===$('#modalbg'))closeModal();});
 /* ============ daily ============ */
 function dailyPick(){const p=GAMES.filter(g=>g.play),t=new Date(),seed=t.getFullYear()*1000+t.getMonth()*31+t.getDate();
-  const g=p[seed%p.length],d=$('#daily');d.innerHTML='<div><div class="badge-day">Jocul de azi</div><h3>'+g.t+'</h3><p>'+g.desc+'</p></div><div class="big-suit">'+g.suit+'</div>';d.onclick=()=>openModal(g);}
+  const g=p[seed%p.length],d=$('#daily');d.innerHTML='<div><div class="badge-day">Jocul de azi</div><h2>'+g.t+'</h2><p>'+g.desc+'</p></div><div class="big-suit">'+g.suit+'</div>';d.onclick=()=>openModal(g);}
 /* ============ play overlay ============ */
 function openPlay(title,suit){const pb=$('#playbg');
   pb.innerHTML='<div class="play-top"><div class="pt-title"><span class="s">'+suit+'</span> '+title+'</div><button class="icon-btn" id="closeplay" title="Închide">✕</button></div><div class="play-stage"><div class="table-inner" id="tableInner"></div></div>';
@@ -443,37 +443,55 @@ function renderSept(){const ti=TI(),s=septica;ti.innerHTML='';
   else if(s.toAct===0&&s.lead){const n=el('div','note');n.textContent='Lansează orice carte. Adversarul o bate cu aceeași valoare sau cu un 7.';ti.appendChild(n);}}
 /* ===== BLACKJACK (vs dealer) ===== */
 let bj=null;
-function startBlackjack(){bj={shoe:[],player:[],dealer:[],bet:0,bank:1000,phase:'bet',msg:'Alege miza ca să începi.'};renderBJ();}
+function startBlackjack(){bj={shoe:[],hands:[],act:0,dealer:[],bet:0,bank:1000,ins:0,split:false,phase:'bet',msg:'Alege miza ca să începi.'};renderBJ();}
 function bjShoe(){if(bj.shoe.length<20){bj.shoe=[];for(let i=0;i<4;i++)bj.shoe.push(...makeDeck());shuffle(bj.shoe);}}
 function bjVal(cs){let s=0,a=0;cs.forEach(c=>{if(c.r===14){a++;s+=11;}else if(c.r>10)s+=10;else s+=c.r;});while(s>21&&a>0){s-=10;a--;}return s;}
 function bjIsBJ(cs){return cs.length===2&&bjVal(cs)===21;}
-function bjDeal(bet){if(bet>bj.bank)return;bjShoe();bj.bet=bet;bj.bank-=bet;bj.player=[bj.shoe.pop(),bj.shoe.pop()];bj.dealer=[bj.shoe.pop(),bj.shoe.pop()];bj.phase='player';bj.msg='Tragi sau te oprești?';bj.doubled=false;
-  if(bjIsBJ(bj.player)||bjIsBJ(bj.dealer))bjStand();else renderBJ();}
-function bjHit(){bj.player.push(bj.shoe.pop());if(bjVal(bj.player)>21){bj.phase='done';bjSettle();}else renderBJ();}
-function bjDouble(){if(bj.bet>bj.bank)return;bj.bank-=bj.bet;bj.bet*=2;bj.doubled=true;bj.player.push(bj.shoe.pop());if(bjVal(bj.player)>21){bj.phase='done';bjSettle();}else bjStand();}
-function bjStand(){bj.phase='dealer';while(bjVal(bj.dealer)<17)bj.dealer.push(bj.shoe.pop());bj.phase='done';bjSettle();}
-function bjSettle(){const pv=bjVal(bj.player),dv=bjVal(bj.dealer),pBJ=bjIsBJ(bj.player),dBJ=bjIsBJ(bj.dealer);let pay=0;
-  if(pBJ&&!dBJ){pay=bj.bet+Math.floor(bj.bet*1.5);bj.res='win';bj.msg='Blackjack! Plată 3:2. 🃏';}
-  else if(pBJ&&dBJ){pay=bj.bet;bj.res='push';bj.msg='Ambii blackjack — egalitate.';}
-  else if(dBJ){bj.res='lose';bj.msg='Dealerul are blackjack. Pierzi.';}
-  else if(pv>21){bj.res='lose';bj.msg='Ai crăpat ('+pv+'). Pierzi.';}
-  else if(dv>21){pay=bj.bet*2;bj.res='win';bj.msg='Dealerul a crăpat ('+dv+'). Câștigi!';}
-  else if(pv>dv){pay=bj.bet*2;bj.res='win';bj.msg='Câștigi: '+pv+' vs '+dv+'.';}
-  else if(pv<dv){bj.res='lose';bj.msg='Pierzi: '+pv+' vs '+dv+'.';}
-  else{pay=bj.bet;bj.res='push';bj.msg='Egalitate la '+pv+'.';}
-  bj.bank+=pay;renderBJ();}
-function renderBJ(){const ti=TI(),b=bj;ti.innerHTML='';const hideHole=b.phase==='player';
+function bjPt(c){return c.r===14?11:(c.r>10?10:c.r);}
+function bjCur(){return bj.hands[bj.act];}
+function bjDeal(bet){if(bet>bj.bank)return;bjShoe();bj.bet=bet;bj.bank-=bet;bj.ins=0;bj.split=false;bj.act=0;bj.res=null;
+  bj.hands=[{c:[bj.shoe.pop(),bj.shoe.pop()],bet:bet,done:false,dbl:false}];bj.dealer=[bj.shoe.pop(),bj.shoe.pop()];
+  if(bj.dealer[0].r===14&&Math.floor(bet/2)>=1&&bj.bank>=Math.floor(bet/2)){bj.phase='insurance';bj.msg='Dealerul arată un As. Vrei asigurare (jumătate din miză, plătește 2:1)?';renderBJ();}
+  else bjAfterIns();}
+function bjInsure(take){if(take){const x=Math.floor(bj.hands[0].bet/2);bj.bank-=x;bj.ins=x;}bjAfterIns();}
+function bjAfterIns(){if(bjIsBJ(bj.hands[0].c)||bjIsBJ(bj.dealer)){bj.hands[0].done=true;bjDealerPlay();}else{bj.phase='player';bj.msg=bj.ins?'Dealerul nu are blackjack; asigurarea se pierde. Tragi sau te oprești?':'Tragi sau te oprești?';renderBJ();}}
+function bjNext(){const i=bj.hands.findIndex(h=>!h.done);if(i<0){bjDealerPlay();return;}bj.act=i;bj.msg=bj.split?'Mâna '+(i+1)+' din '+bj.hands.length+': tragi sau te oprești?':'Tragi sau te oprești?';renderBJ();}
+function bjHit(){const h=bjCur();h.c.push(bj.shoe.pop());if(bjVal(h.c)>21){h.done=true;bjNext();}else if(bjVal(h.c)===21){h.done=true;bjNext();}else renderBJ();}
+function bjStand(){bjCur().done=true;bjNext();}
+function bjCanDouble(){const h=bjCur();return h&&h.c.length===2&&h.bet<=bj.bank&&!h.aceSplit;}
+function bjDouble(){const h=bjCur();if(!bjCanDouble())return;bj.bank-=h.bet;h.bet*=2;h.dbl=true;h.c.push(bj.shoe.pop());h.done=true;bjNext();}
+function bjCanSplit(){const h=bjCur();return h&&bj.hands.length===1&&h.c.length===2&&bjPt(h.c[0])===bjPt(h.c[1])&&h.bet<=bj.bank;}
+function bjSplit(){if(!bjCanSplit())return;const h=bjCur(),b=h.bet,ace=h.c[0].r===14;bj.bank-=b;bj.split=true;
+  bj.hands=[{c:[h.c[0],bj.shoe.pop()],bet:b,done:ace,dbl:false,aceSplit:ace},{c:[h.c[1],bj.shoe.pop()],bet:b,done:ace,dbl:false,aceSplit:ace}];bj.act=0;
+  if(ace){bj.msg='Ași divizați: câte o singură carte pe fiecare.';bjDealerPlay();}else bjNext();}
+function bjDealerPlay(){bj.phase='dealer';if(bj.hands.some(h=>bjVal(h.c)<=21&&!(bjIsBJ(h.c)&&!bj.split)))while(bjVal(bj.dealer)<17)bj.dealer.push(bj.shoe.pop());bj.phase='done';bjSettle();}
+function bjSettle(){const dv=bjVal(bj.dealer),dBJ=bjIsBJ(bj.dealer);let pay=0,staked=bj.ins,msgs=[];
+  bj.hands.forEach((h,i)=>{const pv=bjVal(h.c),pBJ=!bj.split&&bjIsBJ(h.c),tag=bj.split?'Mâna '+(i+1)+': ':'';staked+=h.bet;let p=0,m;
+    if(pBJ&&!dBJ){p=h.bet+Math.floor(h.bet*1.5);m='Blackjack! Plată 3:2. 🃏';}
+    else if(pBJ&&dBJ){p=h.bet;m='Ambii blackjack — egalitate.';}
+    else if(dBJ){m='Dealerul are blackjack. Pierzi.';}
+    else if(pv>21){m='Ai crăpat ('+pv+'). Pierzi.';}
+    else if(dv>21){p=h.bet*2;m='Dealerul a crăpat ('+dv+'). Câștigi!';}
+    else if(pv>dv){p=h.bet*2;m='Câștigi: '+pv+' vs '+dv+'.';}
+    else if(pv<dv){m='Pierzi: '+pv+' vs '+dv+'.';}
+    else{p=h.bet;m='Egalitate la '+pv+'.';}
+    pay+=p;msgs.push(tag+m);});
+  if(bj.ins){if(dBJ){pay+=bj.ins*3;msgs.push('Asigurarea câștigă 2:1.');}else msgs.push('Asigurarea pierdută.');}
+  const net=pay-staked;bj.res=net>0?'win':(net<0?'lose':'push');bj.msg=msgs.join(' ');bj.bank+=pay;renderBJ();}
+function renderBJ(){const ti=TI(),b=bj;ti.innerHTML='';const hideHole=b.phase==='player'||b.phase==='insurance';
   const s1=el('div','seat');s1.innerHTML=seat('Dealer',null,b.phase==='dealer');const dh=el('div','hand');
   b.dealer.forEach((c,i)=>dh.appendChild((hideHole&&i===1)?cardEl(null,{back:1,w:96}):cardEl(c,{w:96})));
   if(b.dealer.length){const v=el('div','chiptag');v.textContent=hideHole?(''+bjVal([b.dealer[0]])+' + ?'):('total '+bjVal(b.dealer));dh.appendChild(v);}s1.appendChild(dh);ti.appendChild(s1);
-  ti.innerHTML+='<div class="scorebar">Bancă: <b>'+b.bank+'</b> jetoane'+(b.bet?(' · miză curentă: <b>'+b.bet+'</b>'):'')+'</div>';
+  const tb=b.hands.reduce((s,h)=>s+h.bet,0);
+  ti.innerHTML+='<div class="scorebar">Bancă: <b>'+b.bank+'</b> jetoane'+(tb?(' · miză curentă: <b>'+tb+'</b>'):'')+(b.ins?(' · asigurare: <b>'+b.ins+'</b>'):'')+'</div>';
   const ca=el('div','center-area');ca.innerHTML='<div class="msg '+(b.phase==='done'?(b.res==='win'?'win':(b.res==='lose'?'lose':'')):'')+'">'+b.msg+'</div>';ti.appendChild(ca);
-  const me=el('div','seat');me.innerHTML=seat('Tu',null,b.phase==='player');const mh=el('div','hand');b.player.forEach(c=>mh.appendChild(cardEl(c,{w:96})));
-  if(b.player.length){const v=el('div','chiptag');v.textContent='total '+bjVal(b.player);mh.appendChild(v);}me.appendChild(mh);ti.appendChild(me);
+  b.hands.forEach((h,i)=>{const me=el('div','seat');me.innerHTML=seat(b.split?'Mâna '+(i+1):'Tu',null,b.phase==='player'&&i===b.act);const mh=el('div','hand');h.c.forEach(c=>mh.appendChild(cardEl(c,{w:b.split?72:96})));
+    const v=el('div','chiptag');v.textContent='total '+bjVal(h.c)+(b.split?' · miză '+h.bet:'');mh.appendChild(v);me.appendChild(mh);ti.appendChild(me);});
   if(b.phase==='bet'){if(b.bank<25){ti.appendChild(bar([{l:'Reîncarcă banca (1000)',p:1,f:()=>{b.bank=1000;b.msg='Bancă reîncărcată.';renderBJ();}}]));}
     else ti.appendChild(bar([25,50,100].filter(x=>x<=b.bank).map(x=>({l:'Miză '+x,p:x===100,f:()=>bjDeal(x)}))));}
-  else if(b.phase==='player'){const btns=[{l:'Trage (Hit)',p:1,f:bjHit},{l:'Stai (Stand)',f:bjStand}];if(b.player.length===2&&b.bet<=b.bank)btns.push({l:'Dublează',f:bjDouble});ti.appendChild(bar(btns));}
-  else if(b.phase==='done')ti.appendChild(bar([{l:'↻ Mână nouă',p:1,f:()=>{b.phase='bet';b.player=[];b.dealer=[];b.bet=0;b.msg='Alege miza.';renderBJ();}},{l:'Înapoi la atlas',f:closePlay}]));}
+  else if(b.phase==='insurance'){const x=Math.floor(b.hands[0].bet/2);ti.appendChild(bar([{l:'Asigurare ('+x+')',p:1,f:()=>bjInsure(true)},{l:'Fără asigurare',f:()=>bjInsure(false)}]));}
+  else if(b.phase==='player'){const btns=[{l:'Trage (Hit)',p:1,f:bjHit},{l:'Stai (Stand)',f:bjStand}];if(bjCanDouble())btns.push({l:'Dublează',f:bjDouble});if(bjCanSplit())btns.push({l:'Împarte (Split)',f:bjSplit});ti.appendChild(bar(btns));}
+  else if(b.phase==='done')ti.appendChild(bar([{l:'↻ Mână nouă',p:1,f:()=>{b.phase='bet';b.hands=[];b.dealer=[];b.bet=0;b.ins=0;b.split=false;b.msg='Alege miza.';renderBJ();}},{l:'Înapoi la atlas',f:closePlay}]));}
 /* ===== TEXAS HOLD'EM (heads-up) ===== */
 const SB=10,BB=20,STK=1000;let he=null,heMatch=null;
 function equityHU(hole,board,N){const known=[...hole,...board];let win=0,tie=0;
@@ -608,7 +626,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#playbg').cla
 $('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();render();window.__kbMark(document.body);
 </script>
 <!-- tf-donate: sprijin voluntar (Patreon + Buy Me a Coffee) — self-contained, fără resurse externe, fără JS -->
-<div id="tf-donate" aria-label="Sprijină autorul">
+<aside id="tf-donate" aria-label="Sprijină autorul">
 <style>
 #tf-donate{position:fixed;right:14px;bottom:14px;z-index:2147483600;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1}
 #tf-donate *{box-sizing:border-box}
@@ -625,7 +643,7 @@ $('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();rende
 #tf-donate .tf-open{display:none;width:46px;height:46px;border-radius:50%;background:#e0245e;font-size:20px;box-shadow:0 4px 16px rgba(0,0,0,.32)}
 #tf-donate .tf-cb:checked ~ .tf-panel{display:none}
 #tf-donate .tf-cb:checked ~ .tf-open{display:inline-flex}
-@media (max-width:560px){#tf-donate .tf-lbl{display:none}}
+@media (max-width:560px){#tf-donate .tf-lbl{display:none}#tf-donate .tf-panel{display:none}#tf-donate .tf-open{display:inline-flex;width:40px;height:40px;opacity:.88}#tf-donate .tf-cb:checked ~ .tf-panel{display:flex}#tf-donate .tf-cb:checked ~ .tf-open{display:none}body{padding-bottom:60px}}
 @media print{#tf-donate{display:none}}
 </style>
 <input type="checkbox" id="tf-donate-cb" class="tf-cb" aria-hidden="true" tabindex="-1">
@@ -633,9 +651,10 @@ $('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();rende
 <span class="tf-lbl">Sprijină:</span>
 <a class="tf-b tf-pat" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" aria-label="Sprijină pe Patreon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.4" cy="9.4" r="6.6" fill="currentColor"/><rect x="2.4" y="2.4" width="3.7" height="19.2" fill="currentColor"/></svg>Patreon</a>
 <a class="tf-b tf-bmc" href="https://buymeacoffee.com/echo.of.the.strings" target="_blank" rel="noopener" aria-label="Buy Me a Coffee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v6.5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8z"/><path d="M16 9.5h2.2a2.3 2.3 0 0 1 0 4.6H16"/><path d="M7.5 4.5V3M11.5 4.5V3"/></svg>Coffee</a>
-<label for="tf-donate-cb" class="tf-x" title="Ascunde" aria-label="Ascunde">✕</label>
+<label for="tf-donate-cb" class="tf-x" title="Ascunde" aria-label="Ascunde" tabindex="0">✕</label>
 </div>
-<label for="tf-donate-cb" class="tf-open" title="Sprijină" aria-label="Sprijină">♥</label>
-</div>
+<label for="tf-donate-cb" class="tf-open" title="Sprijină" aria-label="Sprijină" tabindex="0">♥</label>
+</aside>
+<script>document.querySelectorAll("#tf-donate .tf-x,#tf-donate .tf-open").forEach(function(l){l.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();var c=document.getElementById("tf-donate-cb");c.checked=!c.checked;}});});</script>
 </body>
 </html>
