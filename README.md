@@ -45,9 +45,11 @@ Descarcă `index.html` și deschide-l în browser; nu are nevoie de internet (li
 
 ## Licență
 
-Licența nu este încă declarată explicit în acest repository; vezi nota din aplicație.
+CC0 1.0 Universal (dedicare în domeniul public) — vezi fișierul `LICENSE`. Antetul din `index.html` și textul din interfață indică aceeași licență (o mențiune anterioară „CC-BY-SA 4.0” din interfață a fost eliminată la audit, 2026-10-11, pentru a elimina contradicția).
 
-Subsolul aplicației spune: „Realizat de Alexandru-Ionuț Chiuță (Alexio) · Centrul StrING · CC-BY-SA 4.0.” Antetul fișierului conține în schimb o mențiune CC0; cele două indicații urmează să fie clarificate.
+## Mărci
+
+Numele de jocuri sunt denumiri comerciale ale deținătorilor lor, folosite descriptiv; proiectul nu este afiliat cu aceștia.
 
 ## Audit
 
@@ -59,4 +61,4 @@ Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat 
 
 ## English summary
 
-Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and seven playable games (Klondike Solitaire, War, Popa Prostul, Macao, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. License not yet declared explicitly (the app footer mentions CC-BY-SA 4.0).
+Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and seven playable games (Klondike Solitaire, War, Popa Prostul, Macao, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed CC0 1.0 (see LICENSE).
