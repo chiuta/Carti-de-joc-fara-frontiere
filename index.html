@@ -26,9 +26,10 @@
 }
 
 /* Accesibilitate: inel de focus vizibil pentru navigare la tastatură. */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2px solid #4a90d9;outline-offset:2px;border-radius:2px}
 </style>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' 'sha256-MZuvhtaqKJxT4DdHfCyAoB/kCeG4C0ZwZqGVIxwbhOI=' 'sha256-xBlWaEQo3jR7IHPBC+PR8qDLF4pOTOZzAIT18cqFl5A='; connect-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' 'sha256-VGWPty3HE7py409hDA3WCVDHUGEnKR52zW/hdNcyg1o=' 'sha256-xBlWaEQo3jR7IHPBC+PR8qDLF4pOTOZzAIT18cqFl5A='; connect-src 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cărți de joc fără frontiere</title>
 <style>
@@ -253,12 +254,15 @@ const GAMES=[
 const $=s=>document.querySelector(s), el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
 const SUITS=['♠','♥','♦','♣'], RKS={11:'J',12:'Q',13:'K',14:'A'};
 const rlabel=r=>r<=10?(''+r):RKS[r], isRed=s=>s===1||s===2;
+const SUITN=['pică','inimă roșie','caro','treflă'],RKN={11:'valet',12:'damă',13:'rege',14:'as'};
+const cardName=c=>(c.r<=10?(''+c.r):RKN[c.r])+' de '+SUITN[c.s];
 function makeDeck(lo){lo=lo||2;const d=[];for(let s=0;s<4;s++)for(let r=lo;r<=14;r++)d.push({r,s});return d;}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function cardEl(card,opts){opts=opts||{};const d=el('div','card'+(opts.cls?' '+opts.cls:''));
   if(opts.w)d.style.setProperty('--cw',opts.w+'px');
-  if(opts.back||!card){d.classList.add('back');return d;}
+  if(opts.back||!card){d.classList.add('back');d.setAttribute('role','img');d.setAttribute('aria-label','Carte întoarsă');return d;}
   if(isRed(card.s))d.classList.add('red');const rl=rlabel(card.r),su=SUITS[card.s];
+  d.setAttribute('aria-label',cardName(card));if(!opts.onClick)d.setAttribute('role','img');
   d.innerHTML='<span class="crnr"><span class="r">'+rl+'</span><span class="s">'+su+'</span></span><span class="pip-c">'+su+'</span><span class="crnr br"><span class="r">'+rl+'</span><span class="s">'+su+'</span></span>';
   if(opts.onClick){d.classList.add('selectable');d.onclick=opts.onClick;}if(opts.sel)d.classList.add('sel');return d;}
 function bar(btns){const b=el('div','actionbar');btns.forEach(o=>{const x=el('button','act'+(o.p?' primary':''));x.textContent=o.l;if(o.d)x.disabled=true;else x.onclick=o.f;b.appendChild(x);});return b;}
@@ -654,7 +658,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#playbg').cla
     l.forEach(n=>{if(n.hasAttribute('tabindex'))return;if(!n.onclick)return;n.tabIndex=0;n.setAttribute('role','button');if(n.classList.contains('m-fav'))n.setAttribute('aria-label','Favorit');});};
   new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>n.nodeType===1&&mark(n)))).observe(document.body,{childList:true,subtree:true});
   document.addEventListener('keydown',e=>{const t=e.target;if((e.key==='Enter'||e.key===' ')&&t&&t.getAttribute&&t.getAttribute('role')==='button'&&t.tagName!=='BUTTON'){e.preventDefault();t.click();}});
-  window.__kbMark=mark;})();
+  window.__kbMark=mark;
+  /* anunț pentru cititoarele de ecran: mesajele mesei de joc (.msg) într-o regiune live persistentă */
+  const live=document.createElement('div');live.className='sr-only';live.setAttribute('role','status');live.setAttribute('aria-live','polite');document.body.appendChild(live);
+  let last='';const pb=document.getElementById('playbg');
+  if(pb)new MutationObserver(()=>{const m=[...pb.querySelectorAll('.msg')].map(x=>x.textContent.trim()).filter(Boolean).join(' ');if(m&&m!==last){last=m;live.textContent=m;}if(!m)last='';}).observe(pb,{childList:true,subtree:true,characterData:true});})();
 $('#trophy').textContent='▶ '+PLAYED+' partide';buildStats();dailyPick();render();window.__kbMark(document.body);
 </script>
 <!-- tf-donate: sprijin voluntar (Patreon + Buy Me a Coffee) — self-contained, fără resurse externe, fără JS -->

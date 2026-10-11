@@ -21,6 +21,7 @@ Un atlas interactiv de jocuri cu cărți, de la Solitaire și Popa Prostul pân�
 - Filtre pe familii, plus filtrul „★ Doar jucabile”.
 - Fișă de joc cu număr de jucători, epocă, dificultate; marcare ca favorit (★).
 - Joc zilei și contor de statistici (jocuri, jucabile, familii, partide jucate).
+- Accesibilitate la masă: nume de cărți în română și anunțarea mesajelor jocului pentru cititoare de ecran.
 - Buton **▶ Joacă** în fișa fiecărui joc jucabil; **Închide** / ✕ / **Esc** pentru ieșire.
 
 ## Manual de utilizare
@@ -68,6 +69,8 @@ Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped 
 ## Istoric / Changelog
 
 ### 11 octombrie 2026
+- Cărțile de pe masă au acum nume accesibil în română („damă de inimă roșie”, „3 de caro”, „Carte întoarsă”) în loc de textul colțurilor repetat; cărțile pe care se poate da clic sunt butoane (rol `button`, Enter/Spațiu), celelalte imagini (rol `img`).
+- Mesajele mesei de joc („Rândul tău.”, „Alege miza…”) sunt anunțate cititoarelor de ecran printr-o regiune live (verificat pe Solitaire, Macao, Blackjack, Septică).
 - Joc nou jucabil: **Crazy Eights (Opt nebun)**, 1 la 1 cu calculatorul (7 cărți, 8 = jolly cu alegerea culorii, tragere până găsești carte validă); testat cu 40 de partide automate (52 de cărți conservate, fiecare partidă s-a încheiat). Acum 8 din 17 jocuri sunt jucabile.
 - CSP: `script-src` pe hash SHA-256 (două scripturi), fără `'unsafe-inline'`.
 - Blackjack: adăugate **split** (o singură dată, cărți de aceeași valoare; asul divizat primește o singură carte), **asigurare** 2:1 când dealerul arată As și dublare pe orice mână; verificat cu mâini fixe (plăți, bancă, egalități).
