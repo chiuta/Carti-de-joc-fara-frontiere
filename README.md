@@ -2,7 +2,7 @@
 
 **Ultima actualizare:** 11 octombrie 2026
 
-Atlas de jocuri cu cărți, cu șapte jocuri jucabile, într-un singur fișier HTML.
+Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.
 
 **Live:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
@@ -15,7 +15,7 @@ Un atlas interactiv de jocuri cu cărți, de la Solitaire și Popa Prostul pân�
 ## Funcții
 
 - Catalog cu 17 jocuri, grupate în familii: Pentru copii & rapide, Jocuri românești, De aruncare, Cu levate, Combinații & remi, Familia pokerului, Cazinou & pariuri, Pacient (solitaire).
-- Șapte jocuri jucabile (conform notei din subsol): Solitaire (Klondike), Război, Popa Prostul, Macao, Septică, Blackjack și Texas Hold'em. Restul sunt documentate.
+- Opt jocuri jucabile (conform notei din subsol): Solitaire (Klondike), Război, Popa Prostul, Macao, Crazy Eights (Opt nebun, 1 la 1 cu calculatorul), Septică, Blackjack și Texas Hold'em. Restul sunt documentate.
 - Căutare în titluri, descrieri, etichete și reguli („Caută un joc, o familie, o regulă…”).
 - Sortare: grupare pe familii, alfabetic A→Z, dificultate crescătoare, jucabile întâi.
 - Filtre pe familii, plus filtrul „★ Doar jucabile”.
@@ -55,7 +55,7 @@ Numele de jocuri sunt denumiri comerciale ale deținătorilor lor, folosite desc
 
 ## Audit
 
-Audit: 2026-10-10 — verificat cu Playwright și axe-core (catalog, fișe și mesele celor șapte jocuri); verificat în cod: fără `fetch`, CSP `default-src 'self'`. Corectat: un checkbox decorativ focalizabil (axe serious); adăugat avertisment despre jocurile de noroc.
+Audit: 2026-10-10 — verificat cu Playwright și axe-core (catalog, fișe și mesele celor șapte jocuri de atunci); verificat în cod: fără `fetch`, CSP `default-src 'self'`. Corectat: un checkbox decorativ focalizabil (axe serious); adăugat avertisment despre jocurile de noroc.
 
 ## Autor
 
@@ -63,11 +63,13 @@ Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat 
 
 ## English summary
 
-Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and seven playable games (Klondike Solitaire, War, Popa Prostul, Macao, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed CC0 1.0 (see LICENSE).
+Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and eight playable games (Klondike Solitaire, War, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed CC0 1.0 (see LICENSE).
 
 ## Istoric / Changelog
 
 ### 11 octombrie 2026
+- Joc nou jucabil: **Crazy Eights (Opt nebun)**, 1 la 1 cu calculatorul (7 cărți, 8 = jolly cu alegerea culorii, tragere până găsești carte validă); testat cu 40 de partide automate (52 de cărți conservate, fiecare partidă s-a încheiat). Acum 8 din 17 jocuri sunt jucabile.
+- CSP: `script-src` pe hash SHA-256 (două scripturi), fără `'unsafe-inline'`.
 - Blackjack: adăugate **split** (o singură dată, cărți de aceeași valoare; asul divizat primește o singură carte), **asigurare** 2:1 când dealerul arată As și dublare pe orice mână; verificat cu mâini fixe (plăți, bancă, egalități).
 - Pe mobil pastila de donații este implicit un buton ♥ mic (se extinde la atingere) și pagina are margine jos, ca să nu acopere conținutul; controalele ei sunt acum accesibile de la tastatură.
 - Conținutul este încadrat în `<main>`/`<header>`; ferestrele (fișă, masă) au rol de dialog; ordinea titlurilor corectată (axe: 0 încălcări).

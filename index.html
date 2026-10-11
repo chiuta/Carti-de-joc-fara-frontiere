@@ -28,7 +28,7 @@
 /* Accesibilitate: inel de focus vizibil pentru navigare la tastatură. */
 :focus-visible{outline:2px solid #4a90d9;outline-offset:2px;border-radius:2px}
 </style>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' 'unsafe-inline' blob:; connect-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' 'sha256-MZuvhtaqKJxT4DdHfCyAoB/kCeG4C0ZwZqGVIxwbhOI=' 'sha256-xBlWaEQo3jR7IHPBC+PR8qDLF4pOTOZzAIT18cqFl5A='; connect-src 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cărți de joc fără frontiere</title>
 <style>
@@ -165,7 +165,7 @@ position:sticky;top:0;z-index:40;background:linear-gradient(var(--bg) 70%,transp
   </div>
   <div id="catalog"></div>
   <div class="foot"><div class="big">Cărți de joc fără frontiere</div><div class="suits">♠ ♥ ♦ ♣</div>
-    <p>Fișier unic, 100% offline · 0 resurse externe · vanilla JS, fără telemetrie.<br>Jucabile: Solitaire (Klondike), Război, Popa Prostul, Macao, Septică, Blackjack și Texas Hold'em. Restul sunt documentate.<br>Jocuri de cărți simulate, fără bani reali și fără pariuri; Blackjack, Texas Hold'em și jocurile din familia „Cazinou &amp; pariuri" sunt prezentate doar educațional — jocurile de noroc pe bani pot crea dependență și sunt destinate adulților.<br>Realizat de Alexandru-Ionuț Chiuță (Alexio) · Centrul StrING · CC0 1.0.</p></div>
+    <p>Fișier unic, 100% offline · 0 resurse externe · vanilla JS, fără telemetrie.<br>Jucabile: Solitaire (Klondike), Război, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack și Texas Hold'em. Restul sunt documentate.<br>Jocuri de cărți simulate, fără bani reali și fără pariuri; Blackjack, Texas Hold'em și jocurile din familia „Cazinou &amp; pariuri" sunt prezentate doar educațional — jocurile de noroc pe bani pot crea dependență și sunt destinate adulților.<br>Realizat de Alexandru-Ionuț Chiuță (Alexio) · Centrul StrING · CC0 1.0.</p></div>
 </main>
 <div class="modal-bg" id="modalbg" role="dialog" aria-modal="true" aria-label="Fișa jocului"><div class="modal" id="modal"></div></div>
 <div class="play-bg" id="playbg" role="dialog" aria-modal="true" aria-label="Masa de joc"></div>
@@ -201,7 +201,7 @@ const GAMES=[
  desc:"Cel mai iubit joc de cărți din România, văr cu „Crazy Eights”: potrivești culoarea sau valoarea; 7 obligă la tras, 8 sare rândul, Asul schimbă culoarea.",
  rules:["Pui o carte de aceeași culoare sau valoare.","7 = adversarul trage 2 (se „leagă”).","8 = adversarul stă o tură.","Asul e jolly și cere culoarea dorită."],
  fact:"Numele vine, ca și „macao”-ul de cazino, de la portul Macao — simbol interbelic de noroc."},
-{id:"crazy8",t:"Crazy Eights (Opt nebun)",suit:"♠",fam:"aruncare",pl:"2–7",diff:1,era:"începutul sec. XX",reg:"SUA",tags:["scapă de cărți","8 = jolly"],
+{id:"crazy8",t:"Crazy Eights (Opt nebun)",suit:"♠",fam:"aruncare",play:"crazy8",pl:"2–7",diff:1,era:"începutul sec. XX",reg:"SUA",tags:["scapă de cărți","8 = jolly"],
  desc:"Strămoșul lui Macao și al lui UNO: potrivești culoarea sau valoarea, iar orice 8 e „nebun” și schimbă culoarea cerută.",
  rules:["Pui o carte de aceeași culoare sau valoare.","Orice 8 se joacă oricând și schimbă culoarea.","Dacă nu poți, tragi din pachet.","Primul rămas fără cărți câștigă."],
  fact:"Mecanica „8 = wild” a inspirat direct cărțile speciale din UNO (1971)."},
@@ -311,6 +311,7 @@ function render(){buildChips();const cat=$('#catalog');cat.innerHTML='';let list
 const APPROX={war:'Războiul nu cere decizii: „AI-ul” doar întoarce cărți alături de tine. Grămada câștigată e reamestecată ca să evite buclele infinite.',
   popa:'AI-urile trag cărți la întâmplare (nu pot vedea ce ai în mână) — exact ca în jocul real.',
   macao:'Regulă de casă: dacă nu ai carte validă tragi una și treci rândul. Se folosesc efectele 7=+2, 8=stă, As=jolly.',
+  crazy8:'În aplicație se joacă 1 la 1 cu calculatorul, 7 cărți fiecare. Dacă nu ai carte validă tragi până găsești una; 8 este jolly și alegi culoarea. Câștigă cine rămâne primul fără cărți. Nu există efecte speciale în afară de 8.',
   septica:'La epuizarea pachetului, cărțile rămase în mâini nu se mai contorizează. AI-ul joacă prudent, la nivel de cafenea.',
   blackjack:'Dublare pe primele două cărți, split o singură dată (cărți de aceeași valoare; asul divizat primește o singură carte) și asigurare 2:1 când dealerul arată As. Dealerul stă pe orice 17. Blackjack-ul plătește 3:2.',
   holdem:'Heads-up (1 la 1), mize mici. AI-ul își estimează șansele prin simulare Monte Carlo și are nivel de cafenea, nu de profesionist.',
@@ -329,8 +330,8 @@ function dailyPick(){const p=GAMES.filter(g=>g.play),t=new Date(),seed=t.getFull
 function openPlay(title,suit){const pb=$('#playbg');
   pb.innerHTML='<div class="play-top"><div class="pt-title"><span class="s">'+suit+'</span> '+title+'</div><button class="icon-btn" id="closeplay" title="Închide">✕</button></div><div class="play-stage"><div class="table-inner" id="tableInner"></div></div>';
   $('#closeplay').onclick=closePlay;pb.classList.add('open');bumpPlayed();}
-function closePlay(){clearInterval(warIv);$('#playbg').classList.remove('open');$('#playbg').innerHTML='';warSt=popa=macao=septica=bj=he=sol=null;}
-function startGame(g){const m={war:startWar,popa:startPopa,macao:startMacao,septica:startSeptica,blackjack:startBlackjack,holdem:startHoldem,solitaire:startSolitaire};if(m[g.play]){openPlay(g.t,g.suit);m[g.play]();}}
+function closePlay(){clearInterval(warIv);$('#playbg').classList.remove('open');$('#playbg').innerHTML='';warSt=popa=macao=septica=bj=he=sol=cr8=null;}
+function startGame(g){const m={war:startWar,popa:startPopa,macao:startMacao,septica:startSeptica,blackjack:startBlackjack,holdem:startHoldem,solitaire:startSolitaire,crazy8:startCrazy8};if(m[g.play]){openPlay(g.t,g.suit);m[g.play]();}}
 function seat(name,count,turn,unit){return '<div class="seat-name'+(turn?' turn':'')+'"><span class="dot"></span>'+name+'</div>'+(count!=null?'<div class="chiptag">'+count+' '+(unit||'cărți')+'</div>':'');}
 /* ===== RĂZBOI ===== */
 let warSt=null,warIv=null;
@@ -410,6 +411,37 @@ function renderMacao(){const ti=TI(),m=macao;ti.innerHTML='';const top=m.discard
   else if(m.turn===0){const btns=[];if(m.penalty>0)btns.push({l:'Trage '+m.penalty+' cărți',f:()=>{macaoDraw(0,m.penalty);m.penalty=0;m.turn=1;m.msg='Ai tras penalizarea.';renderMacao();setTimeout(macaoAI,700);}});
     else if(!legal.length)btns.push({l:'Trage o carte',f:()=>{macaoDraw(0,1);m.turn=1;m.msg='Ai tras o carte.';renderMacao();setTimeout(macaoAI,700);}});
     if(btns.length)ti.appendChild(bar(btns));else if(legal.length){const n=el('div','note');n.textContent='Alege o carte validă (evidențiată) ca s-o joci.';ti.appendChild(n);}}}
+/* ===== CRAZY EIGHTS / OPT NEBUN (1 vs calculator) ===== */
+let cr8=null;
+function startCrazy8(){const d=shuffle(makeDeck());const hand=d.splice(0,7),ai=d.splice(0,7);let top=d.pop();while(top.r===8){d.unshift(top);top=d.pop();}
+  cr8={stock:d,discard:[top],hand,ai,suit:top.s,turn:0,over:false,win:null,pick:null,msg:'Rândul tău: pune o carte de aceeași culoare sau valoare (8 = jolly).'};renderCr8();}
+function cr8Top(){return cr8.discard[cr8.discard.length-1];}
+function cr8Draw(who){if(!cr8.stock.length){const t=cr8.discard.pop();cr8.stock=shuffle(cr8.discard);cr8.discard=[t];}if(!cr8.stock.length)return null;const c=cr8.stock.pop();(who===0?cr8.hand:cr8.ai).push(c);return c;}
+function cr8Legal(h){const t=cr8Top();return h.filter(c=>c.r===8||c.s===cr8.suit||c.r===t.r);}
+function cr8Play(who,card,suit){const arr=who===0?cr8.hand:cr8.ai;arr.splice(arr.indexOf(card),1);cr8.discard.push(card);cr8.suit=card.r===8?suit:card.s;
+  if(!arr.length){cr8.over=true;cr8.win=who;cr8.msg=who===0?'Ai scăpat de toate cărțile — ai câștigat! 🎉':'Calculatorul a scăpat de toate cărțile.';renderCr8();return;}
+  cr8.turn=1-who;cr8.msg=cr8.turn===0?'Rândul tău.':'Calculatorul joacă…';renderCr8();if(cr8.turn===1)setTimeout(cr8AI,800);}
+function cr8Pass(who){cr8.turn=1-who;cr8.msg=who===0?'Nu ai putut juca; pas. Calculatorul joacă…':'Calculatorul nu a putut juca și dă pas. Rândul tău.';renderCr8();if(cr8.turn===1)setTimeout(cr8AI,800);}
+function cr8AI(){if(!cr8||cr8.over||cr8.turn!==1)return;let drew=0,lg=cr8Legal(cr8.ai);
+  while(!lg.length){if(!cr8Draw(1)){cr8Pass(1);return;}drew++;lg=cr8Legal(cr8.ai);}
+  const non=lg.filter(c=>c.r!==8);const c=non.length?non.sort((a,b)=>b.r-a.r)[0]:lg[0];let su;
+  if(c.r===8){const ct=[0,0,0,0];cr8.ai.forEach(x=>{if(x!==c)ct[x.s]++;});su=ct.indexOf(Math.max(...ct));}
+  cr8Play(1,c,su);if(drew&&cr8&&!cr8.over)cr8.msg='Calculatorul a tras '+drew+(drew===1?' carte':' cărți')+'. Rândul tău.';if(cr8&&!cr8.over)renderCr8();}
+function cr8Human(idx){const c=cr8.hand[idx];if(c.r===8){cr8.pick=idx;renderCr8();return;}cr8Play(0,c);}
+function cr8Suit(su){const c=cr8.hand[cr8.pick];cr8.pick=null;cr8Play(0,c,su);}
+function renderCr8(){const ti=TI(),m=cr8;ti.innerHTML='';const top=cr8Top();
+  const s1=el('div','seat');s1.innerHTML=seat('Calculatorul',m.ai.length,m.turn===1&&!m.over);const ah=el('div','hand');m.ai.forEach(()=>ah.appendChild(cardEl(null,{back:1,w:56})));s1.appendChild(ah);ti.appendChild(s1);
+  const ca=el('div','center-area');const bd=el('div','board');bd.appendChild(cardEl(top,{w:108}));
+  const si=el('div');si.style.cssText='font-family:var(--fm);color:var(--brass)';si.innerHTML='Culoarea cerută: <b style="font-size:1.3rem;color:'+(isRed(m.suit)?'var(--red)':'#eee')+'">'+SUITS[m.suit]+'</b> · pachet: '+m.stock.length;bd.appendChild(si);
+  ca.appendChild(bd);const mg=el('div','msg '+(m.over&&m.win===1?'lose':(m.over?'win':'')));mg.textContent=m.msg;ca.appendChild(mg);ti.appendChild(ca);
+  const me=el('div','seat');me.innerHTML=seat('Tu',m.hand.length,m.turn===0&&!m.over);const mh=el('div','hand');
+  const legal=(!m.over&&m.turn===0&&m.pick==null)?cr8Legal(m.hand):[];
+  m.hand.forEach((c,idx)=>{mh.appendChild(cardEl(c,{w:78,onClick:legal.includes(c)?()=>cr8Human(idx):null,sel:m.pick===idx}));});me.appendChild(mh);ti.appendChild(me);
+  if(m.pick!=null){const n=el('div','note');n.textContent='Ai jucat un 8 — alege culoarea cerută:';ti.appendChild(n);const sp=el('div','suitpick');[0,1,2,3].forEach(s=>{const b=el('button',isRed(s)?'r':'');b.textContent=SUITS[s];b.setAttribute('aria-label','Culoarea '+SUITS[s]);b.onclick=()=>cr8Suit(s);sp.appendChild(b);});ti.appendChild(sp);}
+  else if(m.over)ti.appendChild(bar([{l:'↻ Joacă din nou',p:1,f:startCrazy8},{l:'Înapoi la atlas',f:closePlay}]));
+  else if(m.turn===0){if(!legal.length){const canDraw=m.stock.length>0||m.discard.length>1;
+      ti.appendChild(bar(canDraw?[{l:'Trage o carte',p:1,f:()=>{cr8Draw(0);cr8.msg='Ai tras o carte.';renderCr8();}}]:[{l:'Pas (pachet epuizat)',p:1,f:()=>cr8Pass(0)}]));}
+    else{const n=el('div','note');n.textContent='Alege o carte validă (evidențiată). 8 = jolly: alegi tu culoarea.';ti.appendChild(n);}}}
 /* ===== SEPTICĂ (heads-up, 32 cărți) ===== */
 let septica=null;
 function startSeptica(){const d=shuffle(makeDeck(7));const hand=d.splice(0,4),ai=d.splice(0,4);
