@@ -1,6 +1,6 @@
 # Cărți de joc fără frontiere
 
-**Ultima actualizare:** 11 octombrie 2026
+**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
 
 Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.
 
@@ -67,6 +67,9 @@ Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat 
 Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and eight playable games (Klondike Solitaire, War, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed CC0 1.0 (see LICENSE).
 
 ## Istoric / Changelog
+
+### 12 octombrie 2026 (v1.0.0)
+- 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
 
 ### 11 octombrie 2026
 - Cărțile de pe masă au acum nume accesibil în română („damă de inimă roșie”, „3 de caro”, „Carte întoarsă”) în loc de textul colțurilor repetat; cărțile pe care se poate da clic sunt butoane (rol `button`, Enter/Spațiu), celelalte imagini (rol `img`).
