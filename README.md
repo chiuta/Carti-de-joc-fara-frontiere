@@ -1,6 +1,6 @@
 # Cărți de joc fără frontiere
 
-**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
+**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
 
 Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.
 
@@ -66,7 +66,19 @@ Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat 
 
 Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and eight playable games (Klondike Solitaire, War, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed CC0 1.0 (see LICENSE).
 
+## Funcții noi (v1.1.0)
+
+- **Joc în doi pe rețea** (butonul „Joacă în doi, pe rețea” din fișa Crazy Eights): meci între doi oameni, aceeași împărțire la ambii (sămânță comună), mâna adversarului rămâne ascunsă, mutările în afara rândului sunt respinse. Conexiunea se face direct între cele două browsere (WebRTC), fără server al nostru: schimbi două texte (ofertă/răspuns), ca text sau cod QR, prin orice canal ales de tine. Implicit nu se contactează niciun server STUN; unul poate fi introdus manual în fereastra de conectare, doar dacă îl vrei. Dacă legătura se întrerupe, aplicația o arată și poate relua jocul din jurnalul mutărilor.
+- **Căutare locală** în catalogul de jocuri (FFF.search): găsește și fără diacritice sau cu mici greșeli, în textul regulilor și al descrierilor; fără rețea.
+- **Citire cu voce** a regulilor (buton „Ascultă”, FFF.tts), cu alegerea vocii.
+- Kit comun (core, label, bundle, qr, p2p, tts, search): etichetă de versiune, copie .fff.json.
+- Textele noi sunt în toate limbile aplicației (inclusiv hu/de unde există sistem i18n); traducerile automate sunt neverificate nativ.
+- Teste: `tests/fff-r8.test.mjs` (rețea blocată, două contexte conectate prin dialogul real, axe 0 violări la 1280 și 360 px).
+
 ## Istoric / Changelog
+
+### 14 octombrie 2026 (v1.1.0)
+- Nou: joc în doi pe rețea la Crazy Eights, căutare locală tolerantă la diacritice și greșeli, citirea regulilor cu voce, kit comun, teste.
 
 ### 12 octombrie 2026 (v1.0.0)
 - 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
