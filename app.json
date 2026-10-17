@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "slug": "carti-de-joc-fara-frontiere",
+  "slug": "carti-de-joc",
   "name": "Cărți de joc fără frontiere",
   "version": "1.1.0",
   "updated": "2026-10-14",
@@ -13,8 +13,8 @@
   "storageKeys": [
     "cff:"
   ],
-  "sizeBytes": 335444,
-  "sha256": "e24ea7b2ce534dfcf982cda19749139efc5c1ad00dabde132c465b12dbc5f7c8",
+  "sizeBytes": 335395,
+  "sha256": "8ddbefee32c6f91f25557d0a6dbd75fab60503a3c1e04b14547e9a6ac4457458",
   "csp": {
     "present": true,
     "directives": {
