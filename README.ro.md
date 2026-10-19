@@ -10,7 +10,7 @@ Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML
 
 **Live:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
-![Captura de ecran](screenshot.png)
+![Captura de ecran](screenshot.ro.png)
 
 ## Ce este
 

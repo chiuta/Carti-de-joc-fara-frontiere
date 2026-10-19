@@ -10,7 +10,7 @@ Ein Atlas der Kartenspiele mit acht spielbaren Spielen, in einer einzigen HTML-D
 
 **Online-Anwendung:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot.de.png)
 
 ## Was es ist
 

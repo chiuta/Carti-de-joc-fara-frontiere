@@ -10,7 +10,7 @@ Kártyajátékok atlasza nyolc játszható játékkal, egyetlen HTML-fájlban.
 
 **Online alkalmazás:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
-![Képernyőkép](screenshot.png)
+![Képernyőkép](screenshot.hu.png)
 
 ## Mi ez
 

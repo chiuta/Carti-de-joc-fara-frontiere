@@ -10,7 +10,7 @@ Atlante di giochi di carte con otto giochi giocabili, in un unico file HTML.
 
 **Applicazione online:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
-![Schermata](screenshot.png)
+![Schermata](screenshot.it.png)
 
 ## Che cos'è
 

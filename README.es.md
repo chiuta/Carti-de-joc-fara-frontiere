@@ -10,7 +10,7 @@ Atlas de juegos de cartas con ocho juegos jugables, en un único archivo HTML.
 
 **Aplicación en línea:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
-![Captura de pantalla](screenshot.png)
+![Captura de pantalla](screenshot.es.png)
 
 ## Qué es
 
