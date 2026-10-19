@@ -1,93 +1,95 @@
 # Cărți de joc fără frontiere
 
-**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
+**English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.
+**Version:** 1.1.0 · **Last updated:** 2026-10-14
 
-**Live:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
+An atlas of card games with eight playable games, in a single HTML file.
 
-![Captura de ecran](screenshot.png)
+**Live app:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
-## Ce este
+![Screenshot](screenshot.png)
 
-Un atlas interactiv de jocuri cu cărți, de la Solitaire și Popa Prostul până la poker, descris în aplicație drept „enciclopedie jucabilă, offline, fără reclame și fără urmărire”. Catalogul grupează jocurile pe familii; pentru fiecare joc există o fișă cu informații și reguli, iar o parte dintre ele pot fi jucate direct în pagină. Este companionul atlasului „Șah fără frontiere”.
+## What it is
 
-## Funcții
+An interactive atlas of card games, from Solitaire and Popa Prostul (Old Maid) to poker, described in the app as a "playable encyclopedia, offline, with no ads and no tracking". The catalogue groups the games by family; each game has a sheet with information and rules, and some of them can be played right in the page. It is the companion of the atlas "Șah fără frontiere" (Chess Without Borders).
 
-- Catalog cu 17 jocuri, grupate în familii: Pentru copii & rapide, Jocuri românești, De aruncare, Cu levate, Combinații & remi, Familia pokerului, Cazinou & pariuri, Pacient (solitaire).
-- Opt jocuri jucabile (conform notei din subsol): Solitaire (Klondike), Război, Popa Prostul, Macao, Crazy Eights (Opt nebun, 1 la 1 cu calculatorul), Septică, Blackjack și Texas Hold'em. Restul sunt documentate.
-- Căutare în titluri, descrieri, etichete și reguli („Caută un joc, o familie, o regulă…”).
-- Sortare: grupare pe familii, alfabetic A→Z, dificultate crescătoare, jucabile întâi.
-- Filtre pe familii, plus filtrul „★ Doar jucabile”.
-- Fișă de joc cu număr de jucători, epocă, dificultate; marcare ca favorit (★).
-- Joc zilei și contor de statistici (jocuri, jucabile, familii, partide jucate).
-- Accesibilitate la masă: nume de cărți în română și anunțarea mesajelor jocului pentru cititoare de ecran.
-- Buton **▶ Joacă** în fișa fiecărui joc jucabil; **Închide** / ✕ / **Esc** pentru ieșire.
+## Features
 
-## Manual de utilizare
+- A catalogue of 17 games, grouped into families: For children & quick games, Romanian games, Shedding games, Trick-taking, Combinations & rummy, The poker family, Casino & betting, Patience (solitaire).
+- Eight playable games (according to the footer note): Solitaire (Klondike), War, Popa Prostul, Macao, Crazy Eights (Opt nebun, 1-on-1 against the computer), Septică, Blackjack and Texas Hold'em. The rest are documented.
+- Search in titles, descriptions, tags and rules ("Search for a game, a family, a rule…").
+- Sorting: grouped by family, alphabetical A→Z, increasing difficulty, playable first.
+- Filters by family, plus the "★ Playable only" filter.
+- Game sheet with number of players, era, difficulty; marking as a favourite (★).
+- Game of the day and a statistics counter (games, playable, families, rounds played).
+- Accessibility at the table: card names in Romanian and announcement of game messages for screen readers.
+- A **▶ Play** button on the sheet of every playable game; **Close** / ✕ / **Esc** to exit.
 
-1. Deschide pagina; sus vezi statisticile și jocul zilei.
-2. Caută în câmpul de căutare sau alege o familie din chip-uri; schimbă ordinea din lista de sortare.
-3. Apasă pe un joc pentru a deschide fișa cu reguli. Apasă ★ din fișă pentru a-l marca favorit.
-4. Dacă jocul este marcat „Jucabil”, apasă **▶ Joacă** și urmează indicațiile de pe masă.
-5. Închide fișa sau masa de joc cu **Închide**, ✕ sau **Esc**.
-6. Contorul „▶ N partide” din colțul de sus arată câte partide ai început.
+## User guide
 
-## Avertisment
+1. Open the page; at the top you see the statistics and the game of the day.
+2. Search in the search field or choose a family from the chips; change the order from the sort list.
+3. Click a game to open its sheet with the rules. Press ★ in the sheet to mark it as a favourite.
+4. If the game is marked "Playable", press **▶ Play** and follow the instructions on the table.
+5. Close the sheet or the game table with **Close**, ✕ or **Esc**.
+6. The "▶ N rounds" counter in the top corner shows how many rounds you have started.
 
-Jocurile (inclusiv Blackjack și Texas Hold'em, din familia „Cazinou & pariuri") sunt simulări educaționale cu jetoane virtuale; nu se mizează bani reali. Jocurile de noroc pe bani pot crea dependență și sunt destinate adulților. Adversarii din jocurile jucabile sunt programe locale (aplicația le numește „AI-uri locale"); aplicația afișează o notă în subsol.
+## Warning
 
-## Confidențialitate și rețea
+The games (including Blackjack and Texas Hold'em, from the "Casino & betting" family) are educational simulations with virtual chips; no real money is wagered. Gambling for money can be addictive and is intended for adults. The opponents in the playable games are local programs (the app calls them "local AIs"); the app displays a note in the footer.
 
-- **Stocare locală (localStorage):** două chei cu prefix `cff:`, `cff:fav` (jocurile favorite) și `cff:played` (numărul de partide). Nu sunt trimise nicăieri.
-- **Rețea:** nu există cereri `fetch`, scripturi, fonturi sau imagini externe. Pagina include doar linkuri care se deschid la clic: Șah fără frontiere (alexio.tf), Buy Me a Coffee. Pagina are o politică CSP restrictivă (`default-src 'self'`). Nu există telemetrie.
+## Privacy and network
 
-## Rulare locală / offline
+- **Local storage (localStorage):** two keys with the prefix `cff:`, `cff:fav` (favourite games) and `cff:played` (the number of rounds). They are not sent anywhere.
+- **Network:** there are no `fetch` requests, scripts, fonts or external images. The page includes only links that open on click: Șah fără frontiere (alexio.tf), Buy Me a Coffee. The page has a restrictive CSP policy (`default-src 'self'`). There is no telemetry.
 
-Descarcă `index.html` și deschide-l în browser; nu are nevoie de internet (linkurile externe au nevoie).
+## Running locally / offline
 
-## Licență
+Download `index.html` and open it in the browser; it does not need internet (the external links do).
 
-Licență MIT — vezi fișierul `LICENSE`. Antetul din `index.html` și textul din interfață indică aceeași licență (o mențiune anterioară „CC-BY-SA 4.0” din interfață a fost eliminată la audit, 2026-10-11, pentru a elimina contradicția).
+## License
 
-## Mărci
+MIT License — see the `LICENSE` file. The header in `index.html` and the text in the interface indicate the same license (an earlier "CC-BY-SA 4.0" mention in the interface was removed at the audit, 2026-10-11, to eliminate the contradiction).
 
-Numele de jocuri sunt denumiri comerciale ale deținătorilor lor, folosite descriptiv; proiectul nu este afiliat cu aceștia.
+## Trademarks
+
+Game names are trade names of their owners, used descriptively; the project is not affiliated with them.
 
 ## Audit
 
-Audit: 2026-10-10 — verificat cu Playwright și axe-core (catalog, fișe și mesele celor șapte jocuri de atunci); verificat în cod: fără `fetch`, CSP `default-src 'self'`. Corectat: un checkbox decorativ focalizabil (axe serious); adăugat avertisment despre jocurile de noroc.
+Audit: 2026-10-10 — verified with Playwright and axe-core (catalogue, sheets and the tables of the seven games at that time); verified in the code: no `fetch`, CSP `default-src 'self'`. Fixed: a decorative focusable checkbox (axe serious); added a warning about gambling games.
 
-## Autor
+## Author
 
-Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat în aplicație). Contact: alexio@trom.tf
+Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (as mentioned in the app). Contact: alexio@trom.tf
 
-## English summary
+## Summary
 
 Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and eight playable games (Klondike Solitaire, War, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed MIT (see LICENSE).
 
-## Funcții noi (v1.1.0)
+## New features (v1.1.0)
 
-- **Joc în doi pe rețea** (butonul „Joacă în doi, pe rețea” din fișa Crazy Eights): meci între doi oameni, aceeași împărțire la ambii (sămânță comună), mâna adversarului rămâne ascunsă, mutările în afara rândului sunt respinse. Conexiunea se face direct între cele două browsere (WebRTC), fără server al nostru: schimbi două texte (ofertă/răspuns), ca text sau cod QR, prin orice canal ales de tine. Implicit nu se contactează niciun server STUN; unul poate fi introdus manual în fereastra de conectare, doar dacă îl vrei. Dacă legătura se întrerupe, aplicația o arată și poate relua jocul din jurnalul mutărilor.
-- **Căutare locală** în catalogul de jocuri (FFF.search): găsește și fără diacritice sau cu mici greșeli, în textul regulilor și al descrierilor; fără rețea.
-- **Citire cu voce** a regulilor (buton „Ascultă”, FFF.tts), cu alegerea vocii.
-- Kit comun (core, label, bundle, qr, p2p, tts, search): etichetă de versiune, copie .fff.json.
-- Textele noi sunt în toate limbile aplicației (inclusiv hu/de unde există sistem i18n); traducerile automate sunt neverificate nativ.
-- Teste: `tests/fff-r8.test.mjs` (rețea blocată, două contexte conectate prin dialogul real, axe 0 violări la 1280 și 360 px).
+- **Two-player game over the network** (the "Play two-player, over the network" button in the Crazy Eights sheet): a match between two people, the same deal for both (shared seed), the opponent's hand stays hidden, out-of-turn moves are rejected. The connection is made directly between the two browsers (WebRTC), with no server of ours: you exchange two texts (offer/answer), as text or QR code, through any channel of your choice. By default no STUN server is contacted; one can be entered manually in the connection window, only if you want it. If the link is interrupted, the app shows it and can resume the game from the move log.
+- **Local search** in the game catalogue (FFF.search): finds results even without diacritics or with small typos, in the text of the rules and descriptions; no network.
+- **Voice reading** of the rules ("Listen" button, FFF.tts), with a choice of voice.
+- Shared kit (core, label, bundle, qr, p2p, tts, search): version label, .fff.json backup.
+- The new texts are in all the app's languages (including hu/de where an i18n system exists); the automatic translations are not verified by native speakers.
+- Tests: `tests/fff-r8.test.mjs` (network blocked, two contexts connected through the real dialog, axe 0 violations at 1280 and 360 px).
 
-## Istoric / Changelog
+## History / Changelog
 
-### 14 octombrie 2026 (v1.1.0)
-- Nou: joc în doi pe rețea la Crazy Eights, căutare locală tolerantă la diacritice și greșeli, citirea regulilor cu voce, kit comun, teste.
+### 14 October 2026 (v1.1.0)
+- New: two-player network game in Crazy Eights, local search tolerant of diacritics and typos, voice reading of the rules, shared kit, tests.
 
-### 12 octombrie 2026 (v1.0.0)
-- 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
+### 12 October 2026 (v1.0.0)
+- 1.0.0 — 2026-10-12: the version and the date of the last update are shown in the app
 
-### 11 octombrie 2026
-- Cărțile de pe masă au acum nume accesibil în română („damă de inimă roșie”, „3 de caro”, „Carte întoarsă”) în loc de textul colțurilor repetat; cărțile pe care se poate da clic sunt butoane (rol `button`, Enter/Spațiu), celelalte imagini (rol `img`).
-- Mesajele mesei de joc („Rândul tău.”, „Alege miza…”) sunt anunțate cititoarelor de ecran printr-o regiune live (verificat pe Solitaire, Macao, Blackjack, Septică).
-- Joc nou jucabil: **Crazy Eights (Opt nebun)**, 1 la 1 cu calculatorul (7 cărți, 8 = jolly cu alegerea culorii, tragere până găsești carte validă); testat cu 40 de partide automate (52 de cărți conservate, fiecare partidă s-a încheiat). Acum 8 din 17 jocuri sunt jucabile.
-- CSP: `script-src` pe hash SHA-256 (două scripturi), fără `'unsafe-inline'`.
-- Blackjack: adăugate **split** (o singură dată, cărți de aceeași valoare; asul divizat primește o singură carte), **asigurare** 2:1 când dealerul arată As și dublare pe orice mână; verificat cu mâini fixe (plăți, bancă, egalități).
-- Pe mobil pastila de donații este implicit un buton ♥ mic (se extinde la atingere) și pagina are margine jos, ca să nu acopere conținutul; controalele ei sunt acum accesibile de la tastatură.
-- Conținutul este încadrat în `<main>`/`<header>`; ferestrele (fișă, masă) au rol de dialog; ordinea titlurilor corectată (axe: 0 încălcări).
+### 11 October 2026
+- The cards on the table now have an accessible name in Romanian ("queen of hearts", "3 of diamonds", "Face-down card") instead of the repeated corner text; cards that can be clicked are buttons (role `button`, Enter/Space), the other images (role `img`).
+- The game table messages ("Your turn.", "Choose the stake…") are announced to screen readers through a live region (verified on Solitaire, Macao, Blackjack, Septică).
+- New playable game: **Crazy Eights (Opt nebun)**, 1-on-1 against the computer (7 cards, 8 = wild with colour choice, draw until you find a valid card); tested with 40 automated games (52 cards conserved, every game finished). Now 8 of the 17 games are playable.
+- CSP: `script-src` by SHA-256 hash (two scripts), without `'unsafe-inline'`.
+- Blackjack: added **split** (only once, cards of equal value; a split ace receives only one card), **insurance** 2:1 when the dealer shows an Ace, and doubling on any hand; verified with fixed hands (payouts, bank, ties).
+- On mobile the donation pill is by default a small ♥ button (it expands on touch) and the page has a bottom margin so that it does not cover the content; its controls are now keyboard-accessible.
+- The content is wrapped in `<main>`/`<header>`; the windows (sheet, table) have the dialog role; heading order corrected (axe: 0 violations).
