@@ -66,9 +66,9 @@ Audit: 2026-10-10 — verificat cu Playwright și axe-core (catalog, fișe și m
 
 Alexio — Alexandru-Ionuț Chiuță, Centrul StrING (după cum este menționat în aplicație). Contact: alexio@trom.tf
 
-## English summary
+## Rezumat
 
-Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped by family, with search, sorting, favourites and eight playable games (Klondike Solitaire, War, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack, Texas Hold'em). It stores only favourites and a played-games counter in localStorage and loads no external resources. UI is in Romanian. Licensed MIT (see LICENSE).
+Cărți de joc fără frontiere este un atlas într-un singur fișier cu 17 jocuri de cărți grupate pe familii, cu căutare, sortare, favorite și opt jocuri care se pot juca (Solitaire Klondike, Război, Popa Prostul, Macao, Crazy Eights, Septică, Blackjack, Texas Hold'em). Stochează în localStorage doar favoritele și un contor al jocurilor jucate și nu încarcă resurse externe. Interfața este în română. Licență MIT (vezi LICENSE).
 
 ## Funcții noi (v1.1.0)
 
