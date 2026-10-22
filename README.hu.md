@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.1 · **Utolsó frissítés:** 2026-10-19
+**Verzió:** 1.2.2 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -81,6 +81,7 @@ A Cărți de joc fără frontiere egyetlen fájlból álló atlasz 17, családok
 
 ## Előzmények / Changelog
 
+- 1.2.2 — 2026-10-22: **javítás**: az oldal címe és a főcím mostantól a kiválasztott nyelvet követi.
 ### 2026. október 14. (v1.1.0)
 - Új: kétszemélyes hálózati játék a Crazy Eightsben, ékezetekre és elírásokra toleráns helyi keresés, a szabályok felolvasása, közös készlet, tesztek.
 
