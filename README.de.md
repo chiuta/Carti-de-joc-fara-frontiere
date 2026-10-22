@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.7 · **Zuletzt aktualisiert:** 2026-10-23
+**Version:** 1.2.8 · **Zuletzt aktualisiert:** 2026-10-23
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ Die Spiele (einschließlich Blackjack und Texas Hold'em aus der Familie „Casin
 
 ## Datenschutz und Netzwerk
 
-- **Lokale Speicherung (localStorage):** zwei Schlüssel mit dem Präfix `cff:`, `cff:fav` (die Lieblingsspiele) und `cff:played` (die Anzahl der Partien). Sie werden nirgendwohin gesendet.
+- **Lokale Speicherung (localStorage):** zwei Schlüssel mit dem Präfix `carti-de-joc.`, `carti-de-joc.fav` (die Lieblingsspiele) und `carti-de-joc.played` (die Anzahl der Partien). Sie werden nirgendwohin gesendet.
 - **Netzwerk:** Es gibt keine `fetch`-Anfragen, keine externen Skripte, Schriftarten oder Bilder. Die Seite enthält nur Links, die sich beim Klicken öffnen: Șah fără frontiere (alexio.tf), Buy Me a Coffee. Die Seite hat eine restriktive CSP-Richtlinie (`default-src 'self'`). Es gibt keine Telemetrie.
 
 ## Lokal / offline ausführen
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere ist ein Atlas in einer einzigen Datei mit 17 nac
 
 ## Verlauf / Changelog
 
+- 1.2.8 — 2026-10-23: Die Speicherschlüssel tragen jetzt das App-Präfix (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); vorhandene Daten (Sprache, Favoriten, gespielte Runden) werden beim Start automatisch migriert, alte `.fff.json`-Kopien lassen sich weiterhin importieren. fff-kit 1.2.0: Speicher ohne Präfix behoben
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: Touch-Ziele und Mindestschriftgröße
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 mit 600.000 Iterationen, Schutz vor Clickjacking
 - 1.2.4 — 2026-10-22: Feinschliff für Mobilgeräte und Barrierefreiheit: Text mit mindestens 12 px und Touch-Ziele von mindestens 24 px. sichtbarer Tastaturfokus bei jedem Steuerelement.

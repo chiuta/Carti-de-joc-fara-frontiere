@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.7 · **Last updated:** 2026-10-23
+**Version:** 1.2.8 · **Last updated:** 2026-10-23
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ The games (including Blackjack and Texas Hold'em, from the "Casino & betting" fa
 
 ## Privacy and network
 
-- **Local storage (localStorage):** two keys with the prefix `cff:`, `cff:fav` (favourite games) and `cff:played` (the number of rounds). They are not sent anywhere.
+- **Local storage (localStorage):** two keys with the prefix `carti-de-joc.`, `carti-de-joc.fav` (favourite games) and `carti-de-joc.played` (the number of rounds). They are not sent anywhere.
 - **Network:** there are no `fetch` requests, scripts, fonts or external images. The page includes only links that open on click: Șah fără frontiere (alexio.tf), Buy Me a Coffee. The page has a restrictive CSP policy (`default-src 'self'`). There is no telemetry.
 
 ## Running locally / offline
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped 
 
 ## History / Changelog
 
+- 1.2.8 — 2026-10-23: Storage keys now carry the app prefix (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); existing data (language, favourites, rounds played) is migrated automatically at startup, and old `.fff.json` copies can still be imported. fff-kit 1.2.0: unprefixed-storage fixed
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: touch targets and minimum text size
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600,000 iterations, anti-clickjacking protection
 - 1.2.4 — 2026-10-22: mobile and accessibility polish: text at least 12 px and touch targets at least 24 px. visible keyboard focus on every control.

@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.7 · **Dernière mise à jour :** 2026-10-23
+**Version :** 1.2.8 · **Dernière mise à jour :** 2026-10-23
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ Les jeux (y compris le Blackjack et le Texas Hold'em, de la famille « Casino & 
 
 ## Confidentialité et réseau
 
-- **Stockage local (localStorage) :** deux clés préfixées `cff:`, `cff:fav` (les jeux favoris) et `cff:played` (le nombre de parties). Elles ne sont envoyées nulle part.
+- **Stockage local (localStorage) :** deux clés préfixées `carti-de-joc.`, `carti-de-joc.fav` (les jeux favoris) et `carti-de-joc.played` (le nombre de parties). Elles ne sont envoyées nulle part.
 - **Réseau :** il n'y a ni requêtes `fetch`, ni scripts, polices ou images externes. La page ne comporte que des liens qui s'ouvrent au clic : Șah fără frontiere (alexio.tf), Buy Me a Coffee. La page a une politique CSP restrictive (`default-src 'self'`). Il n'y a pas de télémétrie.
 
 ## Exécution en local / hors ligne
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere est un atlas monofichier de 17 jeux de cartes re
 
 ## Historique / Changelog
 
+- 1.2.8 — 2026-10-23 : Les clés de stockage portent désormais le préfixe de l'application (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`) ; les données existantes (langue, favoris, parties jouées) sont migrées automatiquement au démarrage, et les anciennes copies `.fff.json` restent importables. fff-kit 1.2.0 : stockage sans préfixe corrigé
 - 1.2.6 — 2026-10-22 : fff-kit 1.1.4 : cibles tactiles et taille de texte minimale
 - 1.2.5 — 2026-10-22 : fff-kit 1.1.2 : PBKDF2 600 000 itérations, protection anti-clickjacking
 - 1.2.4 — 2026-10-22: finitions mobile et accessibilité : texte d’au moins 12 px et cibles tactiles d’au moins 24 px. focus clavier visible sur chaque contrôle.

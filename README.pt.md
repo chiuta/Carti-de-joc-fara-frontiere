@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.7 · **Última atualização:** 2026-10-23
+**Versão:** 1.2.8 · **Última atualização:** 2026-10-23
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ Os jogos (incluindo Blackjack e Texas Hold'em, da família «Casino e apostas»)
 
 ## Privacidade e rede
 
-- **Armazenamento local (localStorage):** duas chaves com o prefixo `cff:`, `cff:fav` (os jogos favoritos) e `cff:played` (o número de partidas). Não são enviadas para lado nenhum.
+- **Armazenamento local (localStorage):** duas chaves com o prefixo `carti-de-joc.`, `carti-de-joc.fav` (os jogos favoritos) e `carti-de-joc.played` (o número de partidas). Não são enviadas para lado nenhum.
 - **Rede:** não existem pedidos `fetch`, scripts, tipos de letra nem imagens externos. A página inclui apenas ligações que se abrem ao clicar: Șah fără frontiere (alexio.tf), Buy Me a Coffee. A página tem uma política CSP restritiva (`default-src 'self'`). Não há telemetria.
 
 ## Execução local / offline
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere é um atlas de ficheiro único com 17 jogos de c
 
 ## Histórico / Changelog
 
+- 1.2.8 — 2026-10-23: As chaves de armazenamento têm agora o prefixo da aplicação (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); os dados existentes (idioma, favoritos, partidas jogadas) são migrados automaticamente no arranque e as cópias antigas `.fff.json` continuam a poder ser importadas. fff-kit 1.2.0: armazenamento sem prefixo corrigido
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: alvos de toque e tamanho mínimo do texto
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iterações, proteção anti-clickjacking
 - 1.2.4 — 2026-10-22: melhorias para telemóvel e acessibilidade: texto de pelo menos 12 px e áreas táteis de pelo menos 24 px. foco de teclado visível em todos os controlos.

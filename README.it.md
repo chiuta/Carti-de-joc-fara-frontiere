@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.7 · **Ultimo aggiornamento:** 2026-10-23
+**Versione:** 1.2.8 · **Ultimo aggiornamento:** 2026-10-23
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ I giochi (compresi Blackjack e Texas Hold'em, della famiglia «Casinò e scommes
 
 ## Privacy e rete
 
-- **Archiviazione locale (localStorage):** due chiavi con prefisso `cff:`, `cff:fav` (i giochi preferiti) e `cff:played` (il numero di partite). Non vengono inviate da nessuna parte.
+- **Archiviazione locale (localStorage):** due chiavi con prefisso `carti-de-joc.`, `carti-de-joc.fav` (i giochi preferiti) e `carti-de-joc.played` (il numero di partite). Non vengono inviate da nessuna parte.
 - **Rete:** non ci sono richieste `fetch`, script, font o immagini esterni. La pagina include solo link che si aprono al clic: Șah fără frontiere (alexio.tf), Buy Me a Coffee. La pagina ha una policy CSP restrittiva (`default-src 'self'`). Non c'è telemetria.
 
 ## Esecuzione in locale / offline
@@ -82,6 +82,7 @@ Cărți de joc fără frontiere è un atlante in un unico file di 17 giochi di c
 
 ## Cronologia / Changelog
 
+- 1.2.8 — 2026-10-23: Le chiavi di archiviazione hanno ora il prefisso dell'app (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); i dati esistenti (lingua, preferiti, partite giocate) vengono migrati automaticamente all'avvio e le vecchie copie `.fff.json` si possono ancora importare. fff-kit 1.2.0: archiviazione senza prefisso corretta
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: target touch e dimensione minima del testo
 - 1.2.4 — 2026-10-22: rifiniture per mobile e accessibilità: testo di almeno 12 px e aree tattili di almeno 24 px. focus da tastiera visibile su ogni controllo.
 - 1.2.3 — 2026-10-22: Correzione di traduzione: la descrizione (e il nome) nel pannello di trasparenza seguono ora la lingua dell'interfaccia.

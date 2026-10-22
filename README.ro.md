@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.7 · **Ultima actualizare:** 2026-10-23
+**Versiune:** 1.2.8 · **Ultima actualizare:** 2026-10-23
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ Jocurile (inclusiv Blackjack și Texas Hold'em, din familia „Cazinou & pariuri
 
 ## Confidențialitate și rețea
 
-- **Stocare locală (localStorage):** două chei cu prefix `cff:`, `cff:fav` (jocurile favorite) și `cff:played` (numărul de partide). Nu sunt trimise nicăieri.
+- **Stocare locală (localStorage):** două chei cu prefix `carti-de-joc.`, `carti-de-joc.fav` (jocurile favorite) și `carti-de-joc.played` (numărul de partide). Nu sunt trimise nicăieri.
 - **Rețea:** nu există cereri `fetch`, scripturi, fonturi sau imagini externe. Pagina include doar linkuri care se deschid la clic: Șah fără frontiere (alexio.tf), Buy Me a Coffee. Pagina are o politică CSP restrictivă (`default-src 'self'`). Nu există telemetrie.
 
 ## Rulare locală / offline
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere este un atlas într-un singur fișier cu 17 jocu
 
 ## Istoric / Changelog
 
+- 1.2.8 — 2026-10-23: Cheile de stocare au acum prefixul aplicației (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); datele existente (limba, favoritele, rundele jucate) se migrează automat la pornire, iar copiile vechi `.fff.json` se pot importa în continuare. fff-kit 1.2.0: stocare fără prefix remediată
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: ținte tactile și text minim
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iterații, protecție anti-clickjacking
 - 1.2.4 — 2026-10-22: finisaje pentru mobil și accesibilitate: text de cel puțin 12 px și ținte tactile de cel puțin 24 px. focus de tastatură vizibil pe orice control.

@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.7 · **Última actualización:** 2026-10-23
+**Versión:** 1.2.8 · **Última actualización:** 2026-10-23
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -43,7 +43,7 @@ Los juegos (incluidos Blackjack y Texas Hold'em, de la familia «Casino y apuest
 
 ## Privacidad y red
 
-- **Almacenamiento local (localStorage):** dos claves con prefijo `cff:`, `cff:fav` (los juegos favoritos) y `cff:played` (el número de partidas). No se envían a ninguna parte.
+- **Almacenamiento local (localStorage):** dos claves con prefijo `carti-de-joc.`, `carti-de-joc.fav` (los juegos favoritos) y `carti-de-joc.played` (el número de partidas). No se envían a ninguna parte.
 - **Red:** no hay solicitudes `fetch`, scripts, fuentes ni imágenes externos. La página solo incluye enlaces que se abren al hacer clic: Șah fără frontiere (alexio.tf), Buy Me a Coffee. La página tiene una política CSP restrictiva (`default-src 'self'`). No hay telemetría.
 
 ## Ejecución local / sin conexión
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere es un atlas de un solo archivo con 17 juegos de 
 
 ## Historial / Changelog
 
+- 1.2.8 — 2026-10-23: Las claves de almacenamiento llevan ahora el prefijo de la aplicación (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); los datos existentes (idioma, favoritos, partidas jugadas) se migran automáticamente al iniciar y las copias antiguas `.fff.json` siguen pudiendo importarse. fff-kit 1.2.0: almacenamiento sin prefijo corregido
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: objetivos táctiles y tamaño mínimo de texto
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iteraciones, protección anti-clickjacking
 - 1.2.4 — 2026-10-22: mejoras para móvil y accesibilidad: texto de al menos 12 px y áreas táctiles de al menos 24 px. foco de teclado visible en cada control.

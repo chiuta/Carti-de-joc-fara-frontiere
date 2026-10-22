@@ -156,9 +156,9 @@ async function moveOnce(P) {
 // ---------- copie de siguranță (kit) ----------
 {
   const {ctx, page} = await mk({});
-  await page.evaluate(() => localStorage.setItem('cff:fav', JSON.stringify(['razboi'])));
+  await page.evaluate(() => localStorage.setItem('carti-de-joc.fav', JSON.stringify(['razboi'])));
   const bundle = await page.evaluate(() => FFF.bundle.build());
-  ok(bundle && bundle.app === 'carti-de-joc' && /razboi/.test(bundle.data['cff:fav'] || ''), 'exportul .fff.json conține favoritele', bundle && Object.keys(bundle.data));
+  ok(bundle && bundle.app === 'carti-de-joc' && /razboi/.test(bundle.data['carti-de-joc.fav'] || ''), 'exportul .fff.json conține favoritele', bundle && Object.keys(bundle.data));
   await ctx.close();
 }
 ok(errs.length === 0, 'fără pageerror/CSP în tot setul', errs.slice(0, 5)); ok(net.length === 0, '0 cereri de rețea în tot setul', net.slice(0, 3));
