@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.4 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.5 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -72,6 +72,7 @@ Cărți de joc fără frontiere è un atlante in un unico file di 17 giochi di c
 
 ## Novità (v1.1.0)
 
+- 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600.000 iterazioni, protezione anti-clickjacking
 - **Gioco in due in rete** (pulsante «Gioca in due, in rete» nella scheda di Crazy Eights): partita tra due persone, stessa distribuzione per entrambi (seme comune), la mano dell'avversario resta nascosta, le mosse fuori turno vengono respinte. La connessione avviene direttamente tra i due browser (WebRTC), senza un nostro server: si scambiano due testi (offerta/risposta), come testo o codice QR, attraverso un canale a tua scelta. Per impostazione predefinita non viene contattato alcun server STUN; se ne può inserire uno manualmente nella finestra di connessione, solo se lo desideri. Se il collegamento si interrompe, l'applicazione lo segnala e può riprendere la partita dal registro delle mosse.
 - **Ricerca locale** nel catalogo dei giochi (FFF.search): trova anche senza segni diacritici o con piccoli errori, nel testo delle regole e delle descrizioni; senza rete.
 - **Lettura vocale** delle regole (pulsante «Ascolta», FFF.tts), con scelta della voce.
