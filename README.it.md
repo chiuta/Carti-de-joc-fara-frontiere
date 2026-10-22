@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.5 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.6 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -82,6 +82,7 @@ Cărți de joc fără frontiere è un atlante in un unico file di 17 giochi di c
 
 ## Cronologia / Changelog
 
+- 1.2.6 — 2026-10-22: fff-kit 1.1.4: target touch e dimensione minima del testo
 - 1.2.4 — 2026-10-22: rifiniture per mobile e accessibilità: testo di almeno 12 px e aree tattili di almeno 24 px. focus da tastiera visibile su ogni controllo.
 - 1.2.3 — 2026-10-22: Correzione di traduzione: la descrizione (e il nome) nel pannello di trasparenza seguono ora la lingua dell'interfaccia.
 - 1.2.2 — 2026-10-22: **correzione**: il titolo della pagina e il titolo principale seguono ora la lingua scelta.

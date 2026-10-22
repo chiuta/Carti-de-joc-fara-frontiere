@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.5 · **Last updated:** 2026-10-22
+**Version:** 1.2.6 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere is a single-file atlas of 17 card games grouped 
 
 ## History / Changelog
 
+- 1.2.6 — 2026-10-22: fff-kit 1.1.4: touch targets and minimum text size
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600,000 iterations, anti-clickjacking protection
 - 1.2.4 — 2026-10-22: mobile and accessibility polish: text at least 12 px and touch targets at least 24 px. visible keyboard focus on every control.
 - 1.2.3 — 2026-10-22: Translation fix: the description (and name) in the transparency panel now follow the interface language.
