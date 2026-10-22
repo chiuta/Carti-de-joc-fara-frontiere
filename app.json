@@ -2,7 +2,7 @@
   "schema": 1,
   "slug": "carti-de-joc",
   "name": "Cărți de joc fără frontiere",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "updated": "2026-10-22",
   "description": "Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.",
   "egress": [],
@@ -14,8 +14,8 @@
     "cff:",
     "cff:lang"
   ],
-  "sizeBytes": 465351,
-  "sha256": "ab34fa115bda019c42b0cc5ef00ee02f4520247340fedb86bd670b683fa31bd4",
+  "sizeBytes": 467279,
+  "sha256": "459e75e51ced492c551ad5d00e70cea36d53c36bf9f17a91e758a2200016bc0d",
   "csp": {
     "present": true,
     "directives": {
@@ -28,7 +28,7 @@
       "base-uri": "'self'",
       "form-action": "'self'",
       "worker-src": "'self' blob:",
-      "script-src": "'self' sha256×3",
+      "script-src": "'self' sha256×4",
       "connect-src": "'self'",
       "manifest-src": "'self'"
     },
@@ -38,7 +38,16 @@
   "features": {
     "export": true,
     "import": true,
-    "i18n": [],
+    "i18n": [
+      "ro",
+      "en",
+      "fr",
+      "it",
+      "es",
+      "pt",
+      "hu",
+      "de"
+    ],
     "pwa": {
       "manifest": true,
       "serviceWorker": true

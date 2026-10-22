@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.2 · **Dernière mise à jour :** 2026-10-22
+**Version :** 1.2.3 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere est un atlas monofichier de 17 jeux de cartes re
 
 ## Historique / Changelog
 
+- 1.2.3 — 2026-10-22: Correctif de traduction : la description (et le nom) du panneau de transparence suivent désormais la langue de l'interface.
 - 1.2.2 — 2026-10-22: **correctif** : le titre de la page et le titre principal suivent désormais la langue choisie.
 ### 14 octobre 2026 (v1.1.0)
 - Nouveau : jeu à deux sur le réseau à Crazy Eights, recherche locale tolérante aux diacritiques et aux fautes, lecture vocale des règles, kit commun, tests.
