@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.8 · **Utolsó frissítés:** 2026-10-23
+**Verzió:** 1.2.9 · **Utolsó frissítés:** 2026-10-23
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -81,6 +81,7 @@ A Cărți de joc fără frontiere egyetlen fájlból álló atlasz 17, családok
 
 ## Előzmények / Changelog
 
+- 1.2.9 — 2026-10-23: Fix: in networked Crazy Eights, a move with an invalid suit (e.g. 1.5) after an 8 is now rejected (it used to be accepted); CSP hash recalculated.
 - 1.2.8 — 2026-10-23: A tárolókulcsok mostantól az alkalmazás előtagját viselik (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); a meglévő adatok (nyelv, kedvencek, lejátszott körök) indításkor automatikusan átkerülnek, a régi `.fff.json` másolatok továbbra is importálhatók. fff-kit 1.2.0: előtag nélküli tárolás javítva
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: érintési célpontok és minimális szövegméret
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iteráció, clickjacking elleni védelem
