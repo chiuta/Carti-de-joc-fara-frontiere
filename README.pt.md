@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.8 · **Última atualização:** 2026-10-23
+**Versão:** 1.2.9 · **Última atualização:** 2026-10-23
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -81,6 +81,7 @@ Cărți de joc fără frontiere é um atlas de ficheiro único com 17 jogos de c
 
 ## Histórico / Changelog
 
+- 1.2.9 — 2026-10-23: Fix: in networked Crazy Eights, a move with an invalid suit (e.g. 1.5) after an 8 is now rejected (it used to be accepted); CSP hash recalculated.
 - 1.2.8 — 2026-10-23: As chaves de armazenamento têm agora o prefixo da aplicação (`carti-de-joc.lang`, `carti-de-joc.fav`, `carti-de-joc.played`); os dados existentes (idioma, favoritos, partidas jogadas) são migrados automaticamente no arranque e as cópias antigas `.fff.json` continuam a poder ser importadas. fff-kit 1.2.0: armazenamento sem prefixo corrigido
 - 1.2.6 — 2026-10-22: fff-kit 1.1.4: alvos de toque e tamanho mínimo do texto
 - 1.2.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iterações, proteção anti-clickjacking
