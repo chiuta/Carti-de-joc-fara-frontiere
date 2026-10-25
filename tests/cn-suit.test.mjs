@@ -1,4 +1,4 @@
-// Teste 1.2.9: Crazy Eights în rețea — culoarea cerută după un 8 trebuie să fie un întreg 0..3. Rulare: node tests/cn-suit.test.mjs
+// Teste 1.2.10: Crazy Eights în rețea — culoarea cerută după un 8 trebuie să fie un întreg 0..3. Rulare: node tests/cn-suit.test.mjs
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
