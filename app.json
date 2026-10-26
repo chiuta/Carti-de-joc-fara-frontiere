@@ -2,11 +2,12 @@
   "schema": 1,
   "slug": "carti-de-joc",
   "name": "Cărți de joc fără frontiere",
-  "version": "1.2.10",
+  "version": "2.0.0",
   "updated": "2026-10-26",
   "description": "Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.",
   "egress": [],
   "permissions": [
+    "clipboard",
     "serviceWorker",
     "localStorage"
   ],
@@ -14,8 +15,8 @@
     "carti-de-joc.",
     "carti-de-joc.lang"
   ],
-  "sizeBytes": 524016,
-  "sha256": "3458f2ff27e68404daee6a4947769683b6679aad42e0807b90f19b3a42b24e58",
+  "sizeBytes": 579851,
+  "sha256": "bdc560f83d894a5c5f46e6978a4a1f55b367111792d1dd19f0ff20e47bfbaf19",
   "csp": {
     "present": true,
     "directives": {

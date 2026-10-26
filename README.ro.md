@@ -2,11 +2,14 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.10 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.
+
+**Nou în 2.0.0 – Atelier de reguli:** definești un joc într-un fișier JSON (levate cu atu și puncte, sau scăpat de cărți cu efecte), îl validezi, îl joci contra AI-ului local, îl salvezi sau îl descarci. Cinci exemple didactice incluse (nu sunt reguli oficiale).
+Fișierul e limitat la 100 KB și validat strict; totul rulează local, fără server și fără p2p pentru jocurile personalizate.
 
 **Live:** https://chiuta.github.io/Carti-de-joc-fara-frontiere/
 
