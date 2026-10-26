@@ -131,6 +131,7 @@ async function moveOnce(P) {
   // revanșă
   await B.getByRole('button', {name: /Revanșă/}).click();
   await A.waitForFunction(() => __cff.net().round === 2 && !__cff.net().over, null, {timeout: 8000});
+  await B.waitForFunction(() => __cff.net().round === 2 && !__cff.net().over, null, {timeout: 8000});
   const ra = await cs(A), rb = await cs(B);
   ok(JSON.stringify(ra.hands) === JSON.stringify(rb.hands) && ra.round === rb.round, 'revanșa re-împarte la fel la ambii (PRNG comun)');
   // resincronizare
