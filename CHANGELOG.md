@@ -1,5 +1,19 @@
 # Jurnal de modificări
 
+## 2.2.0 — 2026-10-27 (anterior: v2.1.0)
+
+Recenzie 2 (2026-10-27).
+
+### Implementat
+- Statistici locale victorii / remize / înfrângeri contra calculatorului, pe joc, în `localStorage` (cu try/catch): Șeptică, Macao, Popa Prostul, Război, Crazy Eights, Texas Hold'em (pe meci). Linia apare în bara mesei (RO+EN; celelalte limbi folosesc textul EN). Un final nu se numără de două ori.
+- Test nou `tests/statistici.test.mjs` (9 verificări).
+
+### Neimplementat și de ce
+- Niveluri de dificultate AI: motoarele nu au parametri de forță (adâncime / aleatoriu reglabil); fără simulare N≥50 care să arate diferență, nu se adaugă. Rămâne «planificat».
+- Statistici pentru Blackjack (banca nu are final de partidă) și Klondike (pasiență); nu s-au simulat victoriile.
+- Cruce: nu a fost adăugat; regulile nu au putut fi confirmate din ≥2 surse.
+- Variante regionale Șeptică/Macao: reguli neverificate, deci neadăugate.
+
 ## 2.1.0 — 2026-10-27 (anterior: v2.0.0)
 
 Recenzie 2026-10-27.

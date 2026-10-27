@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.2.0 · **Ultima actualizare:** 2026-10-27
 
 **Stare:** stabilă; recenzia din 2026-10-27 aplicată (vezi CHANGELOG.md); modul multiplayer local unificat este **planificat**, neimplementat · **Offline:** complet (fără cereri de rețea)
 
@@ -30,6 +30,8 @@ Un atlas interactiv de jocuri cu cărți, de la Solitaire și Popa Prostul pân�
 - Filtre pe familii, plus filtrul „★ Doar jucabile”.
 - Fișă de joc cu număr de jucători, epocă, dificultate; marcare ca favorit (★).
 - Joc zilei și contor de statistici (jocuri, jucabile, familii, partide jucate).
+- **Statistici locale pe joc** contra calculatorului (victorii / remize / înfrângeri) pentru Șeptică, Macao, Popa Prostul, Război, Crazy Eights și Texas Hold'em (la nivel de meci), afișate în bara mesei. Se păstrează doar în `localStorage` pe acest dispozitiv (try/catch). Blackjack (banca nu are final de partidă) și Klondike nu au astfel de statistici; jocul în doi online nu se numără.
+- **Niveluri de dificultate AI: NU există** (motoarele jocurilor de cărți nu au parametri de forță: adâncime sau aleatoriu reglabil), deci nu s-au adăugat niveluri neverificate. **Cruce**: nu a fost adăugat, reguli neconfirmate din ≥2 surse.
 - Accesibilitate la masă: nume de cărți în română și anunțarea mesajelor jocului pentru cititoare de ecran.
 - Buton **▶ Joacă** în fișa fiecărui joc jucabil; **Închide** / ✕ / **Esc** pentru ieșire.
 

@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.1.0 · **Last updated:** 2026-10-27
+**Version:** 2.2.0 · **Last updated:** 2026-10-27
 
 **Status:** stable; review 2026-10-27 applied (see CHANGELOG.md); unified local multiplayer is **planned**, not yet implemented · **Offline:** complete (no network requests)
 
@@ -27,6 +27,8 @@ An interactive atlas of card games, from Solitaire and Popa Prostul (Old Maid) t
 - Filters by family, plus the "★ Playable only" filter.
 - Game sheet with number of players, era, difficulty; marking as a favourite (★).
 - Game of the day and a statistics counter (games, playable, families, rounds played).
+- **Local per-game statistics** against the computer (wins / draws / losses) for Septica, Macao, Popa Prostul, War, Crazy Eights and Texas Hold'em (per match), shown in the table bar. Stored only in `localStorage` on this device (try/catch). Blackjack (the bank has no end of game) and Klondike have no such statistics; online two-player games are not counted.
+- **AI difficulty levels: NONE** (the card-game engines have no strength parameters such as depth or tunable randomness), so no unverified levels were added. **Cruce**: not added, rules not confirmed from at least 2 sources.
 - Accessibility at the table: card names in Romanian and announcement of game messages for screen readers.
 - A **▶ Play** button on the sheet of every playable game; **Close** / ✕ / **Esc** to exit.
 
