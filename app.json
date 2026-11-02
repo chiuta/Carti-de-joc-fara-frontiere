@@ -15,8 +15,8 @@
     "carti-de-joc.",
     "carti-de-joc.lang"
   ],
-  "sizeBytes": 586090,
-  "sha256": "6b152048f01fffa0632e1baf12b2f8c96375303af3a67fb45dfe62c127f7cdcf",
+  "sizeBytes": 617411,
+  "sha256": "cfd99445e41c89d2ce7e9ca2bda07357914c2b423b9ffe9077c3207870f7cce2",
   "csp": {
     "present": true,
     "directives": {
@@ -61,6 +61,8 @@
       "bundle",
       "qr",
       "p2p",
+      "sync",
+      "history",
       "tts",
       "search"
     ]
@@ -75,6 +77,8 @@
       "bundle",
       "qr",
       "p2p",
+      "sync",
+      "history",
       "tts",
       "search"
     ]
