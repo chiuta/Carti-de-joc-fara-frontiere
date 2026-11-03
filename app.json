@@ -2,21 +2,24 @@
   "schema": 1,
   "slug": "carti-de-joc",
   "name": "Cărți de joc fără frontiere",
-  "version": "2.2.0",
-  "updated": "2026-10-27",
+  "version": "2.2.1",
+  "updated": "2026-11-03",
   "description": "Atlas de jocuri cu cărți, cu opt jocuri jucabile, într-un singur fișier HTML.",
   "egress": [],
   "permissions": [
+    "speechSynthesis",
     "clipboard",
     "serviceWorker",
-    "localStorage"
+    "localStorage",
+    "Web Crypto",
+    "BroadcastChannel"
   ],
   "storageKeys": [
     "carti-de-joc.",
     "carti-de-joc.lang"
   ],
-  "sizeBytes": 617411,
-  "sha256": "cfd99445e41c89d2ce7e9ca2bda07357914c2b423b9ffe9077c3207870f7cce2",
+  "sizeBytes": 739182,
+  "sha256": "9293e3ec269dcc527afcad964ed6688b9e7ddbcee8c63927c6d248a261554c1c",
   "csp": {
     "present": true,
     "directives": {
@@ -29,7 +32,7 @@
       "base-uri": "'self'",
       "form-action": "'self'",
       "worker-src": "'self' blob:",
-      "script-src": "'self' sha256×4",
+      "script-src": "'self' sha256×7",
       "connect-src": "'self'",
       "manifest-src": "'self'"
     },
