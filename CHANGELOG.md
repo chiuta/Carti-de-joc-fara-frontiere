@@ -1,5 +1,9 @@
 # Jurnal de modificări
 
+## 2.2.4 — 2026-11-08
+
+- Filtre în catalog după numărul de jucători și după dificultate (8 limbi); test `filtre-jucatori`.
+
 ## 2.2.1 — 2026-11-03
 
 Turneu și clasament Elo local (motor comun de jocuri), rezultate notate de mână

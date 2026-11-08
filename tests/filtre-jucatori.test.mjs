@@ -1,0 +1,22 @@
+// Filtre după număr de jucători și dificultate (matches). Rulare: node tests/filtre-jucatori.test.mjs
+import {launch, check, summary} from "./_lib.mjs";
+const {browser, page, st} = await launch({reducedMotion: "reduce"});
+await page.waitForTimeout(600);
+const total = await page.locator("#catalog .card-entry").count();
+check("fără filtre: 17 jocuri", total === 17, total);
+check("selectoarele au opțiuni (any + 6 / any + 4)", (await page.locator("#fpl option").count()) === 7 && (await page.locator("#fdf option").count()) === 5);
+await page.selectOption("#fpl", "1"); await page.waitForTimeout(100);
+const n1 = await page.locator("#catalog .card-entry").count();
+check("1 jucător: mai puține jocuri, dar cel puțin unul", n1 > 0 && n1 < total, n1);
+await page.selectOption("#fpl", "0"); await page.selectOption("#fdf", "1"); await page.waitForTimeout(100);
+const d1 = await page.locator("#catalog .card-entry").count();
+check("dificultate 1: subset nevid", d1 > 0 && d1 < total, d1);
+await page.selectOption("#fpl", "6"); await page.waitForTimeout(100);
+const both = await page.locator("#catalog .card-entry").count();
+check("filtrele se combină (≤ fiecare)", both <= d1, [both, d1]);
+await page.selectOption("#fpl", "0"); await page.selectOption("#fdf", "0"); await page.waitForTimeout(100);
+check("resetare: din nou 17", (await page.locator("#catalog .card-entry").count()) === 17);
+await page.selectOption("#lang", "hu"); await page.waitForTimeout(200);
+check("etichetă tradusă (hu)", /Játékosok/.test(await page.locator("#fpl option").first().textContent()));
+check("fără erori de pagină", st.errs.length === 0, st.errs);
+await browser.close(); summary();
