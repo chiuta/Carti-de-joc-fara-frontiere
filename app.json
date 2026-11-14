@@ -12,14 +12,15 @@
     "serviceWorker",
     "localStorage",
     "Web Crypto",
+    "WebGL",
     "BroadcastChannel"
   ],
   "storageKeys": [
     "carti-de-joc.",
     "carti-de-joc.lang"
   ],
-  "sizeBytes": 795850,
-  "sha256": "f5ce27cbee6a7fcb4d5727993bb3011889344d701ee639c8a49ff576b9ea22b7",
+  "sizeBytes": 847505,
+  "sha256": "e6d40205c995e1a4b6e65400efed632ebc90febdd6929de63be066b5fdb8375a",
   "csp": {
     "present": true,
     "directives": {
@@ -32,7 +33,7 @@
       "base-uri": "'self'",
       "form-action": "'self'",
       "worker-src": "'self' blob:",
-      "script-src": "'self' sha256×7",
+      "script-src": "'self' sha256×8",
       "connect-src": "'self'",
       "manifest-src": "'self'"
     },
